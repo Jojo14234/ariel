@@ -83,7 +83,7 @@ class SimpleFlatWorld:
     def spawn(
         self,
         mj_spec: mujoco.MjSpec,
-        spawn_position: list[float, float, float] | None = None,
+        spawn_position: list[float] | None = None,
         *,
         small_gap: float = 0.0,
         correct_for_bounding_box: bool = True,
