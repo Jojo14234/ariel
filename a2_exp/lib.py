@@ -8,7 +8,8 @@ import mujoco as mj
 import numpy as np
 
 _ARTIFACT_DIR = Path(__file__).parent / "artifacts"
-assert _ARTIFACT_DIR.exists()
+if not _ARTIFACT_DIR.exists():
+    _ARTIFACT_DIR.mkdir()
 assert _ARTIFACT_DIR.is_dir()
 
 

@@ -26,7 +26,8 @@ class CMAES(EAStrategy):
         return self.cma.tell(samples, scores)
 
     def stop(self):
-        return self.cma.stop()
+        # return self.cma.stop()
+        return self and False
 
 
 class GA(EAStrategy):

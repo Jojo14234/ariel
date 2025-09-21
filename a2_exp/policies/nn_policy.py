@@ -27,7 +27,7 @@ class NNPolicy(EAPolicy):
         _load_genome_to_network(genome, self.network)
         return self
 
-    def __init__(self, in_features: int = 5, out_features: int = 10):
+    def __init__(self, in_features: int = 5, out_features: int = 8):
         self.network = torch.nn.Sequential(
             torch.nn.Linear(in_features=in_features, out_features=out_features, dtype=torch.float64),
         )

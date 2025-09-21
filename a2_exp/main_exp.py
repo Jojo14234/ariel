@@ -1,6 +1,8 @@
 from concurrent.futures.process import ProcessPoolExecutor as PPool
 from typing import Callable
 
+from matplotlib import pyplot as plt
+
 from a2_exp.lib import Experiment, EAStrategy
 from a2_exp.policies.sine_policy import SinePolicy
 from a2_exp.strategies import CMAES
@@ -34,14 +36,21 @@ class EAExperiment(Experiment):
         self.n_generations = n_generations
 
     def run(self):
-        sin_factory = lambda: SinePolicy(out_features=self.mj_model.nu)
+        # from a2_exp.policies.nn_policy import NNPolicy
+        # factory = lambda: NNPolicy()
+        factory = lambda: SinePolicy(out_features=self.mj_model.nu)
         es_kwargs = {
-            "n_parameters": sin_factory().n_parameters(),
+            "n_parameters": factory().n_parameters(),
             "population_size": 100,
             "seed": 42,
         }
 
-        self.run_single(CMAES(**es_kwargs), sin_factory)
+        for i in range(10):
+            seed = 42 + i
+            score, _ = self.run_single(CMAES(**es_kwargs | {'seed':seed }), factory)
+            self.save(f"CMA_seed_{seed}_fixed_reverse", score)
+            plt.plot(score, label=f'seed {seed}')
+        plt.show()
 
     def run_single(self, es: EAStrategy, policy_factory: Callable, use_mp: bool = True):
         best_genomes = []
@@ -55,7 +64,7 @@ class EAExperiment(Experiment):
                 scores = [fut.result() for fut in futures]
                 es.tell(genomes, [-f for f in scores])
                 argmax = max(range(len(scores)), key=scores.__getitem__)
-                print(f"generation {i_generation}, max fitness: {scores[argmax]}")
+                print(f"generation {i_generation}, max fitness: {scores[argmax]:.4f}")
                 best_genomes.append(genomes[argmax])
                 best_scores.append(scores[argmax])
                 if es.stop():
@@ -63,12 +72,10 @@ class EAExperiment(Experiment):
                     break
 
         argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
-        print(f"total best score: {best_scores[argmax]}")
+        return best_scores, best_genomes[argmax]
 
 def main():
-    # RandomBaseline().run()
     EAExperiment().run()
-    # EAExperiment().view()
 
 
 if __name__ == '__main__':
