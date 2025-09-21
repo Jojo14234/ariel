@@ -6,29 +6,10 @@ from matplotlib import pyplot as plt
 from a2_exp.lib import Experiment, EAStrategy
 from a2_exp.policies.sine_policy import SinePolicy
 from a2_exp.strategies import CMAES
+from a2_exp.utils import DummyPool
 
 print("imports finished!")
 
-
-class DummyResult:
-    def __init__(self, f, *args, **kwargs):
-        self.f = f
-        self.args = args
-        self.kwargs = kwargs
-
-    def result(self):
-        return self.f(*self.args, **self.kwargs)
-
-class DummyPool:
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        ...
-
-    def submit(self, f, *args, **kwargs):
-        _ = self # to avoid 'can be static' hint
-        return DummyResult(f, *args, **kwargs)
 
 class EAExperiment(Experiment):
     def __init__(self, n_generations: int = 100):
