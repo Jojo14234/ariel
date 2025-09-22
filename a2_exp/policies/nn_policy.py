@@ -27,12 +27,14 @@ class NNPolicy(EAPolicy):
         _load_genome_to_network(genome, self.network)
         return self
 
-    def __init__(self, in_features: int = 5, out_features: int = 8):
+    def __init__(self, out_features: int = 8):
         self.network = torch.nn.Sequential(
-            torch.nn.Linear(in_features=in_features, out_features=out_features, dtype=torch.float64),
+            torch.nn.Linear(in_features=29, out_features=5, dtype=torch.float64),
+            torch.nn.ReLU(),
+            torch.nn.Linear(in_features=5, out_features=out_features, dtype=torch.float64),
+            torch.nn.Tanh(),
         )
-        self._frequencies = torch.from_numpy(.1 ** np.arange(-2, in_features-2)).type(torch.float64)
 
     def __call__(self, mj_model: mj.MjModel, mj_data: mj.MjData):
-        inp = self._frequencies.mul(mj_data.time).sin()
-        return self.network(inp).detach().numpy()
+        x = np.concatenate([mj_data.qpos, mj_data.qvel], axis=0)
+        return self.network(torch.from_numpy(x)).detach().numpy() * np.pi / 2

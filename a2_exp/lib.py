@@ -61,7 +61,7 @@ class Experiment(ABC):
         - baseline fitness is the total position moved in the positive y direction
         - y chosen over x because the robot is aligned in y direction initially
         """
-        x, y = mj_data.geom('robot-core').xpos[:2]
+        x, y, z = mj_data.geom('robot-core').xpos
         # return y - abs(x)
         # return abs(y)
         return y

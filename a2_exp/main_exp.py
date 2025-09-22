@@ -67,19 +67,19 @@ class EAExperiment(Experiment):
             )
 
     def run(self):
-        # from a2_exp.policies.nn_policy import NNPolicy
-        # factory = lambda: NNPolicy()
-        factory = lambda: SinePolicy(out_features=self.mj_model.nu)
+        from a2_exp.policies.nn_policy import NNPolicy
+        factory = lambda: NNPolicy()
+        # factory = lambda: SinePolicy(out_features=self.mj_model.nu)
         es_kwargs = {
             "n_parameters": factory().n_parameters(),
             "population_size": 100,
             "seed": 42,
         }
-
+        print(es_kwargs)
         for i in range(10):
             seed = 42 + i
             score, _ = self.run_single(CMAES(**es_kwargs | {'seed': seed}), factory)
-            self.save(f"CMA_seed_{seed}_fixed_reverse", score)
+            # self.save(f"CMA_seed_{seed}_fixed_reverse", score)
             plt.plot(score, label=f'seed {seed}')
         plt.show()
 
@@ -111,17 +111,18 @@ class EAExperiment(Experiment):
         print(policy.m)
 
     def final_plot(self):
-        scores = dict(
-            cma=[
+        scores = {
+            "CMA-ES": [
                 self.load(f'es_name_CMAES,seed_{seed},population_size_100,frequency_opt_0')['scores']
                 for seed in (42, 43, 44)
             ],
-            ga=[
+            "GA": [
                 self.load(f'es_name_GA,seed_{seed},population_size_100,frequency_opt_0')['scores']
                 for seed in (42, 43, 44)
             ],
-            baseline=self.load('random')
-        )
+            "Random": self.load('random')
+        }
+
         for name, score in scores.items():
             y = np.array(score)
             mu = np.mean(y, axis=0)
@@ -130,13 +131,20 @@ class EAExperiment(Experiment):
             plt.plot(x, mu, label=name)
             plt.fill_between(x, mu + std, mu - std, alpha=0.2)
 
+        plt.yticks([0., .5, 1., 1.5, 2., 2.5, 3.])
+        plt.legend()
+        plt.title('CMA-ES vs GA Fitness')
+        plt.ylabel('mean fitness')
+        plt.xlabel('generation')
+        plt.grid()
         plt.show()
 
 
 def main():
+    EAExperiment().run()
     # EAExperiment().run_all()
     # EAExperiment().run_random()
-    EAExperiment().final_plot()
+    # EAExperiment().final_plot()
     # EAExperiment().view_weights("es_name_CMAES,seed_42,population_size_100,frequency_opt_0")
 
 
