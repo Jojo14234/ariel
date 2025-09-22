@@ -139,9 +139,13 @@ class EAExperiment(Experiment):
         plt.grid()
         plt.show()
 
+    def view_saved(self, name: str):
+        obj = self.load(name)
+        assert isinstance(obj, dict) and 'policy' in obj
+        self.view(self.mj_model, obj['policy'], self.fitness)
 
 def main():
-    EAExperiment().run()
+    EAExperiment().view_saved("es_name_CMAES,seed_42,population_size_50,frequency_opt_0")
     # EAExperiment().run_all()
     # EAExperiment().run_random()
     # EAExperiment().final_plot()
