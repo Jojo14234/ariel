@@ -1,5 +1,3 @@
-from typing import Literal
-
 import mujoco as mj
 import numpy as np
 
@@ -18,7 +16,7 @@ class SinePolicy(EAPolicy):
     frequency_opt: fixed (0), linear (1), exp (1)
 
     """
-    def __init__(self, in_features: int = 5, out_features: int = 8, frequency_opt: Literal[0, 1, 2] = 0):
+    def __init__(self, in_features: int = 5, out_features: int = 8, frequency_opt: int = 0):
         self.b = np.zeros((out_features,))
         self.m = np.zeros((in_features, out_features))
         self.f = np.zeros((in_features, out_features))

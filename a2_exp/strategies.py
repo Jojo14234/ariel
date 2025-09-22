@@ -16,6 +16,7 @@ class CMAES(EAStrategy):
         options = {
             "seed": seed,
             "popsize": population_size,
+            'verb_disp': 0,
         }
         self.cma = cma.CMAEvolutionStrategy([0.] * n_parameters, .5, options)
 
@@ -74,7 +75,6 @@ class GA(EAStrategy):
         scoring = dict(zip(indices, scores))
         selected_i = [min(self.rng.choice(indices, self.sampling_size), key=scoring.get) for _ in range(ps)]
         selected = [samples[i] for i in set(selected_i)]
-        print(f'{len(selected_i)} -> {len(set(selected_i))}')
         pairs = [self._blend(*self.rng.choice(selected, 2)) for _ in range(ps)]
         new_generation = [self._mutate(x) for pair in pairs for x in pair]
         new_generation = self.rng.choice(new_generation, size=ps)

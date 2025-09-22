@@ -101,5 +101,9 @@ class Experiment(ABC):
         with open(_ARTIFACT_DIR / f"{name}.pkl", "rb") as f:
             return pickle.load(f)
 
+    @staticmethod
+    def exists(name: str) -> bool:
+        return (_ARTIFACT_DIR / f"{name}.pkl").exists()
+
     @abstractmethod
     def run(self): ...

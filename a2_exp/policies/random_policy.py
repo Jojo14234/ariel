@@ -24,3 +24,4 @@ class RandomPolicy(EAPolicy):
 
     def bind(self, genome: int):
         self.rng = np.random.default_rng(genome)
+        return self
