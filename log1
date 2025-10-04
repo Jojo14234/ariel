@@ -1,0 +1,23 @@
+inner 138102 | starting... (n_parameters=198) | ip_100 ig_400 st_10 nc_10 seed_42 | 2025-10-04 22:42:20
+inner | gen 0, max fitness: -5.0003 | 2025-10-04 22:42:22
+inner | gen 5, max fitness: -5.0002 | 2025-10-04 22:42:27
+inner | gen 10, max fitness: -4.9931 | 2025-10-04 22:42:32
+inner | gen 15, max fitness: -4.9901 | 2025-10-04 22:42:36
+inner | gen 20, max fitness: -4.9897 | 2025-10-04 22:42:41
+inner | gen 25, max fitness: -4.9891 | 2025-10-04 22:42:46
+inner | gen 30, max fitness: -4.9869 | 2025-10-04 22:42:50
+inner | gen 35, max fitness: -4.9392 | 2025-10-04 22:42:55
+inner | gen 40, max fitness: -4.8877 | 2025-10-04 22:42:59
+inner | gen 45, max fitness: -4.8582 | 2025-10-04 22:43:04
+inner | gen 50, max fitness: -4.7949 | 2025-10-04 22:43:09
+inner | gen 55, max fitness: -4.7754 | 2025-10-04 22:43:13
+inner | gen 60, max fitness: -4.5261 | 2025-10-04 22:43:18
+inner | gen 65, max fitness: -4.2961 | 2025-10-04 22:43:22
+inner | gen 70, max fitness: -4.5076 | 2025-10-04 22:43:27
+inner | gen 75, max fitness: -4.4875 | 2025-10-04 22:43:32
+inner | gen 80, max fitness: -4.3850 | 2025-10-04 22:43:36
+inner | gen 85, max fitness: -4.1467 | 2025-10-04 22:43:41
+inner | gen 90, max fitness: -4.0923 | 2025-10-04 22:43:46
+inner | gen 95, max fitness: -4.1781 | 2025-10-04 22:43:50
+inner | gen 100, max fitness: -4.2107 | 2025-10-04 22:43:55
+POOLED CMA | ip_100 ig_400 st_10 nc_10 seed_42 took 96.01s
