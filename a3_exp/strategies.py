@@ -18,7 +18,7 @@ class CMAES(EAStrategy):
             "popsize": population_size,
             'verb_disp': 0,
         }
-        self.cma = cma.CMAEvolutionStrategy([1.] * n_parameters, .5, options)
+        self.cma = cma.CMAEvolutionStrategy([0.] * n_parameters, .5, options)
 
     def ask(self):
         return self.cma.ask()
