@@ -178,7 +178,7 @@ class MainExperiment(Experiment):
         model = self._gecko_simple_flat()
 
         with PPool() as pool:
-            for kw in get_kw(ig=400),:
+            for kw in [get_kw(ip=64, ig=400)]:
                 with timeit(f"POOLED CMA | {repr_kw(kw)}"):
                     score, policy = self._inner_loop(model, **kw, pool=pool)
 
