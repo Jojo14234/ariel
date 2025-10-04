@@ -111,7 +111,7 @@ class Experiment:
         from ariel.body_phenotypes.robogen_lite.constructor import construct_mjspec_from_graph
 
         world = OlympicArena()
-        world.spawn(construct_mjspec_from_graph(graph).spec, spawn_position=SPAWN_POS, correct_for_bounding_box=False)
+        world.spawn(construct_mjspec_from_graph(graph).spec, spawn_position=SPAWN_POS)
         return world.spec.compile()
 
     @staticmethod
@@ -119,7 +119,7 @@ class Experiment:
         from ariel.simulation.environments import OlympicArena
         from ariel.body_phenotypes.robogen_lite.prebuilt_robots.gecko import gecko
         world = OlympicArena()
-        world.spawn(gecko().spec, spawn_position=SPAWN_POS, spawn_orientation=[90, 0, 0], correct_for_bounding_box=False)
+        world.spawn(gecko().spec, spawn_position=SPAWN_POS, spawn_orientation=[90, 0, 0])
         return world.spec.compile()
 
     @staticmethod
