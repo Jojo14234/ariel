@@ -14,7 +14,7 @@ from a3_exp.utils import DummyPool, timeit
 mj.set_mjcb_control(None)  # DO NOT REMOVE
 
 now = lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-get_kw = (lambda **k: {"ip": 100, "ig": 100, "st": 10, "nc": 10, "seed": 42} | k)
+get_kw = (lambda **k: {"ip": 100, "ig": 100, "st": 10, "nc": 10, "seed": 42, "f": 1} | k)
 repr_kw = (lambda d: " ".join(f"{k}_{v}" for k, v in d.items()))
 
 class MainExperiment(Experiment):
@@ -28,6 +28,7 @@ class MainExperiment(Experiment):
         st: int,
         nc: int,
         seed: int,
+        f: int,
         pool: Optional[PPool] = None,
         quiet: bool = False
     ):
@@ -50,7 +51,11 @@ class MainExperiment(Experiment):
         pool = pool or DummyPool()
 
         # ekw = {"fitness": cls.basic_fitness, "n_steps_per_cycle": n_steps_per_cycle, "sim_time": sim_time}
-        ekw = {"fitness": cls.fitness, "n_steps_per_cycle": n_steps_per_cycle, "sim_time": sim_time}
+        ekw = {
+            "fitness": (cls.basic_fitness, cls.fitness)[f],
+            "n_steps_per_cycle": n_steps_per_cycle,
+            "sim_time": sim_time
+        }
 
         for i_generation in range(n_generations):
             genomes = es.ask()
@@ -61,7 +66,7 @@ class MainExperiment(Experiment):
             argmax = max(range(len(scores)), key=scores.__getitem__)
             best_scores.append(scores[argmax])
             best_policies.append(policies[argmax])
-            fd_count = len(os.listdir(f"/proc/{os.getpid()}/fd"))
+            fd_count = 1 #len(os.listdir(f"/proc/{os.getpid()}/fd"))
             if not (i_generation % 5 or _q):
                 print(f"inner {fd_count=} | gen {i_generation}, max fitness: {best_scores[-1]:.4f} | {now()}")
 
@@ -173,18 +178,31 @@ class MainExperiment(Experiment):
                     score, _ = self._inner_loop(model, **kw, pool=None)
                     # print(f"{repr_kw(kw)} | {score=:.3f}")
 
+    def gecko_learn_flat(self):
+        flat = self._gecko_simple_flat()
+        # olympic = self._gecko_world()
+
+        with PPool() as pool:
+            score, policy = self._inner_loop(flat, **get_kw(ig=200, f=0), pool=pool)
+
+        self.save("flat_gecko", policy)
+        print(f"final score: {score}")
+        # input("ready flat?")
+        # self.view(flat, policy, self.basic_fitness)
+        # input("ready olympic?")
+        # self.view(olympic, policy, self.fitness)
+
     def gecko_base(self):
         model = self._gecko_world()
 
         with PPool() as pool:
-            for kw in [get_kw(ip=100, ig=400)]:
+            for kw in [get_kw(ip=15, ig=20)]:
                 with timeit(f"POOLED CMA | {repr_kw(kw)}"):
                     score, policy = self._inner_loop(model, **kw, pool=pool)
-
-                self.save(f'best_gecko {repr_kw(kw)}', policy._genome)
+                # self.save(f'best_gecko {repr_kw(kw)}', policy._genome)
         print(f"final score: {score}")
-        # input("ready?")
-        # self.view(model, policy, self.fitness)
+        input("ready?")
+        self.view(model, policy, self.fitness)
 
     def gecko_example(self):
         gecko_model = self._gecko_world()
@@ -234,4 +252,4 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
-    MainExperiment().gecko_base()
+    MainExperiment().gecko_learn_flat()
