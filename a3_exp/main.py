@@ -174,17 +174,16 @@ class MainExperiment(Experiment):
                     score, _ = self._inner_loop(model, **kw, pool=None)
                     # print(f"{repr_kw(kw)} | {score=:.3f}")
 
-
-
     def gecko_base(self):
         model = self._gecko_simple_flat()
 
         with PPool() as pool:
-            for kw in get_kw(nc=10), get_kw(nc=30):
+            for kw in get_kw(ig=400):
                 with timeit(f"POOLED CMA | {repr_kw(kw)}"):
-                    self._inner_loop(model, **kw, pool=pool)
+                    score, policy = self._inner_loop(model, **kw, pool=pool)
 
-        # print(f"final score: {score}")
+        self.save('best_gecko400', policy._genome)
+        print(f"final score: {score}")
         # input("ready?")
         # self.view(model, policy, self.fitness)
 
@@ -222,9 +221,12 @@ class MainExperiment(Experiment):
         POOL-1-out CMA ip_100 ig_5 st_10 nc_10 seed_42 took 78.21s
         89 / 12 = 7x slower, we have 8 cores but 16 logical processors, so this is either pretty bad or ok.
 
-
         # 10/04  3AM
         spent too long profiling shit, still only have some shit ass gecko, and still want to do more profiling
+
+        # 10/04 22:24
+
+        on ripper now
 
         """
 
