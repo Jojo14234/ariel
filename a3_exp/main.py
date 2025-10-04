@@ -49,7 +49,7 @@ class MainExperiment(Experiment):
         best_policies = []
         pool = pool or DummyPool()
 
-        ekw = {"fitness": cls.basic_fitness, "n_steps_per_cycle": n_steps_per_cycle, "sim_time": sim_time}
+        # ekw = {"fitness": cls.basic_fitness, "n_steps_per_cycle": n_steps_per_cycle, "sim_time": sim_time}
         ekw = {"fitness": cls.fitness, "n_steps_per_cycle": n_steps_per_cycle, "sim_time": sim_time}
 
         for i_generation in range(n_generations):
@@ -61,10 +61,9 @@ class MainExperiment(Experiment):
             argmax = max(range(len(scores)), key=scores.__getitem__)
             best_scores.append(scores[argmax])
             best_policies.append(policies[argmax])
-            i_generation % 5 or _q or print(f"inner | gen {i_generation}, max fitness: {best_scores[-1]:.4f} | {now()}")
-            if es.stop():
-                print(f'early stopping at generation {i_generation} ...')
-                break
+            fd_count = len(os.listdir(f"/proc/{os.getpid()}/fd"))
+            if not (i_generation % 5 or _q):
+                print(f"inner {fd_count=} | gen {i_generation}, max fitness: {best_scores[-1]:.4f} | {now()}")
 
         argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
         _q or print(f"inner {os.getpid()} | finished  | {now()}")
@@ -175,14 +174,14 @@ class MainExperiment(Experiment):
                     # print(f"{repr_kw(kw)} | {score=:.3f}")
 
     def gecko_base(self):
-        model = self._gecko_simple_flat()
+        model = self._gecko_world()
 
         with PPool() as pool:
-            for kw in [get_kw(ip=64, ig=400)]:
+            for kw in [get_kw(ip=100, ig=400)]:
                 with timeit(f"POOLED CMA | {repr_kw(kw)}"):
                     score, policy = self._inner_loop(model, **kw, pool=pool)
 
-        self.save('best_gecko400', policy._genome)
+                self.save(f'best_gecko {repr_kw(kw)}', policy._genome)
         print(f"final score: {score}")
         # input("ready?")
         # self.view(model, policy, self.fitness)
