@@ -178,15 +178,15 @@ class MainExperiment(Experiment):
 
     def gecko_base(self):
         model = self._gecko_simple_flat()
-        kw = get_kw(ip=50, nc=10)
 
         with PPool() as pool:
-            with timeit(f"POOLED CMA | {repr_kw(kw)}"):
-                score, policy = self._inner_loop(model, **kw, pool=pool)
+            for kw in get_kw(nc=10), get_kw(nc=30):
+                with timeit(f"POOLED CMA | {repr_kw(kw)}"):
+                    self._inner_loop(model, **kw, pool=pool)
 
-        print(f"final score: {score}")
-        input("ready?")
-        self.view(model, policy, self.fitness)
+        # print(f"final score: {score}")
+        # input("ready?")
+        # self.view(model, policy, self.fitness)
 
     def gecko_example(self):
         gecko_model = self._gecko_world()
