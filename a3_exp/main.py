@@ -233,4 +233,4 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
-    MainExperiment().gecko_timestep()
+    MainExperiment().gecko_time_pooling()
