@@ -1,10 +1,9 @@
-from typing import Any
-
-import torch
-import numpy as np
 import mujoco as mj
+import numpy as np
+import torch
 
 from a3_exp.lib import EAPolicy
+
 
 def _load_genome_to_network(genome: np.ndarray, network: torch.nn.Module) -> None:
     n_parameters = sum(p.numel() for p in network.parameters())
@@ -35,7 +34,7 @@ class NNPolicy(EAPolicy):
     def n_parameters(self) -> int:
         return sum(p.numel() for p in self.network.parameters())
 
-    def bind(self, genome: Any):
+    def bind(self, genome: np.ndarray):
         self._genome = genome
         _load_genome_to_network(genome, self.network)
         return self

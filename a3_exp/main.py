@@ -40,6 +40,7 @@ class MainExperiment(Experiment):
         kw = dict(ip=ip, ig=ig, st=st, nc=nc, seed=seed)
 
         from a3_exp.policies.nn_policy import NNPolicy
+        # from a3_exp.policies.sine_policy import SinePolicy as NNPolicy
         mj_data = mj.MjData(mj_model)
         in_features = len(mj_data.qpos) + len(mj_data.qvel)
         factory = lambda: NNPolicy(in_features=in_features, out_features=mj_model.nu)
@@ -183,10 +184,13 @@ class MainExperiment(Experiment):
         # olympic = self._gecko_world()
 
         with PPool() as pool:
-            score, policy = self._inner_loop(flat, **get_kw(ig=200, f=0), pool=pool)
+            for seed in range(43, 50):
+                score, policy = self._inner_loop(flat, **get_kw(ig=100, f=0, seed=seed), pool=pool)
+                print(f"{seed=}, {score=}")
+                self.save(f"flat_gecko_{seed}", policy)
 
-        self.save("flat_gecko", policy)
-        print(f"final score: {score}")
+        # policy = self.load("flat_gecko")
+        # print(f"final score: {score}")
         # input("ready flat?")
         # self.view(flat, policy, self.basic_fitness)
         # input("ready olympic?")
