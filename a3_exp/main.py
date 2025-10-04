@@ -185,7 +185,7 @@ class MainExperiment(Experiment):
 
         with PPool() as pool:
             for seed in range(43, 50):
-                score, policy = self._inner_loop(flat, **get_kw(ig=100, f=0, seed=seed), pool=pool)
+                score, policy = self._inner_loop(flat, **get_kw(f=0, st=20, seed=seed), pool=pool)
                 print(f"{seed=}, {score=}")
                 self.save(f"flat_gecko_{seed}", policy)
 
