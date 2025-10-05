@@ -17,10 +17,11 @@ class SinePolicy(EAPolicy):
 
     """
     def __init__(self, in_features: int = 5, out_features: int = 8, frequency_opt: int = 0):
+        assert in_features # ignore
         self.b = np.zeros((out_features,))
-        self.m = np.zeros((in_features, out_features))
-        self.f = np.zeros((in_features, out_features))
-        self._f2 = 10. ** np.arange(2, 2 - in_features, -1)
+        self.m = np.zeros((5, out_features))
+        self.f = np.zeros((5, out_features))
+        self._f2 = 10. ** np.arange(2, 2 - 5, -1)
 
         assert frequency_opt in (0, 1, 2)
         self.is_fixed = frequency_opt == 0
