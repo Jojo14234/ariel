@@ -39,8 +39,8 @@ class MainExperiment(Experiment):
         _q = quiet
         kw = dict(ip=ip, ig=ig, st=st, nc=nc, seed=seed)
 
-        # from a3_exp.policies.nn_policy import NNPolicy
-        from a3_exp.policies.sine_policy import SinePolicy as NNPolicy
+        from a3_exp.policies.nn_policy import NNPolicy
+        # from a3_exp.policies.sine_policy import SinePolicy as NNPolicy
         mj_data = mj.MjData(mj_model)
         in_features = len(mj_data.qpos) + len(mj_data.qvel)
         factory = lambda: NNPolicy(in_features=in_features, out_features=mj_model.nu)
@@ -136,18 +136,18 @@ class MainExperiment(Experiment):
         # model, f = self._gecko_world(), 1
 
         with PPool() as pool:
-            for seed in range(45, 50):
-                score, policy = self._inner_loop(model, **get_kw(f=0, st=20, seed=seed), pool=pool)
+            for seed in range(42, 50):
+                score, policy = self._inner_loop(model, **get_kw(f=f, st=20, seed=seed), pool=pool)
                 print(f"{seed=}, {score=}")
                 self.save(f"gecko_f{f}_{seed}_sine", policy)
 
     def gecko_view(self):
         flat = self._gecko_simple_flat()
         olympic = self._gecko_world()
-        policy = self.load("flat_gecko_45")
-        input("ready flat?")
+        policy = self.load("flat_gecko_47")
+        # input("ready flat?")
         self.view(flat, policy, self.basic_fitness, sim_time=20)
-        input("ready olympic?")
+        # input("ready olympic?")
         self.view(olympic, policy, self.fitness, sim_time=20)
     #
     def gecko_base(self):
