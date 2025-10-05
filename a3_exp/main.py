@@ -168,6 +168,24 @@ class MainExperiment(Experiment):
         # self.view(gecko_model, lambda _, d: d.ctrl, self.fitness, n_steps_per_cycle=20)
         self.view(gecko_model, policy, self.fitness)
 
+    def compare_mp_speeds(self):
+        flat = self._gecko_simple_flat()
+        n = os.cpu_count() - 4
+        with PPool(max_workers=n) as pool:
+            with timeit(f"warmup"):
+                kw = get_kw(ip=n * 2, ig=10)
+                self._inner_loop(flat, **kw, quiet=True, pool=pool)
+
+            with timeit(f"{n}x seq with pool"):
+                for _ in range(n):
+                    self._inner_loop(flat, **kw, quiet=True, pool=pool)
+
+            with timeit(f"{n}x pool with seq"):
+                futures = [pool.submit(self._inner_loop, flat, **kw, quiet=True) for _ in range(n)]
+                _ = [fut.result() for fut in futures]
+
+
+
     def supernotes(self):
         """
         # 10/04
@@ -213,4 +231,5 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
-    MainExperiment().gecko_learn()
+    MainExperiment().compare_mp_speeds()
+    # MainExperiment().gecko_learn()
