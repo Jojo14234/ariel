@@ -67,7 +67,7 @@ class Experiment:
         return -mj_data.geom('robot-core').xpos[1]
 
     @staticmethod
-    def evaluate(mj_model: mj.MjModel, policy, fitness, sim_time: int = 10, n_steps_per_cycle: int = 10):
+    def evaluate(mj_model: mj.MjModel, policy, fitness, sim_time: int = 20, n_steps_per_cycle: int = 10):
         mj_data = mj.MjData(mj_model)
         mj.mj_resetData(mj_model, mj_data)
         t_iter = 0.002 * n_steps_per_cycle
@@ -80,7 +80,7 @@ class Experiment:
         return fitness(mj_model, mj_data)
 
     @staticmethod
-    def view(mj_model: mj.MjModel, policy, fitness, sim_time: int = 10, n_steps_per_cycle: int = 10):
+    def view(mj_model: mj.MjModel, policy, fitness, sim_time: int = 20, n_steps_per_cycle: int = 10):
         mj_data = mj.MjData(mj_model)
 
         import mujoco.viewer as mjv
