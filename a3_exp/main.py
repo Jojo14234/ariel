@@ -39,8 +39,8 @@ class MainExperiment(Experiment):
         _q = quiet
         kw = dict(ip=ip, ig=ig, st=st, nc=nc, seed=seed)
 
-        from a3_exp.policies.nn_policy import NNPolicy
-        # from a3_exp.policies.sine_policy import SinePolicy as NNPolicy
+        # from a3_exp.policies.nn_policy import NNPolicy
+        from a3_exp.policies.sine_policy import SinePolicy as NNPolicy
         mj_data = mj.MjData(mj_model)
         in_features = len(mj_data.qpos) + len(mj_data.qvel)
         factory = lambda: NNPolicy(in_features=in_features, out_features=mj_model.nu)
@@ -125,77 +125,31 @@ class MainExperiment(Experiment):
             model, policy = self._outer_loop(use_mp=use_mp)
         self.view(model, policy, self.fitness)
 
-    def example(self):
+    def random_example(self):
         genotype = list(np.random.default_rng(42).random((3, 64)).astype(np.float32))
         graph = self._genotype_to_graph(genotype)
         mj_model = self._graph_to_mj_model(graph)
         self.view(mj_model, lambda _, d: d.ctrl, self.fitness)
 
-    def gecko_hyper(self):
-        gecko_model = self._gecko_world()
-        with PPool() as pool:
-            futures = {
-                pool.submit(
-                    self._inner_loop,
-                    mj_model=gecko_model,
-                    population_size=pop_size,
-                    n_generations=80,
-                    pool=None,
-                    sim_time=sim_time,
-                    n_steps_per_cycle=n_steps_per_cycle,
-                ): (n_steps_per_cycle, pop_size)
-                for n_steps_per_cycle in [5, 10, 20, 50]
-                for pop_size in [20, 50, 100]
-                for sim_time in [10, 20, 60]
-            }
-            print(len(futures))
-            scores = []
-            for fut in as_completed(futures):
-                scores.append(fut.result()[0])
-                params = futures[fut]
-                print(f"{params} | {scores[-1]:.3f}")
-
-    def gecko_time_pooling(self):
-        model = self._gecko_world()
+    def gecko_learn(self):
+        model, f = self._gecko_simple_flat(), 0
+        # model, f = self._gecko_world(), 1
 
         with PPool() as pool:
-            for kw in get_kw(ig=1), get_kw(ig=1), get_kw(ig=5):
-                with timeit(f"POOLED CMA {repr_kw(kw)}"):
-                    self._inner_loop(model, **kw, pool=pool, quiet=True)
-
-            kw = get_kw(ig=5)
-            with timeit(f"SEQP1_ CMA {repr_kw(kw)}"):
-                pool.submit(self._inner_loop, model, **kw, quiet=True).result()
-
-        with timeit(f"SEQUENT CMA {repr_kw(kw)}"):
-            self._inner_loop(model, **kw, quiet=True)
-
-    def gecko_timestep(self):
-        model = self._gecko_world()
-        with (PPool, DummyPool)[1]() as pool:
-            for nc in 200, 200, 100, 50, 20, 10:
-                kw = get_kw(ip=3, ig=3, nc=nc)
-                with timeit(f"POOLED CMA {repr_kw(kw)}"):
-                    score, _ = self._inner_loop(model, **kw, pool=None)
-                    # print(f"{repr_kw(kw)} | {score=:.3f}")
-
-    def gecko_learn_flat(self):
-        flat = self._gecko_simple_flat()
-        # olympic = self._gecko_world()
-
-        with PPool() as pool:
-            for seed in range(43, 50):
-                score, policy = self._inner_loop(flat, **get_kw(f=0, st=20, seed=seed), pool=pool)
+            for seed in range(45, 50):
+                score, policy = self._inner_loop(model, **get_kw(f=0, st=20, seed=seed), pool=pool)
                 print(f"{seed=}, {score=}")
-                self.save(f"flat_gecko_{seed}", policy)
+                self.save(f"gecko_f{f}_{seed}_sine", policy)
 
-        # policy = self.load("flat_gecko")
-        # print(f"final score: {score}")
-        # input("ready flat?")
-        # self.view(flat, policy, self.basic_fitness)
-        # input("ready olympic?")
-        # self.view(olympic, policy, self.fitness)
-
+    def gecko_view(self):
+        flat = self._gecko_simple_flat()
+        olympic = self._gecko_world()
+        policy = self.load("flat_gecko_45")
+        input("ready flat?")
+        self.view(flat, policy, self.basic_fitness, sim_time=20)
+        input("ready olympic?")
+        self.view(olympic, policy, self.fitness, sim_time=20)
+    #
     def gecko_base(self):
         model = self._gecko_world()
 

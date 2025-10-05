@@ -64,7 +64,7 @@ class Experiment:
 
     @staticmethod
     def basic_fitness(_: mj.MjModel, mj_data: mj.MjData):
-        return mj_data.geom('robot-core').xpos[1]
+        return -mj_data.geom('robot-core').xpos[1]
 
     @staticmethod
     def evaluate(mj_model: mj.MjModel, policy, fitness, sim_time: int = 10, n_steps_per_cycle: int = 10):
