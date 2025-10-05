@@ -227,6 +227,7 @@ class MainExperiment(Experiment):
 
         warmup took 10.91s
         60x seq with pool took 610.30s
+        60x pool with seq took 485.89s
 
 
         > gecko learn NN on Olympic

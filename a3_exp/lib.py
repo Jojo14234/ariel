@@ -106,29 +106,21 @@ class Experiment:
         return json_graph.node_link_graph(json.loads(graph), edges="edges")
 
     @staticmethod
-    def _graph_to_mj_model(graph: Graph) -> mj.MjModel:
-        from ariel.simulation.environments import OlympicArena
+    def _greph_to_mj_spec(graph: Graph) -> mj.MjSpec:
         from ariel.body_phenotypes.robogen_lite.constructor import construct_mjspec_from_graph
-
-        world = OlympicArena()
-        world.spawn(construct_mjspec_from_graph(graph).spec, spawn_position=SPAWN_POS)
-        return world.spec.compile()
+        return construct_mjspec_from_graph(graph).spec
 
     @staticmethod
-    def _gecko_world():
-        from ariel.simulation.environments import OlympicArena
-        from ariel.body_phenotypes.robogen_lite.prebuilt_robots.gecko import gecko
-        world = OlympicArena()
-        world.spawn(gecko().spec, spawn_position=SPAWN_POS, spawn_orientation=[90, 0, 0])
-        return world.spec.compile()
-
-    @staticmethod
-    def _gecko_simple_flat():
-        from ariel.body_phenotypes.robogen_lite.prebuilt_robots.gecko import gecko
+    def spec_to_simple_world(spec: mj.MjSpec) -> mj.MjModel:
         from ariel.simulation.environments.simple_flat_world import SimpleFlatWorld
-        spec = (w := SimpleFlatWorld()).spawn(gecko().spec, spawn_position=[0, 0, .1]) or w.spec
+        spec = (w := SimpleFlatWorld()).spawn(spec, spawn_position=[0, 0, .1]) or w.spec
         return spec.compile()
 
+    @staticmethod
+    def spec_to_olympic_world(spec: mj.MjSpec) -> mj.MjModel:
+        from ariel.simulation.environments import OlympicArena
+        spec = (w := OlympicArena()).spawn(spec, spawn_position=SPAWN_POS) or w.spec
+        return spec.compile()
 
     @staticmethod
     def save(name: str, obj: Any) -> None:
