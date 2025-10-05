@@ -36,7 +36,6 @@ class RandStrat(EAStrategy):
         self.rng = np.random.default_rng(seed)
         self._population = [self.rng.random(size=self.n_parameters) for _ in range(self.population_size)]
 
-
     def ask(self):
         return self._population
 
