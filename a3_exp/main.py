@@ -59,13 +59,14 @@ class MainExperiment(Experiment):
                 print(f"early quitting ... max={max(best_scores)}, min={min(best_scores)}")
                 break
 
-        argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
-        return best_scores[argmax], best_policies[argmax]
+        return best_scores + [best_scores[-1]] * (ig - len(best_scores))
+        # argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
+        # return best_scores[argmax], best_policies[argmax]
 
     def _outer_loop(self):
         print(f"outer | starting...")
-        op, og = 14, 30
-        ikw = get_kw(ig=10, ip=80, quiet=False)
+        op, og = 20, 30
+        ikw = get_kw(ig=30, ip=100, quiet=False)
         es = CMAES(64 * 3, op, 42)
 
         best_scores = []
@@ -78,28 +79,29 @@ class MainExperiment(Experiment):
 
             for i_gen in range(og):
                 print(f"outer | gen {i_gen} | submitting... | {now()}")
-                print(es.cma.mean)
                 genomes = es.ask()
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
                 models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
                 futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
-                scores, policies = zip(*[fut.result() for fut in futures])
-                es.tell(genomes, [-f for f in scores])
-                argmax = max(range(len(scores)), key=scores.__getitem__)
-                print(f"outer | gen {i_gen} | max fitness: {max(scores):.4f}, minf={min(scores)} | {now()}")
-                best_scores.append(scores[argmax])
-                best_models.append(models[argmax])
-                best_policies.append(policies[argmax])
-
-        argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
-        return best_models[argmax], best_policies[argmax]
+                scores_2d = [fut.result() for fut in futures]
+                self.save(f"scores_og_{i_gen}", scores_2d)
+                # scores, policies = zip(*[fut.result() for fut in futures])
+                es.tell(genomes, [-f[-1] for f in scores_2d])
+                # argmax = max(range(len(scores)), key=scores.__getitem__)
+                # print(f"outer | gen {i_gen} | max fitness: {max(scores):.4f}, minf={min(scores)} | {now()}")
+                # best_scores.append(scores[argmax])
+                # best_models.append(models[argmax])
+                # best_policies.append(policies[argmax])
+        return 0,0
+        # argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
+        # return best_models[argmax], best_policies[argmax]
 
     def main(self):
         with timeit("outer loop"):
             model, policy = self._outer_loop()
 
-        input("ready?")
-        self.view(model, policy, self.fitness)
+        # input("ready?")
+        # self.view(model, policy, self.fitness)
 
     def random_example(self):
         genotype = list(np.random.default_rng(42).random((3, 64)).astype(np.float32))
