@@ -232,4 +232,4 @@ class MainExperiment(Experiment):
 
 if __name__ == '__main__':
     MainExperiment().compare_mp_speeds()
-    # MainExperiment().gecko_learn()
+    MainExperiment().gecko_learn()
