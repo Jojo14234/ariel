@@ -210,4 +210,4 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
-    MainExperiment().gecko_learn_flat()
+    MainExperiment().gecko_learn()
