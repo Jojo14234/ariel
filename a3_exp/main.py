@@ -176,15 +176,13 @@ class MainExperiment(Experiment):
                 kw = get_kw(ip=n * 2, ig=10)
                 self._inner_loop(flat, **kw, quiet=True, pool=pool)
 
-            with timeit(f"{n}x seq with pool"):
-                for _ in range(n):
-                    self._inner_loop(flat, **kw, quiet=True, pool=pool)
+            # with timeit(f"{n}x seq with pool"):
+            #     for _ in range(n):
+            #         self._inner_loop(flat, **kw, quiet=True, pool=pool)
 
             with timeit(f"{n}x pool with seq"):
                 futures = [pool.submit(self._inner_loop, flat, **kw, quiet=True) for _ in range(n)]
                 _ = [fut.result() for fut in futures]
-
-
 
     def supernotes(self):
         """
@@ -222,7 +220,18 @@ class MainExperiment(Experiment):
 
         # 10/05
 
+        ## mp speed
+        warmup took 9.84s
+        12x seq with pool took 60.24s
+        12x pool with seq took 51.31s
+
+        warmup took 10.91s
+        60x seq with pool took 610.30s
+
+
         > gecko learn NN on Olympic
+            > -4.15 was best within 20s 100ig
+
         > gecko CPG on Olympic
         """
 
