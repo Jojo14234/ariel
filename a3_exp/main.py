@@ -2,20 +2,23 @@ import os
 
 from concurrent.futures import ProcessPoolExecutor as PPool, as_completed
 from datetime import datetime
+from pathlib import Path
 from typing import Optional
 
 import mujoco as mj
 import numpy as np
 
 from a3_exp.lib import Experiment
+from a3_exp.policies.sine_policy import CPGPolicy
 from a3_exp.strategies import CMAES
 from a3_exp.utils import DummyPool, timeit
-
 mj.set_mjcb_control(None)  # DO NOT REMOVE
 
 now = lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-get_kw = (lambda **k: {"ip": 100, "ig": 100, "st": 10, "nc": 10, "seed": 42, "f": 1} | k)
+get_kw = (lambda **k: {"ip": 100, "ig": 100, "st": 10, "nc": 10, "seed": 42} | k)
 repr_kw = (lambda d: " ".join(f"{k}_{v}" for k, v in d.items()))
+get_fd = lambda: 'nan' if not (p := Path(f"/proc/{os.getpid()}/fd")).exists() else len(os.listdir(p))
+
 
 class MainExperiment(Experiment):
 
@@ -24,152 +27,88 @@ class MainExperiment(Experiment):
         cls,
         mj_model: mj.MjModel,
         ip: int,
-        ig : int,
+        ig: int,
         st: int,
         nc: int,
         seed: int,
-        f: int,
         pool: Optional[PPool] = None,
         quiet: bool = False
     ):
-        population_size = ip
-        n_generations = ig
-        sim_time = st
-        n_steps_per_cycle = nc
+        pool = pool or DummyPool()
+        cpg_factory = lambda: CPGPolicy(out_features=mj_model.nu)
+        es = CMAES(cpg_factory().n_parameters(), ip, seed)
+        ekw = {"fitness": cls.fitness,"n_steps_per_cycle": nc, "sim_time": st}
         _q = quiet
-        kw = dict(ip=ip, ig=ig, st=st, nc=nc, seed=seed)
-
-        from a3_exp.policies.nn_policy import NNPolicy
-        # from a3_exp.policies.sine_policy import SinePolicy as NNPolicy
-        mj_data = mj.MjData(mj_model)
-        in_features = len(mj_data.qpos) + len(mj_data.qvel)
-        factory = lambda: NNPolicy(in_features=in_features, out_features=mj_model.nu)
-        n_parameters = factory().n_parameters()
-        _q or print(f"inner {os.getpid()} | starting... ({n_parameters=}) | {repr_kw(kw)} | {now()}")
-        es = CMAES(n_parameters, population_size, seed)
         best_scores = []
         best_policies = []
-        pool = pool or DummyPool()
 
-        # ekw = {"fitness": cls.basic_fitness, "n_steps_per_cycle": n_steps_per_cycle, "sim_time": sim_time}
-        ekw = {
-            "fitness": (cls.basic_fitness, cls.fitness)[f],
-            "n_steps_per_cycle": n_steps_per_cycle,
-            "sim_time": sim_time
-        }
-
-        for i_generation in range(n_generations):
+        for i_gen in range(ig):
             genomes = es.ask()
-            policies = [factory().bind(g) for g in genomes]
+            policies = [cpg_factory().bind(g) for g in genomes]
             futures = [pool.submit(cls.evaluate, mj_model=mj_model, policy=policy, **ekw) for policy in policies]
             scores = [fut.result() for fut in futures]
             es.tell(genomes, [-f for f in scores])
             argmax = max(range(len(scores)), key=scores.__getitem__)
             best_scores.append(scores[argmax])
             best_policies.append(policies[argmax])
-            fd_count = 1 #len(os.listdir(f"/proc/{os.getpid()}/fd"))
-            if not (i_generation % 5 or _q):
-                print(f"inner {fd_count=} | gen {i_generation}, max fitness: {best_scores[-1]:.4f} | {now()}")
+            fd_count = get_fd()
+            if not (i_gen % 5 or _q):
+                print(f"inner {fd_count=} | gen {i_gen}, max fitness: {best_scores[-1]:.4f} | {now()}")
+
+            if i_gen == 5 and max(best_scores) < -5.4:
+                print(f"early quitting ... max={max(best_scores)}, min={min(best_scores)}")
+                break
 
         argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
-        _q or print(f"inner {os.getpid()} | finished  | {now()}")
         return best_scores[argmax], best_policies[argmax]
 
-    def _outer_loop(self, use_mp: bool = True):
+    def _outer_loop(self):
         print(f"outer | starting...")
-        _config = {
-            "op": 14,
-            "og": 30,
-            "ip": 30,
-            "ig": 30,
-        } # 2 minutes for (*, 0, *, 5), so (*, *, *, *) is 2 * 30 * 30/5 = 6 hours
-        """
-        (*, 0, *, 5) took 2 minutes, implied 6 hours for all
-        (*, 0, *, *) took 14 minutes, implied 7 hours for all
-        """
+        op, og = 14, 30
+        ikw = get_kw(ig=10, ip=80, quiet=False)
+        es = CMAES(64 * 3, op, 42)
 
-        population_size = 14
-        n_generations = 30
-        n_parameters = 64 * 3
-        es = CMAES(n_parameters, population_size, 42)
-        inner_kwargs = {'population_size': 30, "n_generations": 30}
+        best_scores = []
         best_models = []
         best_policies = []
-        best_scores = []
 
-        with (DummyPool, PPool)[use_mp]() as pool:
-            for i_generation in range(n_generations):
+        with PPool() as pool:
+            o_pool, i_pool = DummyPool(), pool
+            # o_pool, i_pool = pool, None
+
+            for i_gen in range(og):
+                print(f"outer | gen {i_gen} | submitting... | {now()}")
+                print(es.cma.mean)
                 genomes = es.ask()
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                models = [self._graph_to_mj_model(g) for g in graphs]
-                print(f"outer | gen {i_generation} | submitting... | {now()}")
-                futures = [pool.submit(self._inner_loop, model, **inner_kwargs) for model in models]
+                models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
+                futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
                 scores, policies = zip(*[fut.result() for fut in futures])
                 es.tell(genomes, [-f for f in scores])
                 argmax = max(range(len(scores)), key=scores.__getitem__)
-                print(f"outer | gen {i_generation} | max fitness: {max(scores):.4f} | {now()}")
+                print(f"outer | gen {i_gen} | max fitness: {max(scores):.4f}, minf={min(scores)} | {now()}")
                 best_scores.append(scores[argmax])
                 best_models.append(models[argmax])
                 best_policies.append(policies[argmax])
-                self.save(f"best_model_{i_generation}", {
-                    "score": scores[argmax],
-                    "model": models[argmax],
-                    "policy": policies[argmax],
-                })
 
         argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
         return best_models[argmax], best_policies[argmax]
 
-    def main(self, use_mp: bool = True):
+    def main(self):
         with timeit("outer loop"):
-            model, policy = self._outer_loop(use_mp=use_mp)
+            model, policy = self._outer_loop()
+
+        input("ready?")
         self.view(model, policy, self.fitness)
 
     def random_example(self):
         genotype = list(np.random.default_rng(42).random((3, 64)).astype(np.float32))
         graph = self._genotype_to_graph(genotype)
-        mj_model = self._graph_to_mj_model(graph)
+        mj_model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
         self.view(mj_model, lambda _, d: d.ctrl, self.fitness)
 
-    def gecko_learn(self):
-        # model, f = self._gecko_simple_flat(), 0
-        model, f = self._gecko_world(), 1
-
-        with PPool() as pool:
-            for seed in range(42, 50):
-                score, policy = self._inner_loop(model, **get_kw(f=f, st=20, seed=seed), pool=pool)
-                print(f"{seed=}, {score=}")
-                self.save(f"gecko_nn_oly_f{f}_{seed}", policy)
-
-    def gecko_view(self):
-        flat = self._gecko_simple_flat()
-        olympic = self._gecko_world()
-        policy = self.load(...)
-        input("ready flat?")
-        self.view(flat, policy, self.basic_fitness, sim_time=20)
-        input("ready olympic?")
-        self.view(olympic, policy, self.fitness, sim_time=20)
-
-    def gecko_base(self):
-        model = self._gecko_world()
-
-        with PPool() as pool:
-            for kw in [get_kw(ip=15, ig=20)]:
-                with timeit(f"POOLED CMA | {repr_kw(kw)}"):
-                    score, policy = self._inner_loop(model, **kw, pool=pool)
-                # self.save(f'best_gecko {repr_kw(kw)}', policy._genome)
-        print(f"final score: {score}")
-        input("ready?")
-        self.view(model, policy, self.fitness)
-
-    def gecko_example(self):
-        gecko_model = self._gecko_world()
-        policy = self.load("best_gecko")
-        # self.view(gecko_model, lambda _, d: d.ctrl, self.fitness, n_steps_per_cycle=20)
-        self.view(gecko_model, policy, self.fitness)
-
     def compare_mp_speeds(self):
-        flat = self._gecko_simple_flat()
+        flat = self
         n = os.cpu_count() - 4
         with PPool(max_workers=n) as pool:
             with timeit(f"warmup"):
@@ -236,10 +175,7 @@ class MainExperiment(Experiment):
         > gecko CPG on Olympic
         """
 
-        # self.save("best_gecko", policy)
-        # input("ready?")
-
 
 if __name__ == '__main__':
-    MainExperiment().compare_mp_speeds()
+    MainExperiment().main()
     # MainExperiment().gecko_learn()

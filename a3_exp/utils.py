@@ -29,6 +29,6 @@ class DummyPool:
     def __exit__(self, exc_type, exc_val, exc_tb):
         ...
 
-    def submit(self, f, *args, **kwargs):
+    def submit(self, __f, *args, **kwargs):
         _ = self # to avoid 'can be static' hint
-        return DummyResult(f, *args, **kwargs)
+        return DummyResult(__f, *args, **kwargs)

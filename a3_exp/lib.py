@@ -1,6 +1,7 @@
 import pickle
 import time
 from abc import ABC, abstractmethod
+from io import StringIO
 from pathlib import Path
 from typing import Self, Any
 
@@ -106,7 +107,7 @@ class Experiment:
         return json_graph.node_link_graph(json.loads(graph), edges="edges")
 
     @staticmethod
-    def _greph_to_mj_spec(graph: Graph) -> mj.MjSpec:
+    def _graph_to_mj_spec(graph: Graph) -> mj.MjSpec:
         from ariel.body_phenotypes.robogen_lite.constructor import construct_mjspec_from_graph
         return construct_mjspec_from_graph(graph).spec
 
@@ -121,6 +122,11 @@ class Experiment:
         from ariel.simulation.environments import OlympicArena
         spec = (w := OlympicArena()).spawn(spec, spawn_position=SPAWN_POS) or w.spec
         return spec.compile()
+
+    @staticmethod
+    def gecko_spec():
+        from ariel.body_phenotypes.robogen_lite.prebuilt_robots.gecko import gecko
+        return gecko().spec
 
     @staticmethod
     def save(name: str, obj: Any) -> None:
