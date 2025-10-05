@@ -132,26 +132,23 @@ class MainExperiment(Experiment):
         self.view(mj_model, lambda _, d: d.ctrl, self.fitness)
 
     def gecko_learn(self):
-        model, f = self._gecko_simple_flat(), 0
-        # model, f = self._gecko_world(), 1
+        # model, f = self._gecko_simple_flat(), 0
+        model, f = self._gecko_world(), 1
 
         with PPool() as pool:
             for seed in range(42, 50):
                 score, policy = self._inner_loop(model, **get_kw(f=f, st=20, seed=seed), pool=pool)
                 print(f"{seed=}, {score=}")
-                self.save(f"gecko_f{f}_{seed}", policy)
+                self.save(f"gecko_nn_oly_f{f}_{seed}", policy)
 
     def gecko_view(self):
         flat = self._gecko_simple_flat()
-        # olympic = self._gecko_world()
-        for i in range(42, 48):
-            policy = self.load(f"gecko_f0_{i}_sine")
-            score = self.evaluate(flat, policy, self.basic_fitness, sim_time=20)
-            print(f"{i}: {score}")
-        # input("ready flat?")
-        # self.view(flat, policy, self.basic_fitness, sim_time=20)
-        # input("ready olympic?")
-        # self.view(olympic, policy, self.fitness, sim_time=20)
+        olympic = self._gecko_world()
+        policy = self.load(...)
+        input("ready flat?")
+        self.view(flat, policy, self.basic_fitness, sim_time=20)
+        input("ready olympic?")
+        self.view(olympic, policy, self.fitness, sim_time=20)
 
     def gecko_base(self):
         model = self._gecko_world()
@@ -208,7 +205,7 @@ class MainExperiment(Experiment):
         # 10/05
 
         > gecko learn NN on Olympic
-        > gecko CPG with
+        > gecko CPG on Olympic
         """
 
         # self.save("best_gecko", policy)
@@ -216,4 +213,4 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
-    MainExperiment().gecko_view()
+    MainExperiment().gecko_learn()
