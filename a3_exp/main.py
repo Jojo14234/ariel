@@ -39,7 +39,7 @@ class MainExperiment(Experiment):
         # cpg_factory = lambda: NNPolicy(len((_d:=mj.MjData(mj_model)).qpos) + len(_d.qvel), out_features=mj_model.nu)
         n_params = cpg_factory().n_parameters()
         es = CMAES(n_params, ip, seed)
-        ekw = {"fitness": cls.fitness, "n_steps_per_cycle": nc, "sim_time": st}
+        ekw = {"fitness": cls.basic_fitness, "n_steps_per_cycle": nc, "sim_time": st}
         _q = quiet
         best_scores = []
         best_policies = []
@@ -238,6 +238,14 @@ class MainExperiment(Experiment):
         scores = [new_scores[i] for i in indices]
         """
 
+    def gecko_cpg(self):
+        model = self.spec_to_simple_world(self.gecko_spec())
+        ikw = get_kw()
+        with PPool() as pool:
+            self._inner_loop(model, **ikw, pool=pool)
+
+
+
 
 if __name__ == '__main__':
-    MainExperiment().random_outer_loop()
+    MainExperiment().gecko_cpg()
