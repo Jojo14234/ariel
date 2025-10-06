@@ -62,9 +62,9 @@ class CPGPolicy(EAPolicy):
 
     def bind(self, genome: np.ndarray):
         i, j = self.bias.size, self.bias.size + self.mag.size
-        self.bias = genome[:i].reshape(self.bias.shape).clip(-20, 20)
-        self.mag = genome[i:j].reshape(self.mag.shape).clip(-20, 20)
-        self.lag = genome[j:].reshape(self.lag.shape).clip(-20, 20)
+        self.bias = genome[:i].reshape(self.bias.shape)#.clip(-20, 20)
+        self.mag = genome[i:j].reshape(self.mag.shape)#.clip(-20, 20)
+        self.lag = genome[j:].reshape(self.lag.shape)#.clip(-20, 20)
         return self
 
     def __call__(self, mj_model: mj.MjModel, mj_data: mj.MjData):

@@ -8,6 +8,7 @@ import mujoco as mj
 import numpy as np
 
 from a3_exp.lib import Experiment
+from a3_exp.policies.nn_policy import NNPolicy
 from a3_exp.policies.sine_policy import CPGPolicy, SinePolicy
 from a3_exp.strategies import CMAES
 from a3_exp.utils import DummyPool, timeit
@@ -35,9 +36,9 @@ class MainExperiment(Experiment):
         quiet: bool = False
     ):
         pool = pool or DummyPool()
-        cpg_factory = lambda: SinePolicy(out_features=mj_model.nu)
-        # cpg_factory = lambda: NNPolicy(len((_d:=mj.MjData(mj_model)).qpos) + len(_d.qvel), out_features=mj_model.nu)
-        n_params = cpg_factory().n_parameters()
+        # factory = lambda: NNPolicy(out_features=mj_model.nu)
+        factory = lambda: NNPolicy(len((_d:=mj.MjData(mj_model)).qpos) + len(_d.qvel), out_features=mj_model.nu)
+        n_params = factory().n_parameters()
         es = CMAES(n_params, ip, seed)
         ekw = {"fitness": cls.basic_fitness, "n_steps_per_cycle": nc, "sim_time": st}
         _q = quiet
@@ -47,7 +48,7 @@ class MainExperiment(Experiment):
 
         for i_gen in range(ig):
             genomes = es.ask()
-            policies = [cpg_factory().bind(g) for g in genomes]
+            policies = [factory().bind(g) for g in genomes]
             futures = [pool.submit(cls.evaluate, mj_model=mj_model, policy=policy, **ekw) for policy in policies]
             scores = [fut.result() for fut in futures]
             es.tell(genomes, [-f for f in scores])
@@ -55,7 +56,7 @@ class MainExperiment(Experiment):
             best_scores.append(scores[argmax])
             best_policies.append(policies[argmax])
             fd_count = get_fd()
-            if not (i_gen % 5 or _q):
+            if not _q:
                 print(f"inner {fd_count=} | {i_gen} | {best_scores[-1]:.2f} | {max(best_scores):.2f} | {now()}")
 
             if max(best_scores) < quit_map.get(i_gen, -7):
@@ -240,9 +241,12 @@ class MainExperiment(Experiment):
 
     def gecko_cpg(self):
         model = self.spec_to_simple_world(self.gecko_spec())
-        ikw = get_kw()
+
         with PPool() as pool:
-            self._inner_loop(model, **ikw, pool=pool)
+            for seed in range(42, 46):
+                _, policy = self._inner_loop(model, **get_kw(st=20, seed=seed), pool=pool)
+
+        # self.view(model, policy, self.basic_fitness, sim_time=10, n_steps_per_cycle=10)
 
 
 
