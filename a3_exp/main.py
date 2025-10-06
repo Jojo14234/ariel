@@ -84,7 +84,8 @@ class MainExperiment(Experiment):
                 models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
                 futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
                 scores, policies = zip(*[fut.result() for fut in futures])
-                es.tell(genomes, [-f for f in scores])
+                es.tell(genomes, scores)
+                # es.tell(genomes, [-f for f in scores])
                 argmax = max(range(len(scores)), key=scores.__getitem__)
                 if scores[argmax] > high_score:
                     name = f"highscore_{i_gen}_{abs(scores[argmax]):.2f}"
