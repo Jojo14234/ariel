@@ -6,6 +6,7 @@ from typing import Optional
 
 import mujoco as mj
 import numpy as np
+import pandas as pd
 
 from a3_exp.lib import Experiment
 from a3_exp.policies.sine_policy import CPGPolicy
@@ -18,7 +19,7 @@ now = lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 get_kw = (lambda **k: {"ip": 100, "ig": 100, "st": 10, "nc": 10, "seed": 42} | k)
 repr_kw = (lambda d: " ".join(f"{k}_{v}" for k, v in d.items()))
 get_fd = lambda: 'nan' if not (p := Path(f"/proc/{os.getpid()}/fd")).exists() else len(os.listdir(p))
-
+argmax_ = lambda a: max(range(len(a)), key=a.__getitem__)
 
 class MainExperiment(Experiment):
 
@@ -52,7 +53,7 @@ class MainExperiment(Experiment):
             futures = [pool.submit(cls.evaluate, mj_model=mj_model, policy=policy, **ekw) for policy in policies]
             scores = [fut.result() for fut in futures]
             es.tell(genomes, [-f for f in scores])
-            argmax = max(range(len(scores)), key=scores.__getitem__)
+            argmax = argmax_(scores)
             best_scores.append(scores[argmax])
             best_policies.append(policies[argmax])
             fd_count = get_fd()
@@ -64,8 +65,8 @@ class MainExperiment(Experiment):
                 break
 
         # return best_scores + [best_scores[-1]] * (ig - len(best_scores))
-        argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
-        print(f"inner {fd_count=} | fin | {best_scores[argmax]:.2f} | {now()}")
+        argmax = argmax_(best_scores)
+        print(f"inner fd={get_fd()} | fin | {best_scores[argmax]:.2f} | {now()}")
         return best_scores[argmax], best_policies[argmax]
 
     def _outer_loop(self):
@@ -91,7 +92,7 @@ class MainExperiment(Experiment):
                 # self.save(f"scores_og_{i_gen}", scores_2d)
                 scores, policies = zip(*[fut.result() for fut in futures])
                 es.tell(genomes, [-f for f in scores])
-                argmax = max(range(len(scores)), key=scores.__getitem__)
+                argmax = argmax_(scores)
                 best.append(tuple(l[argmax] for l in (scores, genomes, graphs, models, policies)))
 
                 print(f"outer | gen {i_gen} | max={best[-1][0]:.2f} min={min(scores):.2f} | {now()}")
@@ -191,71 +192,43 @@ class MainExperiment(Experiment):
 
         """
 
-    def random_outer_loop(self):
-        rng = np.random.default_rng(42)
-        ikw = get_kw(ig=10, ip=80, quiet=False)
-        high_score = -4
-        all_scores = []
-        o_pool = DummyPool()
-        with PPool() as pool:
-            # for j in range(1, 10):
-            #     for i in range(1, 11):
-            #         genome = rng.uniform(-j, j, size=3*64)
-            #         graph = self._genotype_to_graph(list(genome.reshape(3, 64).astype(np.float32)))
-            #         model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
-            #         score, _ = self._inner_loop(model, **ikw, pool=pool)
-            #
-            #         scores.append(score)
-            #         print(f"{i} | score: {score:.2f} | mean: {sum(scores) / i:.2f} | high={high_score}")
-            #         if score > high_score:
-            #             high_score = score
-            #             obj = dict(genome=genome, graph=self._graph_to_string(graph))
-            #             name = f"best_{j}_{i}_{abs(score):.2f}"
-            #             print(f"saving {name}")
-            #             self.save(name, obj)
-            for i_gen in range(1, 31):
-                print(f"outer {i_gen} | starting ...")
-                genomes = [rng.uniform(-i_gen, i_gen, size=3*64) for _ in range(10)]
-                graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
-                futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=pool) for m in models]
-                scores, policies = zip(*[fut.result() for fut in futures])
-                all_scores.extend(scores)
-                print(f"outer {i_gen} | max={max(scores):.2f} mean: {sum(scores) / len(scores):.2f}")
-                print(f"outer {i_gen} | max={max(all_scores):.2f} mean: {sum(all_scores) / len(all_scores):.2f}")
-        #
-        # bs, bg, *_ = zip(*best)
-        # argmax = max(range(len(bs)), key=bs.__getitem__)
-        # print(f"best score OAT: {bs[argmax]:.2f}, out of {len(all_scores)} rng")
-        # self.save('all_scores_rng', all_scores)
-        # self.save('best_genome', bg[argmax])
-
-    def _debug(self):
-        """
-        population = 100
-        scores = [-5.8] * 100
-
-        es.ask() -> population + mutation + crossover
-
-        es.tell() ->
-        new_pop = population + samples
-        new_scores = scores + new_scores
-        indices = sorted(range(len(new_pop)), key=new_scores.__getitem__)[:len(population)]
-        population = [new_pop[i] for i in indices]
-        scores = [new_scores[i] for i in indices]
-        """
 
     def gecko_cpg(self):
         model = self.spec_to_simple_world(self.gecko_spec())
-
         with PPool() as pool:
             for seed in range(42, 46):
                 _, policy = self._inner_loop(model, **get_kw(st=20, seed=seed), pool=pool)
 
         # self.view(model, policy, self.basic_fitness, sim_time=10, n_steps_per_cycle=10)
 
+    def eval_cma_outer(self):
+        """
+        Evaluate CMA-ES ability to make bodies that run properly in basic world
+        """
+
+        op, og = 14, 30
+        ikw = get_kw(ig=10, ip=80, quiet=True)
+        es = CMAES(64 * 3, op, 42)
+        all_scores = []
+
+        with PPool() as pool:
+            o_pool, i_pool = DummyPool(), pool
+
+            for i_gen in range(og):
+                print(f"outer {i_gen} | submitting... | {now()}")
+                genomes = es.ask()
+                graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
+                models = [self.spec_to_simple_world(self._graph_to_mj_spec(g)) for g in graphs]
+                futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
+                scores, policies = zip(*[fut.result() for fut in futures])
+                es.tell(genomes, [-f for f in scores])
+                scores_df = pd.Series(scores).describe().to_frame(i_gen).T
+                all_scores.append(scores_df)
+                print(scores_df.to_string())
+
+        print(pd.concat(all_scores).to_string())
 
 
 
 if __name__ == '__main__':
-    MainExperiment().main()
+    MainExperiment().eval_cma_outer()
