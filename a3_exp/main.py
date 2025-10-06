@@ -71,6 +71,7 @@ class MainExperiment(Experiment):
         best_scores = []
         best_models = []
         best_policies = []
+        high_score = -4
 
         with PPool() as pool:
             o_pool, i_pool = DummyPool(), pool
@@ -78,7 +79,6 @@ class MainExperiment(Experiment):
 
             for i_gen in range(og):
                 print(f"outer | gen {i_gen} | submitting... | {now()}")
-                print(es.cma.mean)
                 genomes = es.ask()
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
                 models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
@@ -86,6 +86,18 @@ class MainExperiment(Experiment):
                 scores, policies = zip(*[fut.result() for fut in futures])
                 es.tell(genomes, [-f for f in scores])
                 argmax = max(range(len(scores)), key=scores.__getitem__)
+                if scores[argmax] > high_score:
+                    name = f"highscore_{i_gen}_{abs(scores[argmax]):.2f}"
+                    if not self.exists(name):
+                        print(name)
+                        obj = dict(
+                            genome=genomes[argmax],
+                            graph=self._graph_to_string(graphs[argmax]),
+                            policy=policies[argmax],
+                            score=scores[argmax],
+                        )
+                        self.save(name, obj)
+                    high_score = scores[argmax]
                 print(f"outer | gen {i_gen} | max fitness: {max(scores):.4f}, minf={min(scores)} | {now()}")
                 best_scores.append(scores[argmax])
                 best_models.append(models[argmax])
