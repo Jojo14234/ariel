@@ -1,5 +1,9 @@
+import os
 import time
 from contextlib import contextmanager
+from datetime import datetime
+from pathlib import Path
+from typing import List, Dict
 
 
 @contextmanager
@@ -10,6 +14,22 @@ def timeit(name: str, silent: bool = False):
     finally:
         elapsed = time.perf_counter() - t
         silent or print(f"{name} took {elapsed:.2f}s" + [f" ({elapsed * 1000:.2f}ms)", ''][elapsed > 1])
+
+
+def argmax(x: List):
+    return max(range(len(x)), key=x.__getitem__)
+
+
+def repr_now():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def repr_kw(d: Dict):
+    return " ".join(f"{k}_{v}" for k, v in d.items())
+
+
+def fd_count():
+    return os.listdir(p) if (p := Path(f"/proc/{os.getpid()}/fd")).exists() else -1
 
 
 class DummyResult:

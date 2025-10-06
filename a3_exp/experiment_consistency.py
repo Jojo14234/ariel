@@ -12,13 +12,11 @@ import torch
 from a3_exp.lib import Experiment
 from a3_exp.policies.sine_policy import CPGPolicy
 from a3_exp.strategies import CMAES
-from a3_exp.utils import DummyPool, timeit
+from a3_exp.utils import DummyPool, timeit, repr_now as now, repr_kw
 
 mj.set_mjcb_control(None)  # DO NOT REMOVE
 
-now = lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 get_kw = (lambda **k: {"ip": 100, "ig": 100, "st": 10, "nc": 10, "seed": 42} | k)
-repr_kw = (lambda d: " ".join(f"{k}_{v}" for k, v in d.items()))
 get_fd = lambda: 'nan' if not (p := Path(f"/proc/{os.getpid()}/fd")).exists() else len(os.listdir(p))
 argmax_ = lambda a: max(range(len(a)), key=a.__getitem__)
 
