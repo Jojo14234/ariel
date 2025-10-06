@@ -55,8 +55,8 @@ class MainExperiment(Experiment):
             best_scores.append(scores[argmax])
             best_policies.append(policies[argmax])
             fd_count = get_fd()
-            # if not (i_gen % 5 or _q):
-            #     print(f"inner {fd_count=} | {i_gen} | {best_scores[-1]:.2f} | {max(best_scores):.2f} | {now()}")
+            if not (i_gen % 5 or _q):
+                print(f"inner {fd_count=} | {i_gen} | {best_scores[-1]:.2f} | {max(best_scores):.2f} | {now()}")
 
             if max(best_scores) < quit_map.get(i_gen, -7):
                 print(f"early quitting {i_gen} ... max={max(best_scores):.2f}, min={min(best_scores):.2f}")
