@@ -231,4 +231,4 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
-    MainExperiment().eval_cma_outer()
+    MainExperiment().random_example()
