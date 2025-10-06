@@ -50,12 +50,12 @@ class SinePolicy(EAPolicy):
 class CPGPolicy(EAPolicy):
     def __init__(self, in_features: int = 5, out_features: int = 8):
         assert in_features
-        in_features = 5 # ignore 'in_features', always use 5 frequencies
+        in_features = 4 # ignore 'in_features', always use 4 frequencies
 
         self.bias = np.zeros(out_features)
         self.mag = np.zeros((out_features, in_features))
         self.lag = np.zeros((out_features, in_features))
-        self.freq = np.zeros((out_features, in_features)) + .1 ** np.arange(-2, in_features - 2)
+        self.freq = np.zeros((out_features, in_features)) + .1 ** np.arange(-1, in_features - 1)
 
     def n_parameters(self) -> int:
         return self.bias.size + self.mag.size + self.lag.size
@@ -64,7 +64,7 @@ class CPGPolicy(EAPolicy):
         i, j = self.bias.size, self.bias.size + self.mag.size
         self.bias = genome[:i].reshape(self.bias.shape).clip(-20, 20)
         self.mag = genome[i:j].reshape(self.mag.shape).clip(-20, 20)
-        self.lag = genome[i:j].reshape(self.lag.shape).clip(-20, 20)
+        self.lag = genome[j:].reshape(self.lag.shape).clip(-20, 20)
         return self
 
     def __call__(self, mj_model: mj.MjModel, mj_data: mj.MjData):

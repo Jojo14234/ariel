@@ -188,34 +188,34 @@ class MainExperiment(Experiment):
         rng = np.random.default_rng(42)
         ikw = get_kw(ig=10, ip=80, quiet=False)
         high_score = -4
-        scores = []
-
+        all_scores = []
+        o_pool = DummyPool()
         with PPool() as pool:
-            for i in range(1, 1001):
-                genome = rng.uniform(-4, 4, size=3*64)
-                graph = self._genotype_to_graph(list(genome.reshape(3, 64).astype(np.float32)))
-                model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
-                score, _ = self._inner_loop(model, **ikw, pool=pool)
-                scores.append(score)
-                print(f"{i} | score: {score:.2f} | mean: {sum(scores) / i:.2f} | high={high_score}")
-                if score > high_score:
-                    high_score = score
-                    obj = dict(genome=genome, graph=self._graph_to_string(graph))
-                    name = f"best_{i}_{abs(score):.2f}"
-                    print(f"saving {name}")
-                    self.save(name, obj)
-        #     for i_gen in range(1, 31):
-        #         print(f"outer {i_gen} | starting ...")
-        #         genomes = [rng.uniform(-i_gen, i_gen, size=3*64) for _ in range(10)]
-        #         graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-        #         models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
-        #         futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
-        #         scores, policies = zip(*[fut.result() for fut in futures])
-        #         argmax = max(range(len(scores)), key=scores.__getitem__)
-        #         best.append(tuple(l[argmax] for l in (scores, genomes, graphs, models, policies)))
-        #         all_scores.extend(scores)
-        #         print(f"outer {i_gen} | max={max(scores):.2f} mean: {sum(scores) / len(scores):.2f}")
-        #         print(f"outer {i_gen} | max={max(all_scores):.2f} mean: {sum(all_scores) / len(all_scores):.2f}")
+            # for j in range(1, 10):
+            #     for i in range(1, 11):
+            #         genome = rng.uniform(-j, j, size=3*64)
+            #         graph = self._genotype_to_graph(list(genome.reshape(3, 64).astype(np.float32)))
+            #         model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
+            #         score, _ = self._inner_loop(model, **ikw, pool=pool)
+            #
+            #         scores.append(score)
+            #         print(f"{i} | score: {score:.2f} | mean: {sum(scores) / i:.2f} | high={high_score}")
+            #         if score > high_score:
+            #             high_score = score
+            #             obj = dict(genome=genome, graph=self._graph_to_string(graph))
+            #             name = f"best_{j}_{i}_{abs(score):.2f}"
+            #             print(f"saving {name}")
+            #             self.save(name, obj)
+            for i_gen in range(1, 31):
+                print(f"outer {i_gen} | starting ...")
+                genomes = [rng.uniform(-i_gen, i_gen, size=3*64) for _ in range(10)]
+                graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
+                models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
+                futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=pool) for m in models]
+                scores, policies = zip(*[fut.result() for fut in futures])
+                all_scores.extend(scores)
+                print(f"outer {i_gen} | max={max(scores):.2f} mean: {sum(scores) / len(scores):.2f}")
+                print(f"outer {i_gen} | max={max(all_scores):.2f} mean: {sum(all_scores) / len(all_scores):.2f}")
         #
         # bs, bg, *_ = zip(*best)
         # argmax = max(range(len(bs)), key=bs.__getitem__)
