@@ -36,8 +36,10 @@ class MainExperiment(Experiment):
     ):
         pool = pool or DummyPool()
         cpg_factory = lambda: CPGPolicy(out_features=mj_model.nu)
-        es = CMAES(cpg_factory().n_parameters(), ip, seed)
-        ekw = {"fitness": cls.fitness,"n_steps_per_cycle": nc, "sim_time": st}
+        # cpg_factory = lambda: NNPolicy(len((_d:=mj.MjData(mj_model)).qpos) + len(_d.qvel), out_features=mj_model.nu)
+        n_params = cpg_factory().n_parameters()
+        es = CMAES(n_params, ip, seed)
+        ekw = {"fitness": cls.fitness, "n_steps_per_cycle": nc, "sim_time": st}
         _q = quiet
         best_scores = []
         best_policies = []
@@ -68,7 +70,7 @@ class MainExperiment(Experiment):
     def _outer_loop(self):
         print(f"outer | starting...")
         op, og = 14, 30
-        ikw = get_kw(ig=10, ip=80, quiet=False)
+        ikw = get_kw(ig=20, ip=80, quiet=False)
         es = CMAES(64 * 3, op, 42)
 
 
@@ -184,33 +186,56 @@ class MainExperiment(Experiment):
 
     def random_outer_loop(self):
         rng = np.random.default_rng(42)
-        ikw = get_kw(ig=10, ip=80, quiet=False)
-        best = []  # score, genome, graph, model, policy
-        all_scores = []
+        ikw = get_kw(ig=20, ip=80, st=20, quiet=False)
+        high_score = -4
+        scores = []
 
         with PPool() as pool:
-            o_pool, i_pool = DummyPool(), pool
-            for i_gen in range(1, 31):
-                print(f"outer {i_gen} | starting ...")
-                genomes = [rng.uniform(-i_gen, i_gen, size=3*64) for _ in range(10)]
-                graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
-                futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
-                scores, policies = zip(*[fut.result() for fut in futures])
-                argmax = max(range(len(scores)), key=scores.__getitem__)
-                best.append(tuple(l[argmax] for l in (scores, genomes, graphs, models, policies)))
-                all_scores.extend(scores)
-                print(f"outer {i_gen} | max={max(scores):.2f} mean: {sum(scores) / len(scores):.2f}")
-                print(f"outer {i_gen} | max={max(all_scores):.2f} mean: {sum(all_scores) / len(all_scores):.2f}")
+            for i in range(1, 1001):
+                genome = rng.uniform(-4, 4, size=3*64)
+                graph = self._genotype_to_graph(list(genome.reshape(3, 64).astype(np.float32)))
+                model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
+                score, _ = self._inner_loop(model, **ikw, pool=pool)
+                scores.append(score)
+                print(f"{i} | score: {score:.2f} | mean: {sum(scores) / i:.2f}")
+                if score > high_score:
+                    high_score = score
+                    obj = dict(genome=genome, graph=self._graph_to_string(graph))
+                    self.save(f"best_{i}_{abs(score):.2f}", obj)
+        #     for i_gen in range(1, 31):
+        #         print(f"outer {i_gen} | starting ...")
+        #         genomes = [rng.uniform(-i_gen, i_gen, size=3*64) for _ in range(10)]
+        #         graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
+        #         models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
+        #         futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
+        #         scores, policies = zip(*[fut.result() for fut in futures])
+        #         argmax = max(range(len(scores)), key=scores.__getitem__)
+        #         best.append(tuple(l[argmax] for l in (scores, genomes, graphs, models, policies)))
+        #         all_scores.extend(scores)
+        #         print(f"outer {i_gen} | max={max(scores):.2f} mean: {sum(scores) / len(scores):.2f}")
+        #         print(f"outer {i_gen} | max={max(all_scores):.2f} mean: {sum(all_scores) / len(all_scores):.2f}")
+        #
+        # bs, bg, *_ = zip(*best)
+        # argmax = max(range(len(bs)), key=bs.__getitem__)
+        # print(f"best score OAT: {bs[argmax]:.2f}, out of {len(all_scores)} rng")
+        # self.save('all_scores_rng', all_scores)
+        # self.save('best_genome', bg[argmax])
 
-        bs, bg, *_ = zip(*best)
-        argmax = max(range(len(bs)), key=bs.__getitem__)
-        print(f"best score OAT: {bs[argmax]:.2f}, out of {len(all_scores)} rng")
-        self.save('all_scores_rng', all_scores)
-        self.save('best_genome', bg[argmax])
+    def _debug(self):
+        """
+        population = 100
+        scores = [-5.8] * 100
 
+        es.ask() -> population + mutation + crossover
+
+        es.tell() ->
+        new_pop = population + samples
+        new_scores = scores + new_scores
+        indices = sorted(range(len(new_pop)), key=new_scores.__getitem__)[:len(population)]
+        population = [new_pop[i] for i in indices]
+        scores = [new_scores[i] for i in indices]
+        """
 
 
 if __name__ == '__main__':
     MainExperiment().random_outer_loop()
-    # MainExperiment().gecko_learn()
