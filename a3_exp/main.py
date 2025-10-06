@@ -84,7 +84,7 @@ class MainExperiment(Experiment):
                 print(f"outer | gen {i_gen} | submitting... | {now()}")
                 genomes = es.ask()
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
+                models = [self.spec_to_simple_world(self._graph_to_mj_spec(g)) for g in graphs]
                 futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
                 # scores_2d = [fut.result() for fut in futures]
                 # self.save(f"scores_og_{i_gen}", scores_2d)
@@ -251,4 +251,4 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
-    MainExperiment().gecko_cpg()
+    MainExperiment().main()
