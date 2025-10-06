@@ -43,7 +43,8 @@ class MainExperiment(Experiment):
         _q = quiet
         best_scores = []
         best_policies = []
-        quit_map = {5: -5.4, 10: -5, 20: -4.5, 25:-4}
+        # quit_map = {5: -5.4, 10: -5, 20: -4.5, 25:-4}
+        quit_map = {5: .05, 10: .1, 20: .4}
 
         for i_gen in range(ig):
             genomes = es.ask()
@@ -182,6 +183,12 @@ class MainExperiment(Experiment):
 
         outer | gen 8 | max fitness: -2.7616, minf=-5.823433627237052 | 2025-10-05 21:35:01
         Updating f393757..240d679
+
+        # 10/06
+        > task 1: get genome + graph that was >-3
+        > task 2: evaluate CMA for producing bodies that can run in basic world
+
+
         """
 
     def random_outer_loop(self):
