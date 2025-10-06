@@ -186,7 +186,7 @@ class MainExperiment(Experiment):
 
     def random_outer_loop(self):
         rng = np.random.default_rng(42)
-        ikw = get_kw(ig=20, ip=80, st=20, quiet=False)
+        ikw = get_kw(ig=10, ip=80, quiet=False)
         high_score = -4
         scores = []
 
@@ -197,11 +197,13 @@ class MainExperiment(Experiment):
                 model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
                 score, _ = self._inner_loop(model, **ikw, pool=pool)
                 scores.append(score)
-                print(f"{i} | score: {score:.2f} | mean: {sum(scores) / i:.2f}")
+                print(f"{i} | score: {score:.2f} | mean: {sum(scores) / i:.2f} | high={high_score}")
                 if score > high_score:
                     high_score = score
                     obj = dict(genome=genome, graph=self._graph_to_string(graph))
-                    self.save(f"best_{i}_{abs(score):.2f}", obj)
+                    name = f"best_{i}_{abs(score):.2f}"
+                    print(f"saving {name}")
+                    self.save(name, obj)
         #     for i_gen in range(1, 31):
         #         print(f"outer {i_gen} | starting ...")
         #         genomes = [rng.uniform(-i_gen, i_gen, size=3*64) for _ in range(10)]
