@@ -8,7 +8,7 @@ import mujoco as mj
 import numpy as np
 
 from a3_exp.lib import Experiment
-from a3_exp.policies.sine_policy import CPGPolicy
+from a3_exp.policies.sine_policy import CPGPolicy, SinePolicy
 from a3_exp.strategies import CMAES
 from a3_exp.utils import DummyPool, timeit
 
@@ -35,7 +35,7 @@ class MainExperiment(Experiment):
         quiet: bool = False
     ):
         pool = pool or DummyPool()
-        cpg_factory = lambda: CPGPolicy(out_features=mj_model.nu)
+        cpg_factory = lambda: SinePolicy(out_features=mj_model.nu)
         # cpg_factory = lambda: NNPolicy(len((_d:=mj.MjData(mj_model)).qpos) + len(_d.qvel), out_features=mj_model.nu)
         n_params = cpg_factory().n_parameters()
         es = CMAES(n_params, ip, seed)
