@@ -1,14 +1,11 @@
 import pickle
 import time
 from abc import ABC, abstractmethod
-from io import StringIO
 from pathlib import Path
 from typing import Self, Any
 
 import mujoco as mj
 import numpy as np
-
-from a3_exp.utils import timeit
 
 SPAWN_POS = [-0.8, 0, 0.1]
 NUM_OF_MODULES = 30
@@ -51,10 +48,12 @@ class EAStrategy(ABC):
 
 
 class Experiment:
-    def __init__(self):
+    def __init__(self, nde_seed: int = 42):
         from ariel.body_phenotypes.robogen_lite.decoders.hi_prob_decoding import HighProbabilityDecoder
         from ariel.ec.genotypes.nde import NeuralDevelopmentalEncoding
+        import torch
 
+        torch.manual_seed(nde_seed)
         self._nde = NeuralDevelopmentalEncoding(number_of_modules=NUM_OF_MODULES)
         self._hpd = lambda: HighProbabilityDecoder(NUM_OF_MODULES)
 
@@ -77,7 +76,6 @@ class Experiment:
             mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
             mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
 
-        # assert 0 < mj_data.time - sim_time < 2 * t_iter, f"seen time {mj_data.time}, expected: {sim_time}~{t_iter}"
         return fitness(mj_model, mj_data)
 
     @staticmethod
