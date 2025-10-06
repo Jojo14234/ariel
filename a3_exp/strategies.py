@@ -61,7 +61,6 @@ class GA(EAStrategy):
 
         self.rng = np.random.default_rng(seed)
 
-
     def ask(self):
         pass
 

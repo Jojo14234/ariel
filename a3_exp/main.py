@@ -153,8 +153,8 @@ if __name__ == '__main__':
     )
     _main_config = ExpConfig(
         nde_seed=42,
-        outer_strategy_cls="CMA",
-        outer_strat_kw=dict(seed=42),
+        outer_strategy_cls="GA",
+        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
         outer_population=60,
         outer_generations=100,
         inner_strategy_cls="CMA",

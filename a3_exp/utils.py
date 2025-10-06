@@ -29,7 +29,7 @@ def repr_kw(d: Dict):
 
 
 def fd_count():
-    return os.listdir(p) if (p := Path(f"/proc/{os.getpid()}/fd")).exists() else -1
+    return len(os.listdir(p)) if (p := Path(f"/proc/{os.getpid()}/fd")).exists() else -1
 
 
 class DummyResult:
