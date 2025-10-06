@@ -1,234 +1,168 @@
-import os
+import time
 from concurrent.futures import ProcessPoolExecutor as PPool
-from datetime import datetime
-from pathlib import Path
-from typing import Optional
+from typing import NamedTuple, Dict
 
 import mujoco as mj
 import numpy as np
-import pandas as pd
 
 from a3_exp.lib import Experiment
 from a3_exp.policies.sine_policy import CPGPolicy
-from a3_exp.strategies import CMAES
-from a3_exp.utils import DummyPool, timeit
+from a3_exp.strategies import CMAES, GA
+from a3_exp.utils import repr_now, argmax, fd_count, repr_kw
 
 mj.set_mjcb_control(None)  # DO NOT REMOVE
 
-now = lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-get_kw = (lambda **k: {"ip": 100, "ig": 100, "st": 10, "nc": 10, "seed": 42} | k)
-repr_kw = (lambda d: " ".join(f"{k}_{v}" for k, v in d.items()))
-get_fd = lambda: 'nan' if not (p := Path(f"/proc/{os.getpid()}/fd")).exists() else len(os.listdir(p))
-argmax_ = lambda a: max(range(len(a)), key=a.__getitem__)
+
+class ExpConfig(NamedTuple):
+    nde_seed: int
+
+    outer_strategy_cls: str  # CMA, GA
+    outer_strat_kw: Dict  # parameters, like seed
+    outer_population: int
+    outer_generations: int
+
+    inner_strategy_cls: str  # CMA
+    inner_strat_kw: Dict  # seed
+    inner_population: int
+    inner_generations: int
+
+    inner_policy_cls: str  # CPGPolicy
+
+    sim_duration: int  # 20s
+    sim_steps_per_cycle: int  # 10
+
+
+class SimResult(NamedTuple):
+    graph_repr: str
+    policy: str
+    genome: np.ndarray
+
 
 class MainExperiment(Experiment):
 
     @classmethod
-    def _inner_loop(
+    def run_inner(
         cls,
         mj_model: mj.MjModel,
-        ip: int,
-        ig: int,
-        st: int,
-        nc: int,
-        seed: int,
-        pool: Optional[PPool] = None,
-        quiet: bool = False
+        strategy_cls: str,
+        strat_kw: Dict,
+        policy_cls: str,
+        population_size: int,
+        n_generations: int,
+        sim_duration: int,
+        sim_steps_per_cycle: int,
+        pool: PPool,
     ):
-        pool = pool or DummyPool()
+        assert strategy_cls == 'CMA'
+        assert policy_cls == 'CPGPolicy'
         factory = lambda: CPGPolicy(out_features=mj_model.nu)
-        # factory = lambda: NNPolicy(len((_d:=mj.MjData(mj_model)).qpos) + len(_d.qvel), out_features=mj_model.nu)
-        n_params = factory().n_parameters()
-        es = CMAES(n_params, ip, seed)
-        ekw = {"fitness": cls.basic_fitness, "n_steps_per_cycle": nc, "sim_time": st}
-        _q = quiet
-        best_scores = []
-        best_policies = []
-        # quit_map = {5: -5.4, 10: -5, 20: -4.5, 25:-4}
-        quit_map = {5: .05, 10: .1, 20: .4}
+        n_parameters = factory().n_parameters()
 
-        for i_gen in range(ig):
+        if n_parameters < 3:
+            return [-6], [np.zeros(n_parameters)]
+
+        es = CMAES(n_parameters=n_parameters, population_size=population_size, **strat_kw)
+        sim_kw = dict(mj_model=mj_model, fitness=cls.fitness, sim_time=sim_duration,
+                      n_steps_per_cycle=sim_steps_per_cycle)
+        quit_map = {5: -5.4, 10: -5, 15: -4.5}
+
+        best_scores = []
+        best_genomes = []
+        for gen in range(n_generations):
             genomes = es.ask()
             policies = [factory().bind(g) for g in genomes]
-            futures = [pool.submit(cls.evaluate, mj_model=mj_model, policy=policy, **ekw) for policy in policies]
-            scores = [fut.result() for fut in futures]
+            futures = [pool.submit(cls.evaluate, policy=policy, **sim_kw) for policy in policies]
+            scores = [max(-6, fut.result()) for fut in futures]
             es.tell(genomes, [-f for f in scores])
-            argmax = argmax_(scores)
-            best_scores.append(scores[argmax])
-            best_policies.append(policies[argmax])
-            fd_count = get_fd()
-            if not _q:
-                print(f"inner {fd_count=} | {i_gen} | {best_scores[-1]:.2f} | {max(best_scores):.2f} | {now()}")
-
-            if max(best_scores) < quit_map.get(i_gen, -7):
-                print(f"early quitting {i_gen} ... max={max(best_scores):.2f}, min={min(best_scores):.2f}")
+            amax = argmax(scores)
+            best_scores.append(scores[amax])
+            best_genomes.append(genomes[amax])
+            if max(best_scores) < quit_map.get(gen, -7):
                 break
 
-        # return best_scores + [best_scores[-1]] * (ig - len(best_scores))
-        argmax = argmax_(best_scores)
-        print(f"inner fd={get_fd()} | fin | {best_scores[argmax]:.2f} | {now()}")
-        return best_scores[argmax], best_policies[argmax]
+        return best_scores, best_genomes
 
-    def _outer_loop(self):
-        print(f"outer | starting...")
-        op, og = 14, 30
-        ikw = get_kw(ig=20, ip=80, quiet=False)
-        es = CMAES(64 * 3, op, 42)
-
-
-        best = [] # score, genome, graph, model, policy
+    def run(self, name: str, config: ExpConfig):
+        self.init_nde_hpd(config.nde_seed)
+        es_cls = {"CMA": CMAES, "GA": GA}[config.outer_strategy_cls]
+        es = es_cls(n_parameters=64 * 3, population_size=config.outer_population, **config.outer_strat_kw)
+        inner_kw = dict(
+            strategy_cls=config.inner_strategy_cls,
+            strat_kw=config.inner_strat_kw,
+            policy_cls=config.inner_policy_cls,
+            population_size=config.inner_population,
+            n_generations=config.inner_generations,
+            sim_duration=config.sim_duration,
+            sim_steps_per_cycle=config.sim_steps_per_cycle,
+        )
+        best_scores, best_graphs = [], []
+        # n_generations 20 -> 40
+        # sim_duration  10 -> 30
 
         with PPool() as pool:
-            o_pool, i_pool = DummyPool(), pool
-            # o_pool, i_pool = pool, None
-
-            for i_gen in range(og):
-                print(f"outer | gen {i_gen} | submitting... | {now()}")
+            for i_og in range(1, config.outer_generations + 1):
+                t = time.perf_counter()
+                inner_kw['n_generations'] += 1 * (i_og % 5 == 0)
+                inner_kw['sim_duration'] += 2 * (i_og % 5 == 0)
+                print(f"outer gen {i_og:>2} | fd={fd_count()} | starting {repr_now()}")
+                print(repr_kw(inner_kw))
                 genomes = es.ask()
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                models = [self.spec_to_simple_world(self._graph_to_mj_spec(g)) for g in graphs]
-                futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
-                # scores_2d = [fut.result() for fut in futures]
-                # self.save(f"scores_og_{i_gen}", scores_2d)
-                scores, policies = zip(*[fut.result() for fut in futures])
-                es.tell(genomes, [-f for f in scores])
-                argmax = argmax_(scores)
-                best.append(tuple(l[argmax] for l in (scores, genomes, graphs, models, policies)))
+                models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
+                g_str = [self._graph_to_string(g) for g in graphs]
 
-                print(f"outer | gen {i_gen} | max={best[-1][0]:.2f} min={min(scores):.2f} | {now()}")
+                gen_scores = []
+                gen_genomes = []
+                for i_op, model in enumerate(models):
+                    scores, inner_genomes = self.run_inner(mj_model=model, pool=pool, **inner_kw)
+                    amax = argmax(scores)
+                    gen_scores.append(scores[amax])
+                    gen_genomes.append(inner_genomes[amax])
+                    print(f"outer gen {i_og:>2} {i_op:>2} | score={scores[amax]:.2f} | {repr_now()}")
 
-        # best_scores, *_ = zip(*best)
-        # argmax = max(range(len(best_scores)), key=best_scores.__getitem__)
-        # return best_models[argmax], best_policies[argmax]
+                es.tell(genomes, gen_scores)
+                self.save(f"{name}_{i_og}_bodies", g_str)
+                self.save(f"{name}_{i_og}_score_genome", (gen_scores, gen_genomes))
+                amax = argmax(gen_scores)
+                best_scores.append(gen_scores[amax])
+                best_graphs.append(g_str[amax])
+                mu, max_ = sum(gen_scores) / len(gen_scores), gen_scores[amax]
+                max_global = max(best_scores)
+                print(
+                    f"outer gen {i_og:>2} | fin, mu: {mu:.2f}, genmax {max_:.2f} vs cmax {max_global:.2f} | {repr_now()}")
+                elapsed = time.perf_counter() - t
+                print(f"outer gen {i_og:>2} took {elapsed:.2f}s ({int(elapsed / 60)}m)")
 
-    def main(self):
-        with timeit("outer loop"):
-            # model, policy = self._outer_loop()
-            self._outer_loop()
-
-        # input("ready?")
-        # self.view(model, policy, self.fitness)
-
-    def random_example(self):
-        genotype = list(np.random.default_rng(42).random((3, 64)).astype(np.float32))
-        graph = self._genotype_to_graph(genotype)
-        mj_model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
-        self.view(mj_model, lambda _, d: d.ctrl, self.fitness)
-
-    def compare_mp_speeds(self):
-        flat = self
-        n = os.cpu_count() - 4
-        with PPool(max_workers=n) as pool:
-            with timeit(f"warmup"):
-                kw = get_kw(ip=n * 2, ig=10)
-                self._inner_loop(flat, **kw, quiet=True, pool=pool)
-
-            # with timeit(f"{n}x seq with pool"):
-            #     for _ in range(n):
-            #         self._inner_loop(flat, **kw, quiet=True, pool=pool)
-
-            with timeit(f"{n}x pool with seq"):
-                futures = [pool.submit(self._inner_loop, flat, **kw, quiet=True) for _ in range(n)]
-                _ = [fut.result() for fut in futures]
-
-    def supernotes(self):
-        """
-        # 10/04
-
-        ## First double loop implementation takes ages and produces shit results
-        implemented CMA -> CMA and after 1 hour of 8, nothing found which scored higher than -5.6 (random)
-        1 hour is way too long to have shit performance - is this the fault of brain loop or shit bodies?
-
-        details: op_14 og_30 ip_30 ig_30 took 1 hour for og(3/30),
-
-        decision: double loop is too difficult do debug, focus on getting a good gecko first, without a good
-        gecko we have no hope.
-
-        ## Gecko experiment
-
-        ### Base
-        POOLED CMA attempt=1 | ip_100 ig_100 st_10 nc_10 took 281.41s
-        best score -4.6350
-        took 75 gens to break -5.
-
-        ### timing
-        POOL-16    CMA ip_100 ig_1 st_10 nc_10 seed_42 took 11.97s
-        POOL-16    CMA ip_100 ig_1 st_10 nc_10 seed_42 took 2.57s
-        POOL-16    CMA ip_100 ig_5 st_10 nc_10 seed_42 took 12.33s
-        SEQUENTIAL CMA ip_100 ig_5 st_10 nc_10 seed_42 took 89.45s
-        POOL-1-out CMA ip_100 ig_5 st_10 nc_10 seed_42 took 78.21s
-        89 / 12 = 7x slower, we have 8 cores but 16 logical processors, so this is either pretty bad or ok.
-
-        # 10/04  3AM
-        spent too long profiling shit, still only have some shit ass gecko, and still want to do more profiling
-
-        # 10/04 22:24
-        on ripper now
-
-        # 10/05
-
-        ## mp speed
-        warmup took 9.84s
-        12x seq with pool took 60.24s
-        12x pool with seq took 51.31s
-
-        warmup took 10.91s
-        60x seq with pool took 610.30s
-        60x pool with seq took 485.89s
-
-
-        > gecko learn NN on Olympic
-            > -4.15 was best within 20s 100ig
-
-        > gecko CPG on Olympic
-
-        outer | gen 8 | max fitness: -2.7616, minf=-5.823433627237052 | 2025-10-05 21:35:01
-        Updating f393757..240d679
-
-        # 10/06
-        > task 1: get genome + graph that was >-3
-        > task 2: evaluate CMA for producing bodies that can run in basic world
-
-
-        """
-
-
-    def gecko_cpg(self):
-        model = self.spec_to_simple_world(self.gecko_spec())
-        with PPool() as pool:
-            for seed in range(42, 46):
-                _, policy = self._inner_loop(model, **get_kw(st=20, seed=seed), pool=pool)
-
-        # self.view(model, policy, self.basic_fitness, sim_time=10, n_steps_per_cycle=10)
-
-    def eval_cma_outer(self):
-        """
-        Evaluate CMA-ES ability to make bodies that run properly in basic world
-        """
-
-        op, og = 14, 30
-        ikw = get_kw(ig=10, ip=80, quiet=True)
-        es = CMAES(64 * 3, op, 42)
-        all_scores = []
-
-        with PPool() as pool:
-            o_pool, i_pool = DummyPool(), pool
-
-            for i_gen in range(og):
-                print(f"outer {i_gen} | submitting... | {now()}")
-                genomes = es.ask()
-                graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                models = [self.spec_to_simple_world(self._graph_to_mj_spec(g)) for g in graphs]
-                futures = [o_pool.submit(self._inner_loop, m, **ikw, pool=i_pool) for m in models]
-                scores, policies = zip(*[fut.result() for fut in futures])
-                es.tell(genomes, [-f for f in scores])
-                scores_df = pd.Series(scores).describe().to_frame(i_gen).T
-                all_scores.append(scores_df)
-                print(scores_df.to_string())
-
-        print(pd.concat(all_scores).to_string())
-
+        self.save(f"{name}_final", (best_scores, best_graphs))
 
 
 if __name__ == '__main__':
-    MainExperiment().random_example()
+    _test_config = ExpConfig(
+        nde_seed=42,
+        outer_strategy_cls="CMA",
+        outer_strat_kw=dict(seed=42),
+        outer_population=14,
+        outer_generations=30,
+        inner_strategy_cls="CMA",
+        inner_strat_kw=dict(seed=42),
+        inner_population=64,
+        inner_generations=20,
+        inner_policy_cls="CPGPolicy",
+        sim_duration=10,
+        sim_steps_per_cycle=10,
+    )
+    _main_config = ExpConfig(
+        nde_seed=42,
+        outer_strategy_cls="CMA",
+        outer_strat_kw=dict(seed=42),
+        outer_population=60,
+        outer_generations=100,
+        inner_strategy_cls="CMA",
+        inner_strat_kw=dict(seed=42),
+        inner_population=64,
+        inner_generations=20,
+        inner_policy_cls="CPGPolicy",
+        sim_duration=10,
+        sim_steps_per_cycle=10,
+    )
+    MainExperiment().run(name='_testing', config=_test_config)

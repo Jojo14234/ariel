@@ -20,6 +20,9 @@ assert _ARTIFACT_DIR.is_dir()
 
 
 class EAPolicy(ABC):
+    # @classmethod
+    # @abstractmethod
+    # def from_model(cls, model: mj.MjModel): ...
 
     @abstractmethod
     def bind(self, genome: Any) -> Self: ...
@@ -48,7 +51,8 @@ class EAStrategy(ABC):
 
 
 class Experiment:
-    def __init__(self, nde_seed: int = 42):
+
+    def init_nde_hpd(self, nde_seed: int = 42):
         from ariel.body_phenotypes.robogen_lite.decoders.hi_prob_decoding import HighProbabilityDecoder
         from ariel.ec.genotypes.nde import NeuralDevelopmentalEncoding
         import torch

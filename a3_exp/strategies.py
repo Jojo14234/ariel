@@ -49,3 +49,25 @@ class RandStrat(EAStrategy):
 
     def stop(self):
         return self and False
+
+
+class GA(EAStrategy):
+    def __init__(self, n_parameters: int, population_size: int, seed: int, mutation_rate: float, crossover_rate: float):
+        super().__init__(n_parameters, population_size)
+
+        self.mutation_rate = mutation_rate
+        self.crossover_rate = crossover_rate
+        self.population_size = population_size
+
+        self.rng = np.random.default_rng(seed)
+
+
+    def ask(self):
+        pass
+
+    def tell(self, samples, scores):
+        pass
+
+    def stop(self) -> bool:
+        return self and False
+

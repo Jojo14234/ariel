@@ -1,0 +1,39 @@
+
+
+# parameters
+We run a double loop body/ brain simulation with the following parameters:
+
+## nde_seed = 42
+for reproducibility
+
+## outer_strategy = GA
+CW requires an evolutionary algorithm that uses evolutionary operators.
+
+## outer_strat_kw = {seed: 42, mutation_rate: .2, crossover_rate: .7}
+seed for reproducibility, high crossover for more unique samples
+
+## inner_strategy = CMA
+this worked the best previously
+
+## inner_strat_kw = {seed: 42}
+
+## outer_population = 60
+claire wants this to be sufficiently high
+
+## outer_generations = 100
+doesn't matter
+
+## inner_population = 64
+best for MP
+
+## inner_generations = 20
+may want to increase with i_og
+
+## inner_policy = CPGPolicy
+seems to work
+
+## sim_duration = 10s
+should ideally increase with score
+
+## sim_nstep = 10
+increasing this does not seem to make things particularly faster
