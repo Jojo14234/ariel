@@ -181,14 +181,14 @@ if __name__ == '__main__':
         outer_population=30,
         outer_generations=100,
         inner_population=64,
-        inner_generations=30,
+        inner_generations=10,
         nde_seed=42,
         world=0,
-        outer_strategy_cls="Rand",
-        outer_strat_kw=dict(seed=42),
+        outer_strategy_cls="GA",
+        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=42),
-        inner_policy_cls="DoublePolicy",
+        inner_policy_cls="NNPolicy",
     )
 
     _main_config = ExpConfig(
