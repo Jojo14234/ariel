@@ -109,11 +109,11 @@ class GA(EAStrategy):
         """
         size = self.n_parameters
         offspring = [
-            genome + self.rng.normal(0, .1, size=size) * (self.rng.random(size=size) < self.mutation_rate)
+            genome + self.rng.normal(0, 1, size=size) * (self.rng.random(size=size) < self.mutation_rate)
             for genome in offspring
         ]
         self.population = offspring
-        self.population[-1] = best
+        self.population[0] = best
 
     def stop(self) -> bool:
         return self and False

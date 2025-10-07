@@ -1,16 +1,15 @@
 import time
 from concurrent.futures import ProcessPoolExecutor as PPool
-from typing import NamedTuple, Dict, Callable
+from typing import NamedTuple, Dict, Callable, Optional
 
 import mujoco as mj
 import numpy as np
-from matplotlib import pyplot as plt
 
 from a3_exp.lib import Experiment
 from a3_exp.policies.nn_policy import NNPolicy, DoublePolicy
 from a3_exp.policies.sine_policy import CPGPolicy, SinePolicy
 from a3_exp.strategies import CMAES, GA, RandStrat
-from a3_exp.utils import repr_now, argmax, fd_count, repr_kw
+from a3_exp.utils import repr_now, argmax, fd_count, repr_kw, DummyPool
 
 mj.set_mjcb_control(None)  # DO NOT REMOVE
 
@@ -56,8 +55,9 @@ class MainExperiment(Experiment):
         sim_duration: int,
         sim_steps_per_cycle: int,
         fitness: Callable,
-        pool: PPool,
+        pool: Optional[PPool] = None,
     ):
+        pool = pool or DummyPool()
         factory = P_MAP[policy_cls].from_model(mj_model)
         n_parameters = factory().n_parameters()
 
@@ -84,7 +84,8 @@ class MainExperiment(Experiment):
             # if gen % 5 == 0 and max(bsc[-10:]) - min(bsc) < gen / 10:
             #     break
 
-        return bsc, bg
+        amax = argmax(bsc)
+        return bsc[amax], bg[amax]
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
@@ -116,19 +117,11 @@ class MainExperiment(Experiment):
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
                 models = [world(self._graph_to_mj_spec(g)) for g in graphs]
                 g_str = [self._graph_to_string(g) for g in graphs]
+                futures = [pool.submit(self.run_inner, mj_model=model, **inner_kw) for model in models]
+                gen_scores, gen_genomes = zip(*[fut.result() for fut in futures])
 
-                gen_scores = []
-                gen_genomes = []
-                for i_op, model in enumerate(models):
-                    scores, inner_genomes = self.run_inner(mj_model=model, pool=pool, **inner_kw)
-                    amax = argmax(scores)
-                    gen_scores.append(scores[amax])
-                    gen_genomes.append(inner_genomes[amax])
-                    print(f"outer gen {i_og:>2} {i_op:>2} | score={scores[amax]:.2f}, ngen={len(scores)} | {repr_now()}")
-                    # if scores[amax] > -4.2:
-                    #     input("ready? ")
-                    #     self.view(model, policy_cls.from_model(model)().bind(gen_genomes[-1]), self.fitness)
-
+                for i, score in enumerate(gen_scores):
+                    print(f"outer gen {i_og:>2} {i:>2} | score={score:.2f} | {repr_now()}")
 
                 es.tell(genomes, gen_scores)
                 self.save(f"{name}_{i_og}_bodies", g_str)
