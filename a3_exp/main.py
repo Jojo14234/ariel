@@ -161,9 +161,11 @@ class MainExperiment(Experiment):
             }
 
         for k, v in res.items():
-            plt.plot(v, label=k)
-        plt.legend()
-        plt.show()
+            print(k, max(v))
+            print(" ".join(f"{v_:.2f}" for v_ in v))
+            # plt.plot(v, label=k)
+        # plt.legend()
+        # plt.show()
 
 
 
