@@ -53,7 +53,6 @@ class MainExperiment(Experiment):
         sim_steps_per_cycle: int,
         pool: PPool,
     ):
-        assert strategy_cls == 'CMA'
         assert policy_cls == 'CPGPolicy'
         factory = lambda: CPGPolicy(out_features=mj_model.nu)
         n_parameters = factory().n_parameters()
@@ -61,10 +60,11 @@ class MainExperiment(Experiment):
         if n_parameters < 3:
             return [-6], [np.zeros(n_parameters)]
 
-        es = CMAES(n_parameters=n_parameters, population_size=population_size, **strat_kw)
+        es_cls = {"CMA": CMAES, "GA": GA}[strategy_cls]
+        es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
         sim_kw = dict(mj_model=mj_model, fitness=cls.fitness, sim_time=sim_duration,
                       n_steps_per_cycle=sim_steps_per_cycle)
-        quit_map = {5: -5.4, 10: -5, 15: -4.5}
+        quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
 
         best_scores = []
         best_genomes = []
@@ -139,12 +139,12 @@ class MainExperiment(Experiment):
 if __name__ == '__main__':
     _test_config = ExpConfig(
         nde_seed=42,
-        outer_strategy_cls="CMA",
-        outer_strat_kw=dict(seed=42),
-        outer_population=60,
+        outer_strategy_cls="GA",
+        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
+        outer_population=16,
         outer_generations=100,
-        inner_strategy_cls="CMA",
-        inner_strat_kw=dict(seed=42),
+        inner_strategy_cls="GA",
+        inner_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
         inner_population=64,
         inner_generations=20,
         inner_policy_cls="CPGPolicy",
