@@ -104,9 +104,7 @@ class GA(EAStrategy):
             genome + self.rng.normal(0, .1, size=size) * (self.rng.random(size=size) < self.mutation_rate)
             for genome in offspring
         ]
-        return offspring
-
-
+        self.population = offspring
 
     def stop(self) -> bool:
         return self and False
