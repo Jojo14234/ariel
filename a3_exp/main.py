@@ -137,9 +137,10 @@ class MainExperiment(Experiment):
                 best_scores.append(gen_scores[amax])
                 best_graphs.append(g_str[amax])
                 mu, max_ = sum(gen_scores) / len(gen_scores), gen_scores[amax]
-                max_global = max(best_scores)
+                max_g = max(best_scores)
                 print(
-                    f"outer gen {i_og:>2} | fin, mu: {mu:.2f}, genmax {max_:.2f} vs cmax {max_global:.2f} | {repr_now()}")
+                    f"outer gen {i_og:>2} | fin, mu: {mu:.2f}, genmax {max_:.2f} vs cmax {max_g:.2f} | {repr_now()}"
+                )
                 elapsed = time.perf_counter() - t
                 print(f"outer gen {i_og:>2} took {elapsed:.2f}s ({int(elapsed / 60)}m)")
 
@@ -187,7 +188,7 @@ if __name__ == '__main__':
         outer_strat_kw=dict(seed=42),
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=42),
-        inner_policy_cls="NNPolicy",
+        inner_policy_cls="DoublePolicy",
     )
 
     _main_config = ExpConfig(
