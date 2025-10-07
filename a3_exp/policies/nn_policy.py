@@ -21,11 +21,6 @@ def _load_genome_to_network(genome: np.ndarray, network: torch.nn.Module) -> Non
 
 class NNPolicy(EAPolicy):
 
-    @classmethod
-    def from_model(cls, mj_model: mj.MjModel):
-        d = mj.MjData(mj_model)
-        return lambda: cls(in_features=len(d.qpos) + len(d.qvel), out_features=mj_model.nu)
-
     def __init__(self, in_features: int, out_features: int):
         self.network = torch.nn.Sequential(
             torch.nn.Linear(in_features=in_features, out_features=5, dtype=torch.float64),
@@ -44,6 +39,11 @@ class NNPolicy(EAPolicy):
     def bind(self, genome: np.ndarray):
         _load_genome_to_network(genome, self.network)
         return self
+
+    @classmethod
+    def from_model(cls, mj_model: mj.MjModel):
+        d = mj.MjData(mj_model)
+        return lambda: cls(in_features=len(d.qpos) + len(d.qvel), out_features=mj_model.nu)
 
 
 class DoublePolicy(NNPolicy):

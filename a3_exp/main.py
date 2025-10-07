@@ -8,16 +8,17 @@ from matplotlib import pyplot as plt
 
 from a3_exp.lib import Experiment
 from a3_exp.policies.nn_policy import NNPolicy, DoublePolicy
-from a3_exp.policies.sine_policy import CPGPolicy
-from a3_exp.strategies import CMAES, GA
+from a3_exp.policies.sine_policy import CPGPolicy, SinePolicy
+from a3_exp.strategies import CMAES, GA, RandStrat
 from a3_exp.utils import repr_now, argmax, fd_count, repr_kw
 
 mj.set_mjcb_control(None)  # DO NOT REMOVE
 
-P_MAP = {c.__name__: c for c in (NNPolicy, CPGPolicy, DoublePolicy)}
+P_MAP = {c.__name__: c for c in (NNPolicy, CPGPolicy, SinePolicy, DoublePolicy)}
 
 class ExpConfig(NamedTuple):
     nde_seed: int
+    world: int # 0 is simple, 1 is olympic
 
     outer_strategy_cls: str  # CMA, GA
     outer_strat_kw: Dict  # parameters, like seed
@@ -73,13 +74,15 @@ class MainExperiment(Experiment):
         for gen in range(n_generations):
             genomes = es.ask()
             policies = [factory().bind(g) for g in genomes]
+            t = time.perf_counter()
             futures = [pool.submit(cls.evaluate, policy=policy, **sim_kw) for policy in policies]
             scores = [max(-6, fut.result()) for fut in futures]
+            print(f"i gen {gen} took {time.perf_counter() - t:.2f}s")
             es.tell(genomes, scores)
             amax = argmax(scores)
             bsc.append(scores[amax])
             bg.append(genomes[amax])
-            print(f"igen {gen} {policy_cls} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
+            print(f"i gen {gen} {policy_cls} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
             # if gen % 5 == 0 and max(bsc[-10:]) - min(bsc) < gen / 10:
             #     break
 
@@ -87,7 +90,7 @@ class MainExperiment(Experiment):
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
-        es_cls = {"CMA": CMAES, "GA": GA}[config.outer_strategy_cls]
+        es_cls = {"CMA": CMAES, "GA": GA, "Rand": RandStrat}[config.outer_strategy_cls]
         es = es_cls(n_parameters=64 * 3, population_size=config.outer_population, **config.outer_strat_kw)
         inner_kw = dict(
             strategy_cls=config.inner_strategy_cls,
@@ -97,9 +100,9 @@ class MainExperiment(Experiment):
             n_generations=config.inner_generations,
             sim_duration=config.sim_duration,
             sim_steps_per_cycle=config.sim_steps_per_cycle,
-            fitness=self.fitness,
+            fitness=(self.basic_fitness, self.fitness)[config.world],
         )
-        policy_cls = P_MAP[config.inner_policy_cls]
+        world = (self.spec_to_simple_world, self.spec_to_olympic_world)[config.world]
         best_scores, best_graphs = [], []
         # n_generations 20 -> 40
         # sim_duration  10 -> 30
@@ -113,7 +116,7 @@ class MainExperiment(Experiment):
                 print(repr_kw(inner_kw))
                 genomes = es.ask()
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g)) for g in graphs]
+                models = [world(self._graph_to_mj_spec(g)) for g in graphs]
                 g_str = [self._graph_to_string(g) for g in graphs]
 
                 gen_scores = []
@@ -146,8 +149,8 @@ class MainExperiment(Experiment):
 
     def run_gecko(self):
         inner_kw = dict(
-            strategy_cls="CMA",
-            strat_kw=dict(seed=42),
+            strategy_cls="GA",
+            strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
             policy_cls="DoublePolicy",
             population_size=64 * 2,
             n_generations=100,
@@ -156,7 +159,7 @@ class MainExperiment(Experiment):
             fitness=self.basic_fitness,
         )
         with PPool() as pool:
-            model =self.spec_to_simple_world(self.gecko_spec())
+            model = self.spec_to_simple_world(self.gecko_spec())
             res = {
                 n: self.run_inner(mj_model=model, pool=pool, **inner_kw | dict(policy_cls=n))[0]
                 for n in P_MAP
@@ -172,22 +175,26 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
+
     _test_config = ExpConfig(
-        nde_seed=42,
-        outer_strategy_cls="GA",
-        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
-        outer_population=30,
-        outer_generations=100,
-        inner_strategy_cls="CMA",
-        inner_strat_kw=dict(seed=42),
-        inner_population=16,
-        inner_generations=40,
-        inner_policy_cls="DoublePolicy",
         sim_duration=20,
         sim_steps_per_cycle=10,
+        outer_population=30,
+        outer_generations=100,
+        inner_population=64 * 2,
+        inner_generations=30,
+        nde_seed=42,
+        world=0,
+        outer_strategy_cls="Rand",
+        outer_strat_kw=dict(seed=42),
+        inner_strategy_cls="CMA",
+        inner_strat_kw=dict(seed=42),
+        inner_policy_cls="NNPolicy",
     )
+
     _main_config = ExpConfig(
         nde_seed=42,
+        world=1,
         outer_strategy_cls="GA",
         outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
         outer_population=60,
@@ -200,6 +207,5 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    # PID: 1281189
-    # MainExperiment().run(name='_test', config=_test_config)
-    MainExperiment().run_gecko()
+    MainExperiment().run(name='_test', config=_test_config)
+    # MainExperiment().run_gecko()
