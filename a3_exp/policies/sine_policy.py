@@ -48,6 +48,10 @@ class SinePolicy(EAPolicy):
 
 
 class CPGPolicy(EAPolicy):
+    @classmethod
+    def from_model(cls, mj_model: mj.MjModel):
+        return lambda: cls(out_features=mj_model.nu)
+
     def __init__(self, in_features: int = 5, out_features: int = 8):
         assert in_features
         in_features = 4 # ignore 'in_features', always use 4 frequencies

@@ -4,14 +4,17 @@ from typing import NamedTuple, Dict
 
 import mujoco as mj
 import numpy as np
+from matplotlib import pyplot as plt
 
 from a3_exp.lib import Experiment
+from a3_exp.policies.nn_policy import NNPolicy, DoublePolicy
 from a3_exp.policies.sine_policy import CPGPolicy
 from a3_exp.strategies import CMAES, GA
 from a3_exp.utils import repr_now, argmax, fd_count, repr_kw
 
 mj.set_mjcb_control(None)  # DO NOT REMOVE
 
+P_MAP = {c.__name__: c for c in (NNPolicy, CPGPolicy, DoublePolicy)}
 
 class ExpConfig(NamedTuple):
     nde_seed: int
@@ -53,8 +56,7 @@ class MainExperiment(Experiment):
         sim_steps_per_cycle: int,
         pool: PPool,
     ):
-        assert policy_cls == 'CPGPolicy'
-        factory = lambda: CPGPolicy(out_features=mj_model.nu)
+        factory = P_MAP[policy_cls].from_model(mj_model)
         n_parameters = factory().n_parameters()
 
         if n_parameters < 3:
@@ -64,7 +66,7 @@ class MainExperiment(Experiment):
         es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
         sim_kw = dict(mj_model=mj_model, fitness=cls.fitness, sim_time=sim_duration,
                       n_steps_per_cycle=sim_steps_per_cycle)
-        quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
+        # quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
 
         best_scores = []
         best_genomes = []
@@ -77,8 +79,9 @@ class MainExperiment(Experiment):
             amax = argmax(scores)
             best_scores.append(scores[amax])
             best_genomes.append(genomes[amax])
-            if max(best_scores) < quit_map.get(gen, -7):
-                break
+            print(f"{gen}: {max(best_scores):.2f}, {max(best_scores[-10:]):.2f}")
+            # if gen % 5 == 0 and max(best_scores[-10:]) - min(best_scores) < gen / 10:
+            #     break
 
         return best_scores, best_genomes
 
@@ -95,6 +98,7 @@ class MainExperiment(Experiment):
             sim_duration=config.sim_duration,
             sim_steps_per_cycle=config.sim_steps_per_cycle,
         )
+        policy_cls = P_MAP[config.inner_policy_cls]
         best_scores, best_graphs = [], []
         # n_generations 20 -> 40
         # sim_duration  10 -> 30
@@ -119,6 +123,10 @@ class MainExperiment(Experiment):
                     gen_scores.append(scores[amax])
                     gen_genomes.append(inner_genomes[amax])
                     print(f"outer gen {i_og:>2} {i_op:>2} | score={scores[amax]:.2f}, ngen={len(scores)} | {repr_now()}")
+                    # if scores[amax] > -4.2:
+                    #     input("ready? ")
+                    #     self.view(model, policy_cls.from_model(model)().bind(gen_genomes[-1]), self.fitness)
+
 
                 es.tell(genomes, gen_scores)
                 self.save(f"{name}_{i_og}_bodies", g_str)
@@ -135,22 +143,45 @@ class MainExperiment(Experiment):
 
         self.save(f"{name}_final", (best_scores, best_graphs))
 
+    def run_gecko(self):
+        inner_kw = dict(
+            strategy_cls="CMA",
+            strat_kw=dict(seed=42),
+            policy_cls="DoublePolicy",
+            population_size=64 * 2,
+            n_generations=100,
+            sim_duration=20,
+            sim_steps_per_cycle=10,
+        )
+        with PPool() as pool:
+            model =self.spec_to_olympic_world(self.gecko_spec())
+            res = {
+                n: self.run_inner(mj_model=model, pool=pool, **inner_kw | dict(policy_cls=n))[0]
+                for n in P_MAP
+            }
+
+        for k, v in res.items():
+            plt.plot(v, label=k)
+        plt.legend()
+        plt.show()
+
+
 
 if __name__ == '__main__':
-    # _test_config = ExpConfig(
-    #     nde_seed=42,
-    #     outer_strategy_cls="GA",
-    #     outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
-    #     outer_population=30,
-    #     outer_generations=100,
-    #     inner_strategy_cls="CMA",
-    #     inner_strat_kw=dict(seed=42),
-    #     inner_population=64,
-    #     inner_generations=20,
-    #     inner_policy_cls="CPGPolicy",
-    #     sim_duration=10,
-    #     sim_steps_per_cycle=10,
-    # )
+    _test_config = ExpConfig(
+        nde_seed=42,
+        outer_strategy_cls="GA",
+        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
+        outer_population=30,
+        outer_generations=100,
+        inner_strategy_cls="CMA",
+        inner_strat_kw=dict(seed=42),
+        inner_population=16,
+        inner_generations=40,
+        inner_policy_cls="DoublePolicy",
+        sim_duration=20,
+        sim_steps_per_cycle=10,
+    )
     _main_config = ExpConfig(
         nde_seed=42,
         outer_strategy_cls="GA",
@@ -165,4 +196,6 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='main', config=_main_config)
+    # PID: 1281189
+    # MainExperiment().run(name='_test', config=_test_config)
+    MainExperiment().run_gecko()

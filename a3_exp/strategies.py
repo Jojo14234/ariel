@@ -52,12 +52,21 @@ class RandStrat(EAStrategy):
 
 
 class GA(EAStrategy):
-    def __init__(self, n_parameters: int, population_size: int, seed: int, mutation_rate: float, crossover_rate: float):
+    def __init__(
+        self,
+        n_parameters: int,
+        population_size: int,
+        seed: int,
+        mutation_rate: float,
+        crossover_rate: float,
+        tournament_size: int = 5,
+    ):
         super().__init__(n_parameters, population_size)
 
         self.mutation_rate = mutation_rate
         self.crossover_rate = crossover_rate
         self.population_size = population_size
+        self.tournament_size = tournament_size
 
         self.rng = np.random.default_rng(seed)
         self.population = [self.rng.random(size=self.n_parameters) for _ in range(self.population_size)]
@@ -67,15 +76,14 @@ class GA(EAStrategy):
 
     def tell(self, samples, scores):
         assert len(samples) == len(scores) == self.population_size
-
         """
         # Tournament
         """
         scores = np.array(scores)
-        tournament_size = 3
+        best = self.population[np.argmax(scores)]
         parent_i = []
         for _ in range(self.population_size):
-            idx = self.rng.choice(self.population_size, tournament_size, replace=False)
+            idx = self.rng.choice(self.population_size, self.tournament_size, replace=False)
             parent_i.append(idx[np.argmax(scores[idx])])
 
         parents = [self.population[i] for i in parent_i]
@@ -105,6 +113,7 @@ class GA(EAStrategy):
             for genome in offspring
         ]
         self.population = offspring
+        self.population[-1] = best
 
     def stop(self) -> bool:
         return self and False
