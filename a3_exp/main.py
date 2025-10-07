@@ -107,17 +107,18 @@ class MainExperiment(Experiment):
         # sim_duration  10 -> 30
 
         with PPool() as pool:
+            opool, ipool = DummyPool(), pool
             for i_og in range(1, config.outer_generations + 1):
                 t = time.perf_counter()
-                inner_kw['n_generations'] += 1 * (i_og % 5 == 0)
-                inner_kw['sim_duration'] += 2 * (i_og % 5 == 0)
+                inner_kw['n_generations'] += 2 * (i_og % 2 == 0)
+                inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 30)
                 print(f"outer gen {i_og:>2} | fd={fd_count()} | starting {repr_now()}")
                 print(repr_kw(inner_kw))
                 genomes = es.ask()
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
                 models = [world(self._graph_to_mj_spec(g)) for g in graphs]
                 g_str = [self._graph_to_string(g) for g in graphs]
-                futures = [pool.submit(self.run_inner, mj_model=model, **inner_kw) for model in models]
+                futures = [opool.submit(self.run_inner, mj_model=model, **inner_kw, pool=ipool) for model in models]
                 gen_scores, gen_genomes = zip(*[fut.result() for fut in futures])
 
                 for i, score in enumerate(gen_scores):
@@ -171,12 +172,12 @@ if __name__ == '__main__':
     _test_config = ExpConfig(
         sim_duration=20,
         sim_steps_per_cycle=10,
-        outer_population=64,
+        outer_population=100,
         outer_generations=100,
-        inner_population=30,
+        inner_population=60,
         inner_generations=10,
         nde_seed=42,
-        world=0,
+        world=1,
         outer_strategy_cls="GA",
         outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
         inner_strategy_cls="CMA",
@@ -199,5 +200,22 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='_test', config=_test_config)
+
+    _main_2 = ExpConfig(
+        sim_duration=20,
+        sim_steps_per_cycle=10,
+        outer_population=20,
+        outer_generations=100,
+        inner_population=64,
+        inner_generations=10,
+        nde_seed=43,
+        world=1,
+        outer_strategy_cls="GA",
+        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
+        inner_strategy_cls="CMA",
+        inner_strat_kw=dict(seed=42),
+        inner_policy_cls="NNPolicy",
+    )
+
+    MainExperiment().run(name='_main_2', config=_main_2)
     # MainExperiment().run_gecko()
