@@ -63,7 +63,7 @@ class Experiment:
 
     @staticmethod
     def fitness(_: mj.MjModel, mj_data: mj.MjData):
-        distance = np.sqrt(sum((a - b) ** 2 for a, b in zip(mj_data.geom('robot-core').xpos, TARGET_POSITION)))
+        distance = np.sqrt(sum((b - a) ** 2 for a, b in zip(mj_data.geom('robot-core').xpos, TARGET_POSITION)))
         return -distance
 
     @staticmethod
