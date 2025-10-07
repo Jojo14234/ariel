@@ -110,7 +110,7 @@ class MainExperiment(Experiment):
             opool, ipool = DummyPool(), pool
             for i_og in range(1, config.outer_generations + 1):
                 t = time.perf_counter()
-                # inner_kw['n_generations'] += 2 * (i_og % 2 == 0)
+                inner_kw['n_generations'] = min(inner_kw['n_generations'] + 2 * (i_og % 2 == 0), 40)
                 # inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 30)
                 print(f"outer gen {i_og:>2} | fd={fd_count()} | starting {repr_now()}")
                 print(repr_kw(inner_kw))
@@ -217,39 +217,21 @@ if __name__ == '__main__':
     )
 
     _main_config = ExpConfig(
-        nde_seed=42,
+        nde_seed=43,
         world=1,
         outer_strategy_cls="GA",
-        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
-        outer_population=60,
-        outer_generations=100,
+        outer_strat_kw=dict(seed=42, mutation_rate=.07, crossover_rate=.7, tournament_size=3),
+        outer_population=10,
+        outer_generations=400,
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=42),
         inner_population=64,
         inner_generations=20,
-        inner_policy_cls="CPGPolicy",
+        inner_policy_cls="NNPolicy",
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-
-    _main_3 = ExpConfig(
-        sim_duration=20,
-        sim_steps_per_cycle=10,
-        outer_population=64,
-        outer_generations=100,
-        inner_population=64,
-        inner_generations=10,
-        nde_seed=42,
-        world=0,
-        outer_strategy_cls="CMA",
-        outer_strat_kw=dict(seed=42),
-        inner_strategy_cls="CMA",
-        inner_strat_kw=dict(seed=42),
-        inner_policy_cls="NNPolicy",
-    )
-    # MainExperiment().view_results('_test_config')
-    MainExperiment().run(name='_test3', config=_test_config)
-    # MainExperiment().run_gecko()
+    MainExperiment().run(name='OP_10_GA_CMA', config=_main_config)
 
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
