@@ -73,7 +73,7 @@ class MainExperiment(Experiment):
             policies = [factory().bind(g) for g in genomes]
             futures = [pool.submit(cls.evaluate, policy=policy, **sim_kw) for policy in policies]
             scores = [max(-6, fut.result()) for fut in futures]
-            es.tell(genomes, [-f for f in scores])
+            es.tell(genomes, scores)
             amax = argmax(scores)
             best_scores.append(scores[amax])
             best_genomes.append(genomes[amax])
@@ -118,7 +118,7 @@ class MainExperiment(Experiment):
                     amax = argmax(scores)
                     gen_scores.append(scores[amax])
                     gen_genomes.append(inner_genomes[amax])
-                    print(f"outer gen {i_og:>2} {i_op:>2} | score={scores[amax]:.2f} | {repr_now()}")
+                    print(f"outer gen {i_og:>2} {i_op:>2} | score={scores[amax]:.2f}, ngen={len(scores)} | {repr_now()}")
 
                 es.tell(genomes, gen_scores)
                 self.save(f"{name}_{i_og}_bodies", g_str)
