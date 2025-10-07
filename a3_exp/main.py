@@ -80,7 +80,7 @@ class MainExperiment(Experiment):
             amax = argmax(scores)
             bsc.append(scores[amax])
             bg.append(genomes[amax])
-            # gen % 5 or print(f"i gen {gen} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
+            print(f"i gen {gen} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
             # if gen % 5 == 0 and max(bsc[-10:]) - min(bsc) < gen / 10:
             #     break
 
@@ -171,9 +171,9 @@ if __name__ == '__main__':
     _test_config = ExpConfig(
         sim_duration=20,
         sim_steps_per_cycle=10,
-        outer_population=30,
+        outer_population=64,
         outer_generations=100,
-        inner_population=64,
+        inner_population=30,
         inner_generations=10,
         nde_seed=42,
         world=0,
