@@ -56,6 +56,8 @@ class MainExperiment(Experiment):
         sim_steps_per_cycle: int,
         fitness: Callable,
         pool: Optional[PPool] = None,
+        og: int = 0,
+        op: int = 0,
     ):
         pool = pool or DummyPool()
         factory = P_MAP[policy_cls].from_model(mj_model)
@@ -67,11 +69,11 @@ class MainExperiment(Experiment):
         es_cls = {"CMA": CMAES, "GA": GA}[strategy_cls]
         es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
         sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
-        # quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
+        quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
 
         bsc = []
         bg = []
-        for gen in range(n_generations):
+        for i_gen in range(n_generations):
             genomes = es.ask()
             policies = [factory().bind(g) for g in genomes]
             futures = [pool.submit(cls.evaluate, policy=policy, **sim_kw) for policy in policies]
@@ -80,12 +82,14 @@ class MainExperiment(Experiment):
             amax = argmax(scores)
             bsc.append(scores[amax])
             bg.append(genomes[amax])
-            print(f"i gen {gen} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
+            print(f"og:{og:>2} op:{op:>2} ig:{i_gen:>2} | {bsc[-1]:.2f} | {max(bsc):.2f} | {repr_now()}")
+            if i_gen in quit_map and max(bsc) < quit_map[i_gen]:
+                break
             # if gen % 5 == 0 and max(bsc[-10:]) - min(bsc) < gen / 10:
             #     break
 
         amax = argmax(bsc)
-        return bsc[amax], bg[amax]
+        return bsc[amax], bg[amax], repr_now()
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
@@ -118,11 +122,14 @@ class MainExperiment(Experiment):
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
                 models = [world(self._graph_to_mj_spec(g)) for g in graphs]
                 g_str = [self._graph_to_string(g) for g in graphs]
-                futures = [opool.submit(self.run_inner, mj_model=model, **inner_kw, pool=ipool) for model in models]
-                gen_scores, gen_genomes = zip(*[fut.result() for fut in futures])
+                futures = [
+                    opool.submit(self.run_inner, mj_model=model, **inner_kw, pool=ipool, og=i_og, op=i)
+                    for i, model in enumerate(models)
+                ]
+                gen_scores, gen_genomes, times = zip(*[fut.result() for fut in futures])
 
                 for i, score in enumerate(gen_scores):
-                    print(f"outer gen {i_og:>2} {i:>2} | score={score:.2f} | {repr_now()}")
+                    print(f"outer gen {i_og:>2} {i:>2} | score={score:.2f} | {times[i]}")
 
                 es.tell(genomes, gen_scores)
                 self.save(f"{name}_{i_og}_bodies", g_str)
@@ -142,29 +149,22 @@ class MainExperiment(Experiment):
 
     def run_gecko(self):
         inner_kw = dict(
-            strategy_cls="GA",
-            strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
-            policy_cls="DoublePolicy",
-            population_size=64 * 2,
-            n_generations=100,
+            strategy_cls="CMA",
+            strat_kw=dict(seed=42),
+            policy_cls="SinePolicy",
+            population_size=64,
+            n_generations=20,
             sim_duration=20,
             sim_steps_per_cycle=10,
-            fitness=self.basic_fitness,
+            fitness=self.fitness,
         )
+        model = self.spec_to_olympic_world(self.gecko_spec())
+
         with PPool() as pool:
-            model = self.spec_to_simple_world(self.gecko_spec())
-            res = {
-                n: self.run_inner(mj_model=model, pool=pool, **inner_kw | dict(policy_cls=n))[0]
-                for n in P_MAP
-            }
+            score, genome, _ = self.run_inner(mj_model=model, pool=pool, **inner_kw)
 
-        for k, v in res.items():
-            print(k, max(v))
-            print(" ".join(f"{v_:.2f}" for v_ in v))
-            # plt.plot(v, label=k)
-        # plt.legend()
-        # plt.show()
-
+        policy = NNPolicy.from_model(model)().bind(genome)
+        self.view(model, policy, self.basic_fitness)
 
 
 if __name__ == '__main__':
@@ -204,11 +204,11 @@ if __name__ == '__main__':
     _main_2 = ExpConfig(
         sim_duration=20,
         sim_steps_per_cycle=10,
-        outer_population=20,
+        outer_population=64,
         outer_generations=100,
         inner_population=64,
         inner_generations=10,
-        nde_seed=43,
+        nde_seed=42,
         world=1,
         outer_strategy_cls="GA",
         outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
@@ -217,5 +217,5 @@ if __name__ == '__main__':
         inner_policy_cls="NNPolicy",
     )
 
-    MainExperiment().run(name='_main_2', config=_main_2)
-    # MainExperiment().run_gecko()
+    # MainExperiment().run(name='_main_2', config=_main_2)
+    MainExperiment().run_gecko()
