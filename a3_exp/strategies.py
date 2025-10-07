@@ -75,13 +75,12 @@ class GA(EAStrategy):
         return self.population
 
     def tell(self, samples, scores):
-        return
         assert len(samples) == len(scores) == self.population_size
         """
         # Tournament
         """
-        idxs = sorted(range(len(samples)), key=lambda i: scores[i], reverse=True)[:5]
-        best_5 = [self.population[idx] for idx in idxs]
+        idxs = sorted(range(len(samples)), key=lambda i: scores[i], reverse=True)[:1]
+        best = [self.population[idx].copy() for idx in idxs]
 
         scores = np.array(scores)
         parent_i = []
@@ -116,7 +115,7 @@ class GA(EAStrategy):
             for genome in offspring
         ]
         self.population = offspring
-        self.population[:len(best_5)] = best_5
+        self.population[:len(best)] = best
 
     def stop(self) -> bool:
         return self and False
