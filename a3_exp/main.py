@@ -217,5 +217,5 @@ if __name__ == '__main__':
         inner_policy_cls="NNPolicy",
     )
 
-    # MainExperiment().run(name='_main_2', config=_main_2)
-    MainExperiment().run_gecko()
+    MainExperiment().run(name='_main_2', config=_main_2)
+    # MainExperiment().run_gecko()
