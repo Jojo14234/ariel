@@ -74,15 +74,13 @@ class MainExperiment(Experiment):
         for gen in range(n_generations):
             genomes = es.ask()
             policies = [factory().bind(g) for g in genomes]
-            t = time.perf_counter()
             futures = [pool.submit(cls.evaluate, policy=policy, **sim_kw) for policy in policies]
             scores = [max(-6, fut.result()) for fut in futures]
-            print(f"i gen {gen} took {time.perf_counter() - t:.2f}s")
             es.tell(genomes, scores)
             amax = argmax(scores)
             bsc.append(scores[amax])
             bg.append(genomes[amax])
-            print(f"i gen {gen} {policy_cls} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
+            gen % 5 or print(f"i gen {gen} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
             # if gen % 5 == 0 and max(bsc[-10:]) - min(bsc) < gen / 10:
             #     break
 
@@ -181,7 +179,7 @@ if __name__ == '__main__':
         sim_steps_per_cycle=10,
         outer_population=30,
         outer_generations=100,
-        inner_population=64 * 2,
+        inner_population=64,
         inner_generations=30,
         nde_seed=42,
         world=0,
