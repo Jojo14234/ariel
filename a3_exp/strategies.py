@@ -79,6 +79,9 @@ class GA(EAStrategy):
         """
         # Tournament
         """
+        idxs = sorted(range(len(samples)), key=lambda i: scores[i], reverse=True)[:5]
+        best_5 = [self.population[idx] for idx in idxs]
+
         scores = np.array(scores)
         best = self.population[np.argmax(scores)]
         parent_i = []
@@ -113,7 +116,7 @@ class GA(EAStrategy):
             for genome in offspring
         ]
         self.population = offspring
-        self.population[0] = best
+        self.population[:len(best_5)] = best_5
 
     def stop(self) -> bool:
         return self and False

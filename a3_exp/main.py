@@ -166,14 +166,14 @@ if __name__ == '__main__':
     _test_config = ExpConfig(
         sim_duration=20,
         sim_steps_per_cycle=10,
-        outer_population=100,
+        outer_population=50,
         outer_generations=100,
         inner_population=60,
         inner_generations=10,
         nde_seed=42,
         world=1,
         outer_strategy_cls="GA",
-        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
+        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=42),
         inner_policy_cls="NNPolicy",
@@ -211,5 +211,5 @@ if __name__ == '__main__':
         inner_policy_cls="NNPolicy",
     )
 
-    MainExperiment().run(name='_main_3', config=_main_3)
+    MainExperiment().run(name='_test_config', config=_test_config)
     # MainExperiment().run_gecko()
