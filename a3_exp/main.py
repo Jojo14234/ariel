@@ -218,7 +218,7 @@ if __name__ == '__main__':
 
     _main_config = ExpConfig(
         nde_seed=43,
-        world=1,
+        world=0,
         outer_strategy_cls="GA",
         outer_strat_kw=dict(seed=42, mutation_rate=.07, crossover_rate=.7, tournament_size=3),
         outer_population=10,
