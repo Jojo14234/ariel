@@ -15,6 +15,7 @@ mj.set_mjcb_control(None)  # DO NOT REMOVE
 
 P_MAP = {c.__name__: c for c in (NNPolicy, CPGPolicy, SinePolicy, DoublePolicy)}
 
+
 class ExpConfig(NamedTuple):
     nde_seed: int
     world: int # 0 is simple, 1 is olympic
@@ -64,6 +65,7 @@ class MainExperiment(Experiment):
         es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
         sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
         quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
+        quit_map = {}
 
         bsc = []
         bg = []
@@ -108,8 +110,8 @@ class MainExperiment(Experiment):
             opool, ipool = DummyPool(), pool
             for i_og in range(1, config.outer_generations + 1):
                 t = time.perf_counter()
-                inner_kw['n_generations'] += 2 * (i_og % 2 == 0)
-                inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 30)
+                # inner_kw['n_generations'] += 2 * (i_og % 2 == 0)
+                # inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 30)
                 print(f"outer gen {i_og:>2} | fd={fd_count()} | starting {repr_now()}")
                 print(repr_kw(inner_kw))
                 genomes = es.ask()
@@ -145,20 +147,55 @@ class MainExperiment(Experiment):
         inner_kw = dict(
             strategy_cls="CMA",
             strat_kw=dict(seed=42),
-            policy_cls="SinePolicy",
+            policy_cls="NNPolicy",
             population_size=64,
-            n_generations=20,
+            n_generations=50,
             sim_duration=20,
             sim_steps_per_cycle=10,
-            fitness=self.fitness,
+            fitness=self.basic_fitness,
         )
-        model = self.spec_to_olympic_world(self.gecko_spec())
+        model = self.spec_to_simple_world(self.gecko_spec())
 
         with PPool() as pool:
             score, genome, _ = self.run_inner(mj_model=model, pool=pool, **inner_kw)
 
         policy = NNPolicy.from_model(model)().bind(genome)
-        self.view(model, policy, self.basic_fitness)
+        self.view(model, policy, self.fitness)
+
+    def view_results(self, name: str):
+        graph_strs = []
+        scores = []
+        genomes = []
+        for i in range(1, 10):
+            if not self.exists(f"{name}_{i}_bodies"):
+                break
+            graph_strs.append(self.load(f"{name}_{i}_bodies"))
+            s, g = self.load(f"{name}_{i}_score_genome")
+            scores.append(s)
+            genomes.append(g)
+
+        graph = self._string_to_graph(graph_strs[1][11])
+        model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
+        genome = genomes[1][11]
+        score = scores[1][11]
+        policy = NNPolicy.from_model(model)().bind(genome)
+        print(score)
+        self.view(model, policy, self.fitness)
+
+        inner_kw = dict(
+            strategy_cls="CMA",
+            strat_kw=dict(seed=42),
+            policy_cls="NNPolicy",
+            population_size=64,
+            n_generations=20,
+            sim_duration=10,
+            sim_steps_per_cycle=10,
+            fitness=self.fitness,
+        )
+        with PPool() as pool:
+            self.run_inner(model, **inner_kw, pool=pool)
+            self.run_inner(model, **inner_kw, pool=pool)
+            self.run_inner(model, **inner_kw, pool=pool)
 
 
 if __name__ == '__main__':
@@ -168,10 +205,10 @@ if __name__ == '__main__':
         sim_steps_per_cycle=10,
         outer_population=50,
         outer_generations=100,
-        inner_population=60,
+        inner_population=64,
         inner_generations=10,
         nde_seed=42,
-        world=1,
+        world=0,
         outer_strategy_cls="GA",
         outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
         inner_strategy_cls="CMA",
@@ -203,13 +240,19 @@ if __name__ == '__main__':
         inner_population=64,
         inner_generations=10,
         nde_seed=42,
-        world=1,
+        world=0,
         outer_strategy_cls="CMA",
         outer_strat_kw=dict(seed=42),
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=42),
         inner_policy_cls="NNPolicy",
     )
-
-    MainExperiment().run(name='_test_config', config=_test_config)
+    # MainExperiment().view_results('_test_config')
+    MainExperiment().run(name='_test3', config=_test_config)
     # MainExperiment().run_gecko()
+
+"""
+og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
+og: 2 op:11 ig:10 | -3.33 | -3.33 | 2025-10-07 19:13:44
+og: 2 op:11 ig:11 | -2.72 | -2.72 | 2025-10-07 19:13:46
+"""
