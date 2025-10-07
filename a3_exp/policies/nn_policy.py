@@ -58,8 +58,8 @@ class DoublePolicy(NNPolicy):
         return self.network(torch.from_numpy(x)).detach().numpy() * np.pi / 2
 
     def bind(self, genome: Any) -> Self:
-        self.lag = genome[:4]
-        self.freq= .1 ** genome[4:8]
+        self.lag = genome[:4].clip(-20, 20)
+        self.freq = .1 ** genome[4:8].clip(-4, 4)
         return super().bind(genome[8:])
 
     def n_parameters(self) -> int:

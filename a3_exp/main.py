@@ -1,6 +1,6 @@
 import time
 from concurrent.futures import ProcessPoolExecutor as PPool
-from typing import NamedTuple, Dict
+from typing import NamedTuple, Dict, Callable
 
 import mujoco as mj
 import numpy as np
@@ -54,6 +54,7 @@ class MainExperiment(Experiment):
         n_generations: int,
         sim_duration: int,
         sim_steps_per_cycle: int,
+        fitness: Callable,
         pool: PPool,
     ):
         factory = P_MAP[policy_cls].from_model(mj_model)
@@ -64,12 +65,11 @@ class MainExperiment(Experiment):
 
         es_cls = {"CMA": CMAES, "GA": GA}[strategy_cls]
         es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
-        sim_kw = dict(mj_model=mj_model, fitness=cls.fitness, sim_time=sim_duration,
-                      n_steps_per_cycle=sim_steps_per_cycle)
+        sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
         # quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
 
-        best_scores = []
-        best_genomes = []
+        bsc = []
+        bg = []
         for gen in range(n_generations):
             genomes = es.ask()
             policies = [factory().bind(g) for g in genomes]
@@ -77,13 +77,13 @@ class MainExperiment(Experiment):
             scores = [max(-6, fut.result()) for fut in futures]
             es.tell(genomes, scores)
             amax = argmax(scores)
-            best_scores.append(scores[amax])
-            best_genomes.append(genomes[amax])
-            print(f"{gen}: {max(best_scores):.2f}, {max(best_scores[-10:]):.2f}")
-            # if gen % 5 == 0 and max(best_scores[-10:]) - min(best_scores) < gen / 10:
+            bsc.append(scores[amax])
+            bg.append(genomes[amax])
+            print(f"igen {gen} {policy_cls} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
+            # if gen % 5 == 0 and max(bsc[-10:]) - min(bsc) < gen / 10:
             #     break
 
-        return best_scores, best_genomes
+        return bsc, bg
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
@@ -97,6 +97,7 @@ class MainExperiment(Experiment):
             n_generations=config.inner_generations,
             sim_duration=config.sim_duration,
             sim_steps_per_cycle=config.sim_steps_per_cycle,
+            fitness=self.fitness,
         )
         policy_cls = P_MAP[config.inner_policy_cls]
         best_scores, best_graphs = [], []
@@ -152,9 +153,10 @@ class MainExperiment(Experiment):
             n_generations=100,
             sim_duration=20,
             sim_steps_per_cycle=10,
+            fitness=self.basic_fitness,
         )
         with PPool() as pool:
-            model =self.spec_to_olympic_world(self.gecko_spec())
+            model =self.spec_to_simple_world(self.gecko_spec())
             res = {
                 n: self.run_inner(mj_model=model, pool=pool, **inner_kw | dict(policy_cls=n))[0]
                 for n in P_MAP
