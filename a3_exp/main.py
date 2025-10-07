@@ -195,7 +195,7 @@ if __name__ == '__main__':
         sim_steps_per_cycle=10,
     )
 
-    _main_2 = ExpConfig(
+    _main_3 = ExpConfig(
         sim_duration=20,
         sim_steps_per_cycle=10,
         outer_population=64,
@@ -204,12 +204,12 @@ if __name__ == '__main__':
         inner_generations=10,
         nde_seed=42,
         world=1,
-        outer_strategy_cls="GA",
-        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.3),
+        outer_strategy_cls="CMA",
+        outer_strat_kw=dict(seed=42),
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=42),
         inner_policy_cls="NNPolicy",
     )
 
-    MainExperiment().run(name='_main_2', config=_main_2)
+    MainExperiment().run(name='_main_3', config=_main_3)
     # MainExperiment().run_gecko()
