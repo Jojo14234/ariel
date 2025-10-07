@@ -114,7 +114,7 @@ class MainExperiment(Experiment):
                 # inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 30)
                 print(f"outer gen {i_og:>2} | fd={fd_count()} | starting {repr_now()}")
                 print(repr_kw(inner_kw))
-                genomes = es.ask()
+                genomes = es.ask() # BODY GENOMES
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
                 models = [world(self._graph_to_mj_spec(g)) for g in graphs]
                 g_str = [self._graph_to_string(g) for g in graphs]
@@ -203,7 +203,7 @@ if __name__ == '__main__':
     _test_config = ExpConfig(
         sim_duration=20,
         sim_steps_per_cycle=10,
-        outer_population=50,
+        outer_population=5,
         outer_generations=100,
         inner_population=64,
         inner_generations=10,

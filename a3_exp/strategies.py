@@ -75,6 +75,7 @@ class GA(EAStrategy):
         return self.population
 
     def tell(self, samples, scores):
+        return
         assert len(samples) == len(scores) == self.population_size
         """
         # Tournament
@@ -83,7 +84,6 @@ class GA(EAStrategy):
         best_5 = [self.population[idx] for idx in idxs]
 
         scores = np.array(scores)
-        best = self.population[np.argmax(scores)]
         parent_i = []
         for _ in range(self.population_size):
             idx = self.rng.choice(self.population_size, self.tournament_size, replace=False)
