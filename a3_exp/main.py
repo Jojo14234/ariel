@@ -35,12 +35,6 @@ class ExpConfig(NamedTuple):
     sim_steps_per_cycle: int  # 10
 
 
-class SimResult(NamedTuple):
-    graph_repr: str
-    policy: str
-    genome: np.ndarray
-
-
 class MainExperiment(Experiment):
 
     @classmethod
