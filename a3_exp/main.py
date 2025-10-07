@@ -80,7 +80,7 @@ class MainExperiment(Experiment):
             amax = argmax(scores)
             bsc.append(scores[amax])
             bg.append(genomes[amax])
-            gen % 5 or print(f"i gen {gen} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
+            # gen % 5 or print(f"i gen {gen} | {bsc[-1]:.2f} | {max(bsc):.2f}, {max(bsc[-10:]):.2f}")
             # if gen % 5 == 0 and max(bsc[-10:]) - min(bsc) < gen / 10:
             #     break
 
