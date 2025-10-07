@@ -137,20 +137,20 @@ class MainExperiment(Experiment):
 
 
 if __name__ == '__main__':
-    _test_config = ExpConfig(
-        nde_seed=42,
-        outer_strategy_cls="GA",
-        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
-        outer_population=16,
-        outer_generations=100,
-        inner_strategy_cls="GA",
-        inner_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
-        inner_population=64,
-        inner_generations=20,
-        inner_policy_cls="CPGPolicy",
-        sim_duration=10,
-        sim_steps_per_cycle=10,
-    )
+    # _test_config = ExpConfig(
+    #     nde_seed=42,
+    #     outer_strategy_cls="GA",
+    #     outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
+    #     outer_population=30,
+    #     outer_generations=100,
+    #     inner_strategy_cls="CMA",
+    #     inner_strat_kw=dict(seed=42),
+    #     inner_population=64,
+    #     inner_generations=20,
+    #     inner_policy_cls="CPGPolicy",
+    #     sim_duration=10,
+    #     sim_steps_per_cycle=10,
+    # )
     _main_config = ExpConfig(
         nde_seed=42,
         outer_strategy_cls="GA",
@@ -165,4 +165,4 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='_testing', config=_test_config)
+    MainExperiment().run(name='main', config=_main_config)
