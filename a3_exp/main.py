@@ -246,20 +246,21 @@ if __name__ == '__main__':
     _main_config = ExpConfig(
         nde_seed=16,
         world=1,
-        outer_strategy_cls="CMA",
-        outer_strat_kw=dict(seed=16),
-        # outer_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=3),
-        outer_population=8,
+        outer_strategy_cls="GA",
+        # outer_strat_kw=dict(seed=16),
+        outer_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=2),
+        outer_population=5,
         outer_generations=400,
-        inner_strategy_cls="CMA",
-        inner_strat_kw=dict(seed=16),
-        inner_population=60,
+        inner_strategy_cls="GA",
+        # inner_strat_kw=dict(seed=16),
+        inner_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=4),
+        inner_population=16,
         inner_generations=20,
         inner_policy_cls="NNPolicy",
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='SS_CONFIG_CMA_CMA_POS2', config=_main_config)
+    MainExperiment().run(name='SS_CONFIG_GA_GA_POS2', config=_main_config)
     # MainExperiment().view_results("SS_CONFIG_CMA2")
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
