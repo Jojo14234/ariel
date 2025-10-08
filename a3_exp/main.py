@@ -87,8 +87,8 @@ class MainExperiment(Experiment):
             #     break
 
         amax = argmax(bsc)
-        # return bsc[amax], bg[amax], repr_now()
-        return bsc[-1], bg[-1], repr_now()
+        return bsc[amax], bg[amax], repr_now()
+        # return bsc[-1], bg[-1], repr_now()
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
