@@ -210,7 +210,7 @@ if __name__ == '__main__':
         nde_seed=42,
         world=0,
         outer_strategy_cls="CMA",
-        outer_strat_kw=dict(seed=16, mutation_rate=.2, crossover_rate=.7),
+        outer_strat_kw=dict(seed=16),
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=16),
         inner_policy_cls="NNPolicy",
