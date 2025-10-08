@@ -217,11 +217,11 @@ if __name__ == '__main__':
     )
 
     _main_config = ExpConfig(
-        nde_seed=43,
-        world=0,
+        nde_seed=44,
+        world=1,
         outer_strategy_cls="GA",
-        outer_strat_kw=dict(seed=42, mutation_rate=.07, crossover_rate=.7, tournament_size=3),
-        outer_population=10,
+        outer_strat_kw=dict(seed=42, mutation_rate=.07, crossover_rate=.7, tournament_size=10),
+        outer_population=120,
         outer_generations=400,
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=42),
@@ -231,7 +231,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='OP_10_GA_CMA', config=_main_config)
+    MainExperiment().run(name='JS_CONFIG', config=_main_config)
 
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
