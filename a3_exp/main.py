@@ -5,7 +5,7 @@ from typing import NamedTuple, Dict, Callable, Optional
 import mujoco as mj
 import numpy as np
 
-from a3_exp.lib import Experiment, SPAWN_RUGGED
+from a3_exp.lib import Experiment, SPAWN_RUGGED, SPAWN_POS
 from a3_exp.policies.nn_policy import NNPolicy, DoublePolicy
 from a3_exp.policies.sine_policy import CPGPolicy, SinePolicy
 from a3_exp.strategies import CMAES, GA, RandStrat
@@ -64,7 +64,8 @@ class MainExperiment(Experiment):
         es_cls = {"CMA": CMAES, "GA": GA}[strategy_cls]
         es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
         sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
-        quit_map = {0: -5, 5: -4.8, 10: -4.5, 15: -4.2, 20: -4.0, 25: -3.5, 35: -3.0}
+        # quit_map = {0: -5, 5: -4.8, 10: -4.5, 15: -4.2, 20: -4.0, 25: -3.5, 35: -3.0}
+        quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
         # quit_map = {}
 
         bsc = []
@@ -107,7 +108,7 @@ class MainExperiment(Experiment):
         if config.world == 0:
             world = self.spec_to_simple_world
         else:
-            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_RUGGED)
+            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_POS)
         best_scores, best_graphs = [], []
         # n_generations 20 -> 40
         # sim_duration  10 -> 30
@@ -247,7 +248,7 @@ if __name__ == '__main__':
         world=1,
         outer_strategy_cls="CMA",
         outer_strat_kw=dict(seed=16),
-        # outer_strat_kw=dict(seed=16, mutation_rate=.07, crossover_rate=.7, tournament_size=3),
+        # outer_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=3),
         outer_population=8,
         outer_generations=400,
         inner_strategy_cls="CMA",
@@ -258,7 +259,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='SS_CONFIG_CMA_CMA', config=_main_config)
+    MainExperiment().run(name='SS_CONFIG_CMA_CMA_POS', config=_main_config)
     # MainExperiment().view_results("SS_CONFIG_CMA2")
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43

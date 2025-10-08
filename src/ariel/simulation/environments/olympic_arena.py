@@ -105,7 +105,7 @@ class OlympicArena:
         edge_width = getattr(self, "edge_width", 0.1)  # fraction of map size (0..0.5 is sensible)
 
         # Create noise generator
-        pnoise = PerlinNoise(seed=1)
+        pnoise = PerlinNoise(seed=16)
 
         # Generate a grid of noise
         width, height = size, size
