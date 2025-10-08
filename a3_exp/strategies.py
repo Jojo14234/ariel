@@ -79,6 +79,7 @@ class GA(EAStrategy):
         """
         # Tournament
         """
+        self.population = samples.copy()
         idxs = sorted(range(len(samples)), key=lambda i: scores[i], reverse=True)[:1]
         best = [self.population[idx].copy() for idx in idxs]
 

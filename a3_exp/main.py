@@ -260,7 +260,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='SS_CONFIG_GA_GA_POS2', config=_main_config)
+    MainExperiment().run(name='SS_CONFIG_GA_GA_POS2_STR', config=_main_config)
     # MainExperiment().view_results("SS_CONFIG_CMA2")
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
