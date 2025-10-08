@@ -8,6 +8,7 @@ import mujoco as mj
 import numpy as np
 
 SPAWN_POS = [-0.8, 0, 0.1]
+SPAWN_RUGGED = [0.8, 0, 0.1]
 NUM_OF_MODULES = 30
 TARGET_POSITION = [5, 0, 0.5]
 
@@ -120,9 +121,9 @@ class Experiment:
         return spec.compile()
 
     @staticmethod
-    def spec_to_olympic_world(spec: mj.MjSpec) -> mj.MjModel:
+    def spec_to_olympic_world(spec: mj.MjSpec, spawn_position=SPAWN_POS) -> mj.MjModel:
         from ariel.simulation.environments import OlympicArena
-        spec = (w := OlympicArena()).spawn(spec, spawn_position=SPAWN_POS) or w.spec
+        spec = (w := OlympicArena()).spawn(spec, spawn_position=spawn_position) or w.spec
         return spec.compile()
 
     @staticmethod

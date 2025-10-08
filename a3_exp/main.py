@@ -5,7 +5,7 @@ from typing import NamedTuple, Dict, Callable, Optional
 import mujoco as mj
 import numpy as np
 
-from a3_exp.lib import Experiment
+from a3_exp.lib import Experiment, SPAWN_RUGGED
 from a3_exp.policies.nn_policy import NNPolicy, DoublePolicy
 from a3_exp.policies.sine_policy import CPGPolicy, SinePolicy
 from a3_exp.strategies import CMAES, GA, RandStrat
@@ -78,6 +78,7 @@ class MainExperiment(Experiment):
             amax = argmax(scores)
             bsc.append(scores[amax])
             bg.append(genomes[amax])
+
             print(f"og:{og:>2} op:{op:>2} ig:{i_gen:>2} | {bsc[-1]:.2f} | {max(bsc):.2f} | {repr_now()}")
             if i_gen in quit_map and max(bsc) < quit_map[i_gen]:
                 break
@@ -85,7 +86,8 @@ class MainExperiment(Experiment):
             #     break
 
         amax = argmax(bsc)
-        return bsc[amax], bg[amax], repr_now()
+        # return bsc[amax], bg[amax], repr_now()
+        return bsc[-1], bg[-1], repr_now()
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
@@ -101,7 +103,11 @@ class MainExperiment(Experiment):
             sim_steps_per_cycle=config.sim_steps_per_cycle,
             fitness=(self.basic_fitness, self.fitness)[config.world],
         )
-        world = (self.spec_to_simple_world, self.spec_to_olympic_world)[config.world]
+
+        if config.world == 0:
+            world = self.spec_to_simple_world
+        else:
+            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_RUGGED)
         best_scores, best_graphs = [], []
         # n_generations 20 -> 40
         # sim_duration  10 -> 30
@@ -116,7 +122,9 @@ class MainExperiment(Experiment):
                 print(repr_kw(inner_kw))
                 genomes = es.ask() # BODY GENOMES
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                models = [world(self._graph_to_mj_spec(g)) for g in graphs]
+                specs = [self._graph_to_mj_spec(graph) for graph in graphs]
+                models = [world(spec) for spec in specs]
+                # models = [world(self._graph_to_mj_spec(g)) for g in graphs]
                 g_str = [self._graph_to_string(g) for g in graphs]
                 futures = [
                     opool.submit(self.run_inner, mj_model=model, **inner_kw, pool=ipool, og=i_og, op=i)
@@ -166,18 +174,20 @@ class MainExperiment(Experiment):
         graph_strs = []
         scores = []
         genomes = []
-        for i in range(1, 10):
+        for i in range(1, 40):
             if not self.exists(f"{name}_{i}_bodies"):
+                print(f"{name}_{i}_bodies")
                 break
             graph_strs.append(self.load(f"{name}_{i}_bodies"))
             s, g = self.load(f"{name}_{i}_score_genome")
             scores.append(s)
             genomes.append(g)
 
-        graph = self._string_to_graph(graph_strs[1][11])
-        model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
-        genome = genomes[1][11]
-        score = scores[1][11]
+        graph = self._string_to_graph(graph_strs[1][1])
+        # model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
+        model = self.spec_to_simple_world(self._graph_to_mj_spec(graph))
+        genome = genomes[1][1]
+        score = scores[1][1]
         policy = NNPolicy.from_model(model)().bind(genome)
         print(score)
         self.view(model, policy, self.fitness)
@@ -216,25 +226,53 @@ if __name__ == '__main__':
         inner_policy_cls="NNPolicy",
     )
 
+    _test_config_ga_cma = ExpConfig(
+        sim_duration=20,
+        sim_steps_per_cycle=10,
+        outer_population=5,
+        outer_generations=100,
+        inner_population=16,
+        inner_generations=10,
+        nde_seed=42,
+        world=0,
+        outer_strategy_cls="CMA",
+        outer_strat_kw=dict(seed=16),
+        inner_strategy_cls="CMA",
+        inner_strat_kw=dict(seed=16),
+        inner_policy_cls="NNPolicy",
+    )
+
     _main_config = ExpConfig(
-        nde_seed=44,
+        nde_seed=16,
         world=1,
         outer_strategy_cls="GA",
-        outer_strat_kw=dict(seed=42, mutation_rate=.07, crossover_rate=.7, tournament_size=10),
-        outer_population=120,
+        outer_strat_kw=dict(seed=16, mutation_rate=.07, crossover_rate=.7, tournament_size=3),
+        outer_population=10,
         outer_generations=400,
         inner_strategy_cls="CMA",
-        inner_strat_kw=dict(seed=42),
-        inner_population=64,
+        inner_strat_kw=dict(seed=16),
+        inner_population=60,
         inner_generations=20,
-        inner_policy_cls="NNPolicy",
+        inner_policy_cls="CPGPolicy",
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='SS_CONFIG', config=_test_config)
-
+    MainExperiment().run(name='SS_CONFIG_GA_CMA', config=_main_config)
+    # MainExperiment().view_results("SS_CONFIG_CMA2")
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
 og: 2 op:11 ig:10 | -3.33 | -3.33 | 2025-10-07 19:13:44
 og: 2 op:11 ig:11 | -2.72 | -2.72 | 2025-10-07 19:13:46
 """
+'''
+outer gen 1: mu = 0.44
+outer gen 2: mu = 0.75
+outer gen 3: mu = 0.63
+outer gen 4: mu = 0.47
+outer gen 5: mu = 0.48
+outer gen 6: mu = 0.66
+outer gen 7: mu = 1.14
+outer gen 8: mu = 0.72
+outer gen 9: mu =
+outer gen 32 score=9.052 1 |
+'''
