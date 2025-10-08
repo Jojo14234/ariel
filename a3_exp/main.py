@@ -246,7 +246,8 @@ if __name__ == '__main__':
         nde_seed=16,
         world=1,
         outer_strategy_cls="CMA",
-        outer_strat_kw=dict(seed=16, mutation_rate=.07, crossover_rate=.7, tournament_size=3),
+        outer_strat_kw=dict(seed=16),
+        # outer_strat_kw=dict(seed=16, mutation_rate=.07, crossover_rate=.7, tournament_size=3),
         outer_population=8,
         outer_generations=400,
         inner_strategy_cls="CMA",
@@ -257,7 +258,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='SS_CONFIG_CMA_CMA', config=_main_config)
+    MainExperiment().run(name='SS_CONFIG_GA_CMA', config=_main_config)
     # MainExperiment().view_results("SS_CONFIG_CMA2")
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
