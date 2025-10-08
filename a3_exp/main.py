@@ -118,7 +118,7 @@ class MainExperiment(Experiment):
             for i_og in range(1, config.outer_generations + 1):
                 t = time.perf_counter()
                 inner_kw['n_generations'] = min(inner_kw['n_generations'] + 2 * (i_og % 2 == 0), 40)
-                # inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 30)
+                inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 50)
                 print(f"outer gen {i_og:>2} | fd={fd_count()} | starting {repr_now()}")
                 print(repr_kw(inner_kw))
                 genomes = es.ask() # BODY GENOMES
