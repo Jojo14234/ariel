@@ -74,7 +74,7 @@ class MainExperiment(Experiment):
             genomes = es.ask()
             policies = [factory().bind(g) for g in genomes]
             futures = [pool.submit(cls.evaluate, policy=policy, **sim_kw) for policy in policies]
-            scores = [max(-6, fut.result()) for fut in futures]
+            scores = [fut.result() for fut in futures]
             es.tell(genomes, scores)
             amax = argmax(scores)
             bsc.append(scores[amax])
