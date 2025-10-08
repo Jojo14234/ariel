@@ -87,8 +87,8 @@ class MainExperiment(Experiment):
             #     break
 
         amax = argmax(bsc)
-        return bsc[amax], bg[amax], repr_now()
-        # return bsc[-1], bg[-1], repr_now()
+        # return bsc[amax], bg[amax], repr_now()
+        return bsc[-1], bg[-1], repr_now()
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
@@ -259,7 +259,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='SS_CONFIG_CMA_CMA_POS', config=_main_config)
+    MainExperiment().run(name='SS_CONFIG_CMA_CMA_POS2', config=_main_config)
     # MainExperiment().view_results("SS_CONFIG_CMA2")
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
