@@ -209,10 +209,10 @@ if __name__ == '__main__':
         inner_generations=10,
         nde_seed=42,
         world=0,
-        outer_strategy_cls="GA",
-        outer_strat_kw=dict(seed=42, mutation_rate=.2, crossover_rate=.7),
+        outer_strategy_cls="CMA",
+        outer_strat_kw=dict(seed=16, mutation_rate=.2, crossover_rate=.7),
         inner_strategy_cls="CMA",
-        inner_strat_kw=dict(seed=42),
+        inner_strat_kw=dict(seed=16),
         inner_policy_cls="NNPolicy",
     )
 
@@ -231,7 +231,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='JS_CONFIG', config=_main_config)
+    MainExperiment().run(name='SS_CONFIG', config=_test_config)
 
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
