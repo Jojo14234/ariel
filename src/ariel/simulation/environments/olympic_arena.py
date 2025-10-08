@@ -97,21 +97,21 @@ class OlympicArena:
     #     # Normalize to [0, 1]
     #     # noise = (noise - noise.min()) / (noise.max() - noise.min())
     #     return np.clip(noise, -1, None)
-    
+
     def _generate_heightmap(self) -> np.ndarray:
         size  = self.rugged_resolution
         # freq  = self.rugged_scale
-        hill  = self.rugged_hillyness 
+        hill  = self.rugged_hillyness
         edge_width = getattr(self, "edge_width", 0.1)  # fraction of map size (0..0.5 is sensible)
-        
+
         # Create noise generator
-        pnoise = PerlinNoise()
+        pnoise = PerlinNoise(seed=1)
 
         # Generate a grid of noise
         width, height = size, size
         scale = hill
         noise = pnoise.as_grid(width, height, scale=scale, normalize=False)
-        
+
         # --- Smooth edge mask (0 at borders -> 1 inside) ---
         # Normalized coordinates in [0,1]
         u = np.linspace(0.0, 1.0, size)
@@ -363,4 +363,3 @@ class OlympicArena:
         )
 
         spawn.add_freejoint()
-        
