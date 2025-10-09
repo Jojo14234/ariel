@@ -66,7 +66,7 @@ class MainExperiment(Experiment):
         sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
         # quit_map = {0: -5, 5: -4.8, 10: -4.5, 15: -4.2, 20: -4.0, 25: -3.5, 35: -3.0}
         quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
-        # quit_map = {}
+        quit_map = {0: -5, 5: -3.9, 10: -3.8, 15: -3.7, 20: -3.6, 25: -3.4, 35: -2.9}
 
         bsc = []
         bg = []
