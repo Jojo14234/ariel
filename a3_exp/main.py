@@ -108,7 +108,7 @@ class MainExperiment(Experiment):
         if config.world == 0:
             world = self.spec_to_simple_world
         else:
-            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_POS)
+            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_RUGGED.copy())
         best_scores, best_graphs = [], []
         # n_generations 20 -> 40
         # sim_duration  10 -> 30
@@ -260,7 +260,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='SS_CONFIG_CMA_CMA_POS2_STR', config=_main_config)
+    MainExperiment().run(name='CMA_CMA_FRI_RUGGED', config=_main_config)
     # MainExperiment().view_results("SS_CONFIG_CMA2")
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
