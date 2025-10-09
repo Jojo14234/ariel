@@ -124,7 +124,7 @@ class Experiment:
     @staticmethod
     def spec_to_olympic_world(spec: mj.MjSpec, position=SPAWN_POS) -> mj.MjModel:
         from ariel.simulation.environments import OlympicArena
-        spec = (w := OlympicArena()).spawn(spec, position=position) or w.spec
+        spec: mj.MjSpec = (w := OlympicArena()).spawn(spec, position=position) or w.spec
         return spec.compile()
 
     @staticmethod
