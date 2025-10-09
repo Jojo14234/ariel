@@ -7,8 +7,8 @@ from typing import Self, Any
 import mujoco as mj
 import numpy as np
 
-SPAWN_POS = [-0.8, 0, 0.1]
-SPAWN_RUGGED = [0.8, 0, 0.1]
+SPAWN_POS = (-0.8, 0, 0.1)
+SPAWN_RUGGED = (0.8, 0, 0.1)
 NUM_OF_MODULES = 30
 TARGET_POSITION = [5, 0, 0.5]
 
@@ -64,12 +64,12 @@ class Experiment:
 
     @staticmethod
     def fitness(_: mj.MjModel, mj_data: mj.MjData):
-        distance = np.sqrt(sum((b - a) ** 2 for a, b in zip(mj_data.geom('robot-core').xpos, TARGET_POSITION)))
+        distance = np.sqrt(sum((b - a) ** 2 for a, b in zip(mj_data.geom('robot1-core').xpos, TARGET_POSITION)))
         return -distance
 
     @staticmethod
     def basic_fitness(_: mj.MjModel, mj_data: mj.MjData):
-        return -mj_data.geom('robot-core').xpos[1]
+        return -mj_data.geom('robot1-core').xpos[1]
 
     @staticmethod
     def evaluate(mj_model: mj.MjModel, policy, fitness, sim_time: int = 20, n_steps_per_cycle: int = 10):
@@ -116,14 +116,15 @@ class Experiment:
 
     @staticmethod
     def spec_to_simple_world(spec: mj.MjSpec) -> mj.MjModel:
-        from ariel.simulation.environments.simple_flat_world import SimpleFlatWorld
-        spec = (w := SimpleFlatWorld()).spawn(spec, spawn_position=[0, 0, .1]) or w.spec
+        from ariel.simulation.environments import SimpleFlatWorld
+
+        spec = (w := SimpleFlatWorld()).spawn(spec, position=(0, 0, .1)) or w.spec
         return spec.compile()
 
     @staticmethod
-    def spec_to_olympic_world(spec: mj.MjSpec, spawn_position=SPAWN_POS) -> mj.MjModel:
+    def spec_to_olympic_world(spec: mj.MjSpec, position=SPAWN_POS) -> mj.MjModel:
         from ariel.simulation.environments import OlympicArena
-        spec = (w := OlympicArena()).spawn(spec, spawn_position=spawn_position) or w.spec
+        spec = (w := OlympicArena()).spawn(spec, position=position) or w.spec
         return spec.compile()
 
     @staticmethod
