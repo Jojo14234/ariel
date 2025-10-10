@@ -216,27 +216,11 @@ if __name__ == '__main__':
         sim_steps_per_cycle=10,
         outer_population=5,
         outer_generations=100,
-        inner_population=64,
+        inner_population=60,
         inner_generations=10,
         nde_seed=42,
         world=0,
-        outer_strategy_cls="CMA",
-        outer_strat_kw=dict(seed=16),
-        inner_strategy_cls="CMA",
-        inner_strat_kw=dict(seed=16),
-        inner_policy_cls="NNPolicy",
-    )
-
-    _test_config_ga_cma = ExpConfig(
-        sim_duration=20,
-        sim_steps_per_cycle=10,
-        outer_population=5,
-        outer_generations=100,
-        inner_population=16,
-        inner_generations=10,
-        nde_seed=42,
-        world=0,
-        outer_strategy_cls="CMA",
+        outer_strategy_cls="GA",
         outer_strat_kw=dict(seed=16),
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=16),
@@ -260,7 +244,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='CMA_CMA_FRI_RUGGED', config=_main_config)
+    MainExperiment().run(name='ssr_fri_test', config=_test_config)
     # MainExperiment().view_results("SS_CONFIG_CMA2")
 """
 og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
