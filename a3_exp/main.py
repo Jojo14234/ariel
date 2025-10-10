@@ -220,7 +220,7 @@ if __name__ == '__main__':
         inner_generations=20,
         nde_seed=42,
         world=0,
-        outer_strategy_cls="CMA",
+        outer_strategy_cls="GA",
         outer_strat_kw=dict(seed=16),
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=16),
