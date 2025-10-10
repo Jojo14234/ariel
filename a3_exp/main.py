@@ -5,7 +5,7 @@ from typing import NamedTuple, Dict, Callable, Optional
 import mujoco as mj
 import numpy as np
 
-from a3_exp.lib import Experiment, SPAWN_RUGGED, SPAWN_POS
+from a3_exp.lib import Experiment, SPAWN_RUGGED
 from a3_exp.policies.nn_policy import NNPolicy, DoublePolicy
 from a3_exp.policies.sine_policy import CPGPolicy, SinePolicy
 from a3_exp.strategies import CMAES, GA, RandStrat
@@ -64,8 +64,8 @@ class MainExperiment(Experiment):
         es_cls = {"CMA": CMAES, "GA": GA}[strategy_cls]
         es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
         sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
-        # quit_map = {0: -5, 5: -4.8, 10: -4.5, 15: -4.2, 20: -4.0, 25: -3.5, 35: -3.0}
-        quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
+        # quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
+        quit_map = {0: -5, 5: -4.0, 10: -3.9, 15: -3.8, 20: -3.6, 25: -3.4, 35: -3.0}
         # quit_map = {}
 
         bsc = []
@@ -108,7 +108,7 @@ class MainExperiment(Experiment):
         if config.world == 0:
             world = self.spec_to_simple_world
         else:
-            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_POS)
+            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_RUGGED)
         best_scores, best_graphs = [], []
         # n_generations 20 -> 40
         # sim_duration  10 -> 30
