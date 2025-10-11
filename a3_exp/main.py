@@ -114,8 +114,8 @@ class MainExperiment(Experiment):
             world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_RUGGED)
 
         best_scores, best_graphs = [], []
-
-        with DummyPool() as pool:
+        gtm = lambda g: world(self._graph_to_mj_spec(g)).compile()
+        with PPool() as pool:
             opool, ipool = DummyPool(), pool
             for i_og in range(1, config.outer_generations + 1):
                 t = time.perf_counter()
@@ -124,33 +124,28 @@ class MainExperiment(Experiment):
                 print(f"outer gen {i_og:03} | fd={fd_count()} | starting {repr_now()}")
                 print(repr_kw(inner_kw))
                 genomes = es.ask() # BODY GENOMES
-                graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
-                b_specs = list(map(self._graph_to_mj_spec, graphs))
-                b_spec_xml = list(map(mj.MjSpec.to_xml, b_specs))
-                w_specs = list(map(world, b_specs))
-                w_spec_xml = list(map(mj.MjSpec.to_xml, w_specs))
-                w_specs = [mj.MjSpec.from_string(xml) for xml in w_spec_xml]
-
-                models = [w.compile() for w in w_specs]
-                g_str = [self._graph_to_string(g) for g in graphs]
+                graphs = [self._genotype_to_graph(list(x.reshape(3, 64).astype(np.float32))) for x in genomes]
+                g_str = [self._graph_to_string(x) for x in graphs]
+                models = [gtm(x) for x in graphs]
+                # b_specs = [self._graph_to_mj_spec(x) for x in graphs]
+                # w_specs = [world(x) for x in b_specs]
+                # models = [w.compile() for w in w_specs]
 
                 futures = [
                     opool.submit(self.run_inner, mj_model=model, **inner_kw, pool=ipool, og=i_og, op=i)
                     for i, model in enumerate(models)
                 ]
                 gen_scores, gen_genomes, times = zip(*[fut.result() for fut in futures])
-                i = argmax(gen_scores)
                 sc = [
-                    type(self).evaluate(
-                        models[i],
-                        NNPolicy.from_model(models[i])().bind(gen_genomes[i]),
+                    self.evaluate(
+                        m := gtm(self._string_to_graph(g_str[i])),
+                        NNPolicy.from_model(m)().bind(gen_genomes[i]),
                         self.fitness,
                         sim_time=inner_kw['sim_duration'],
-                    ) for _ in range(10)
-                    ]
-                print(f"given: {gen_scores[i]:.5f}")
+                    ) for i in range(len(gen_scores))
+                ]
                 print(" ".join(f"{x:.5f}" for x in sc))
-                exit()
+                print(" ".join(f"{x:.5f}" for x in gen_scores))
 
                 for i, score in enumerate(gen_scores):
                     print(f"outer gen {i_og:03} {i:02} | score={score:.2f} | {times[i]}")
@@ -161,8 +156,6 @@ class MainExperiment(Experiment):
                     body_genomes=genomes,
                     scores=gen_scores,
                     body_graphs=g_str,
-                    body_specs=b_spec_xml,
-                    world_specs=w_spec_xml,
                     brain_genomes=gen_genomes,
                     sim_duration=inner_kw['sim_duration'],
                     n_gen_inner=inner_kw['n_generations'],
@@ -230,30 +223,19 @@ class MainExperiment(Experiment):
             for i in range(1, 400):
                 if not self.exists(f"{name}_{i:03}"): break
                 obj = self.load(f"{name}_{i:03}")
-                graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in obj['body_genomes']]
-                g_str = list(map(self._graph_to_string, graphs))
-                print("graphs same?", g_str == obj['body_graphs'])
-                b_specs = [self._graph_to_mj_spec(gr) for gr in graphs]
-                b_specs_xml = list(map(mj.MjSpec.to_xml, b_specs))
-                print("body specs same?", b_specs_xml == obj['body_specs'])
-                w_specs = list(map(world, b_specs))
-                w_spec_xml = list(map(mj.MjSpec.to_xml, w_specs))
-                print("world specs same?", w_spec_xml == obj['world_specs'])
-
-                # models = [w.compile() for w in w_specs]
-                #
-                # models =  [mj.MjSpec.from_string(w).compile() for w in obj['world_specs']]
-                # policies = [NNPolicy.from_model(m)().bind(g) for m, g in zip(models, obj['brain_genomes'])]
-                # sd = obj['sim_duration']
-                # futs = [
-                #     pool.submit(self.evaluate, m, p, self.fitness, sim_time=sd) for m, p in zip(models, policies)
-                # ]
-                # scores = [fut.result() for fut in futs]
-                # print("=" * 20, f"{i:03}", "=" * 20)
-                # print(f" ".join(f"{f:.3f}" for f in scores))
-                # print(f" ".join(f"{f:.3f}" for f in obj['scores']))
-                # print(f" ".join(f"{x - y:.3f}" for x, y in zip(scores, obj['scores'])))
-
+                graphs = [self._string_to_graph(x) for x in obj['body_graphs']]
+                models = [world(self._graph_to_mj_spec(x)).compile() for x in graphs]
+                policies = [NNPolicy.from_model(m)().bind(g) for m, g in zip(models, obj['brain_genomes'])]
+                sd = obj['sim_duration']
+                futures = [
+                    pool.submit(self.evaluate, m, p, self.fitness, sim_time=sd) for m, p in zip(models, policies)
+                ]
+                scores = [fut.result() for fut in futures]
+                print("=" * 20, f"{i:03}", "=" * 20)
+                print(f" ".join(f"{f:.3f}" for f in scores))
+                print(f" ".join(f"{f:.3f}" for f in obj['scores']))
+                print(f" ".join(f"{x - y:.3f}" for x, y in zip(scores, obj['scores'])))
+#
 
 if __name__ == '__main__':
     print("PYTHONHASHSEED", os.environ.get("PYTHONHASHSEED"))
@@ -274,6 +256,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='cma_cma_satJSX', config=_main_config)
-    # MainExperiment().confirm_results("cma_cma_satJS")
+    name = "cma_cma_sat_JS"
+    # MainExperiment().run(name=name, config=_main_config)
+    MainExperiment().confirm_results(name)
 
