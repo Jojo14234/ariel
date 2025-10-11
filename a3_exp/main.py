@@ -65,8 +65,8 @@ class MainExperiment(Experiment):
         es_cls = {"CMA": CMAES, "GA": GA}[strategy_cls]
         es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
         sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
-        # quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
-        quit_map = {0: -5, 5: -4.0, 10: -3.9, 15: -3.8, 20: -3.6, 25: -3.4, 35: -3.0}
+        # quit_map = {0: -5, 5: -4.0, 10: -3.9, 15: -3.8, 20: -3.6, 25: -3.4, 35: -3.0}
+        quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
         # quit_map = {}
 
         bsc = []
