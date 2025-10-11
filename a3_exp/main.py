@@ -124,7 +124,10 @@ class MainExperiment(Experiment):
                 genomes = es.ask() # BODY GENOMES
                 graphs = [self._genotype_to_graph(list(g.reshape(3, 64).astype(np.float32))) for g in genomes]
                 b_specs = list(map(self._graph_to_mj_spec, graphs))
+                b_spec_xml = list(map(mj.MjSpec.to_xml, b_specs))
                 w_specs = list(map(world, b_specs))
+                w_spec_xml = list(map(mj.MjSpec.to_xml, w_specs))
+
                 models = [w.compile() for w in w_specs]
                 g_str = [self._graph_to_string(g) for g in graphs]
 
@@ -143,8 +146,8 @@ class MainExperiment(Experiment):
                     body_genomes=genomes,
                     scores=gen_scores,
                     body_graphs=g_str,
-                    body_specs=[s.to_xml() for s in b_specs],
-                    world_specs=[s.to_xml() for s in w_specs],
+                    body_specs=b_spec_xml,
+                    world_specs=w_spec_xml,
                     brain_genomes=gen_genomes,
                     sim_duration=inner_kw['sim_duration'],
                     n_gen_inner=inner_kw['n_generations'],
