@@ -15,7 +15,7 @@ from a3_exp.utils import repr_now, argmax, fd_count, repr_kw, DummyPool
 mj.set_mjcb_control(None)  # DO NOT REMOVE
 
 P_MAP = {c.__name__: c for c in (NNPolicy, CPGPolicy, SinePolicy, DoublePolicy)}
-
+map_ = lambda f, x: list(map(f, x))
 
 class ExpConfig(NamedTuple):
     nde_seed: int
