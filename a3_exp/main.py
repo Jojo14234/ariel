@@ -129,6 +129,7 @@ class MainExperiment(Experiment):
                     obj = self.load(f"{name}_{i_og:03}")
                     gen_scores = obj['scores']
                     for x, y in zip(genomes, obj['body_genomes']):
+                        print("=" * 20)
                         print(x[:3])
                         print(y[:3])
                         print((x - y)[:3])
