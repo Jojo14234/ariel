@@ -111,7 +111,7 @@ class MainExperiment(Experiment):
         if config.world == 0:
             world = self.spec_to_simple_world
         else:
-            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_RUGGED)
+            world = lambda spec: self.spec_to_olympic_world(spec)
 
         best_scores = []
 
@@ -124,39 +124,28 @@ class MainExperiment(Experiment):
                 print(f"outer gen {i_og:03} | fd={fd_count()} | starting {repr_now()}")
                 print(repr_kw(inner_kw))
                 genomes = es.ask() # BODY GENOMES
+                graphs = [self._genotype_to_graph(list(x.reshape(3, 64).astype(np.float32))) for x in genomes]
+                graph_str = map_(self._string_to_graph, graphs)
+                models = [world(self._graph_to_mj_spec(x)).compile() for x in graphs]
+                futures = [
+                    opool.submit(self.run_inner, mj_model=model, **inner_kw, pool=ipool, og=i_og, op=i)
+                    for i, model in enumerate(models)
+                ]
+                gen_scores, gen_genomes, times = zip(*[fut.result() for fut in futures])
 
-                if self.exists(f"{name}_{i_og:03}"):
-                    obj = self.load(f"{name}_{i_og:03}")
-                    gen_scores = obj['scores']
-                    for x, y in zip(genomes, obj['body_genomes']):
-                        print("=" * 20)
-                        print(x[:3])
-                        print(y[:3])
-                        print((x - y)[:3])
-                    assert all((x == y).all() for x, y in zip(genomes, obj['body_genomes']))
-                else:
-                    graphs = [self._genotype_to_graph(list(x.reshape(3, 64).astype(np.float32))) for x in genomes]
-                    graph_str = map_(self._string_to_graph, graphs)
-                    models = [world(self._graph_to_mj_spec(x)).compile() for x in graphs]
-                    futures = [
-                        opool.submit(self.run_inner, mj_model=model, **inner_kw, pool=ipool, og=i_og, op=i)
-                        for i, model in enumerate(models)
-                    ]
-                    gen_scores, gen_genomes, times = zip(*[fut.result() for fut in futures])
+                obj = dict(
+                    i_og=i_og,
+                    body_genomes=genomes,
+                    scores=gen_scores,
+                    body_graphs=graph_str,
+                    brain_genomes=gen_genomes,
+                    sim_duration=inner_kw['sim_duration'],
+                    n_gen_inner=inner_kw['n_generations'],
+                )
+                self.save(f"{name}_{i_og:03}", obj)
 
-                    obj = dict(
-                        i_og=i_og,
-                        body_genomes=genomes,
-                        scores=gen_scores,
-                        body_graphs=graph_str,
-                        brain_genomes=gen_genomes,
-                        sim_duration=inner_kw['sim_duration'],
-                        n_gen_inner=inner_kw['n_generations'],
-                    )
-                    self.save(f"{name}_{i_og:03}", obj)
-
-                    for i, score in enumerate(gen_scores):
-                        print(f"outer gen {i_og:03} {i:02} | score={score:.2f} | {times[i]}")
+                for i, score in enumerate(gen_scores):
+                    print(f"outer gen {i_og:03} {i:02} | score={score:.2f} | {times[i]}")
 
                 es.tell(genomes, gen_scores)
                 amax = argmax(gen_scores)
@@ -213,6 +202,6 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='cma_cma_satJS', config=_main_config)
+    MainExperiment().run(name='cma_cma_sunday', config=_main_config)
     # MainExperiment().view_results("cma_cma_post_rebase")
 
