@@ -197,18 +197,17 @@ if __name__ == '__main__':
         outer_strategy_cls="CMA",
         outer_strat_kw=dict(seed=16),
         # outer_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=3),
-        outer_population=3,
+        outer_population=8,
         outer_generations=400,
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=16),
         # inner_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=10),
-        inner_population=5,
-        inner_generations=5,
+        inner_population=60,
+        inner_generations=20,
         inner_policy_cls="NNPolicy",
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    name = "cma_cma_satJS"
-    # MainExperiment().run(name=name, config=_main_config)
-    MainExperiment().confirm_results(name)
+    MainExperiment().run(name='cma_cma_satJS', config=_main_config)
+    # MainExperiment().view_results("cma_cma_post_rebase")
 
