@@ -175,38 +175,45 @@ class MainExperiment(Experiment):
         graph_strs = []
         scores = []
         genomes = []
-        for i in range(1, 40):
+        for i in range(1, 400):
             if not self.exists(f"{name}_{i}_bodies"):
                 print(f"{name}_{i}_bodies")
                 break
-            graph_strs.append(self.load(f"{name}_{i}_bodies"))
-            s, g = self.load(f"{name}_{i}_score_genome")
-            scores.append(s)
-            genomes.append(g)
+            g_str = self.load(f"{name}_{i}_bodies")
+            scores, genomes  = self.load(f"{name}_{i}_score_genome")
+            graphs = [self._string_to_graph(g) for g in g_str]
+            models = [self.spec_to_olympic_world(self._graph_to_mj_spec(g), SPAWN_RUGGED) for g in graphs]
+            policies = [NNPolicy.from_model(m)().bind(g) for m, g in zip(models, genomes)]
+            s_new = [self.evaluate(m, p, self.fitness) for m, p in zip(models, policies)]
+            print(" ".join(f"{x - y:.3f}" for x, y in zip(scores, s_new)))
+        exit()
+        best_sc = list(map(max, scores))
+        ig = argmax(best_sc)
+        ip = argmax(scores[ig])
 
-        graph = self._string_to_graph(graph_strs[1][1])
-        # model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph))
-        model = self.spec_to_simple_world(self._graph_to_mj_spec(graph))
-        genome = genomes[1][1]
-        score = scores[1][1]
+        graph = self._string_to_graph(graph_strs[ig][ip])
+        model = self.spec_to_olympic_world(self._graph_to_mj_spec(graph), SPAWN_RUGGED)
+        genome = genomes[ig][ip]
+        score = scores[ig][ip]
         policy = NNPolicy.from_model(model)().bind(genome)
-        print(score)
-        self.view(model, policy, self.fitness)
+        new_score = self.evaluate(model, policy, self.fitness, sim_time=50)
+        print(ig, ip, score, new_score)
+        self.view(model, policy, self.fitness, sim_time=50)
 
         inner_kw = dict(
             strategy_cls="CMA",
             strat_kw=dict(seed=42),
             policy_cls="NNPolicy",
             population_size=64,
-            n_generations=20,
-            sim_duration=10,
+            n_generations=50,
+            sim_duration=50,
             sim_steps_per_cycle=10,
             fitness=self.fitness,
         )
         with PPool() as pool:
             self.run_inner(model, **inner_kw, pool=pool)
-            self.run_inner(model, **inner_kw, pool=pool)
-            self.run_inner(model, **inner_kw, pool=pool)
+        #     self.run_inner(model, **inner_kw, pool=pool)
+        #     self.run_inner(model, **inner_kw, pool=pool)
 
 
 if __name__ == '__main__':
@@ -228,22 +235,6 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='cma_cma_post_rebase', config=_main_config)
-    # MainExperiment().view_results("SS_CONFIG_CMA2")
-"""
-og: 2 op:11 ig: 9 | -4.05 | -3.99 | 2025-10-07 19:13:43
-og: 2 op:11 ig:10 | -3.33 | -3.33 | 2025-10-07 19:13:44
-og: 2 op:11 ig:11 | -2.72 | -2.72 | 2025-10-07 19:13:46
-"""
-'''
-outer gen 1: mu = 0.44
-outer gen 2: mu = 0.75
-outer gen 3: mu = 0.63
-outer gen 4: mu = 0.47
-outer gen 5: mu = 0.48
-outer gen 6: mu = 0.66
-outer gen 7: mu = 1.14
-outer gen 8: mu = 0.72
-outer gen 9: mu =
-outer gen 32 score=9.052 1 |
-'''
+    # MainExperiment().run(name='cma_cma_post_rebase', config=_main_config)
+    MainExperiment().view_results("cma_cma_post_rebase")
+

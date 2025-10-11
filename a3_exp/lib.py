@@ -93,7 +93,7 @@ class Experiment:
                 mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
                 mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
                 viewer.sync()
-                time.sleep(1 / 20)
+                time.sleep(1 / 100)
         print(f"final fitness: {fitness(mj_model, mj_data)}")
 
     @staticmethod
