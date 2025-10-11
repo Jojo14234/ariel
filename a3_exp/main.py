@@ -5,7 +5,7 @@ from typing import NamedTuple, Dict, Callable, Optional
 import mujoco as mj
 import numpy as np
 
-from a3_exp.lib import Experiment, SPAWN_RUGGED
+from a3_exp.lib import Experiment, SPAWN_FOREST
 from a3_exp.policies.nn_policy import NNPolicy, DoublePolicy
 from a3_exp.policies.sine_policy import CPGPolicy, SinePolicy
 from a3_exp.strategies import CMAES, GA, RandStrat
@@ -108,7 +108,7 @@ class MainExperiment(Experiment):
         if config.world == 0:
             world = self.spec_to_simple_world
         else:
-            world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_RUGGED)
+            world = lambda spec: self.spec_to_forest_world(spec, SPAWN_FOREST)
         best_scores, best_graphs = [], []
         # n_generations 20 -> 40
         # sim_duration  10 -> 30

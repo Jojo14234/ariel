@@ -9,6 +9,7 @@ import numpy as np
 
 SPAWN_POS = (-0.8, 0, 0.1)
 SPAWN_RUGGED = (0.8, 0, 0.1)
+SPAWN_FOREST = (0, 0, 0.5)
 NUM_OF_MODULES = 30
 TARGET_POSITION = [5, 0, 0.5]
 
@@ -125,6 +126,17 @@ class Experiment:
     def spec_to_olympic_world(spec: mj.MjSpec, position=SPAWN_POS) -> mj.MjModel:
         from ariel.simulation.environments import OlympicArena
         spec: mj.MjSpec = (w := OlympicArena()).spawn(spec, position=position) or w.spec
+        return spec.compile()
+
+    @staticmethod
+    def spec_to_forest_world(spec: mj.MjSpec, position=SPAWN_FOREST) -> mj.MjModel:
+        """Compiles a MuJoCo spec into a model within a forest world."""
+        from ariel.simulation.environments import ForestTerrainWorld
+
+        # Instantiate the world, spawn the provided spec into it, and get the result.
+        spec = (w := ForestTerrainWorld()).spawn(spec, position=position) or w.spec
+        
+        # Compile the final spec into a runnable model.
         return spec.compile()
 
     @staticmethod
