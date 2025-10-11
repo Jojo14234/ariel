@@ -184,6 +184,7 @@ class MainExperiment(Experiment):
         self.view(model, policy, self.fitness)
 
     def view_results(self, name: str):
+        self.init_nde_hpd(16)
         objs = [self.load(f"{name}_{i:03}") for i in range(1, 400) if self.exists(f"{name}_{i:03}")]
         obj_t = {k: [obj[k] for obj in objs] for k in objs[0]}
 
