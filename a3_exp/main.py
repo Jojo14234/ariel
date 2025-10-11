@@ -185,17 +185,17 @@ class MainExperiment(Experiment):
 
     def view_results(self, name: str):
         objs = [self.load(f"{name}_{i:03}") for i in range(1, 400) if self.exists(f"{name}_{i:03}")]
-        i, body_genomes, scores, body_graphs, body_specs, world_specs, brain_genomes, sd, n_gen = zip(*objs)
+        obj_t = {k: [obj[k] for obj in objs] for k in objs[0]}
 
-        ig = argmax(list(map(max, scores)))
-        ip = argmax(scores[ig])
+        ig = argmax(list(map(max, obj_t['scores'])))
+        ip = argmax(obj_t['scores'][ig])
+        model = mj.MjSpec.from_string(obj_t['world_specs'][ig][ip]).compile()
+        policy = NNPolicy.from_model(model)().bind(obj_t['brain_genomes'][ig][ip])
 
-        model = mj.MjSpec.from_string(world_specs[ig][ip])
-        policy = NNPolicy.from_model(model)().bind(brain_genomes[ig][ip])
-
-        curr_score = self.evaluate(model, policy, self.fitness, sim_time=sd[ig][ip])
-        print(f"saved score: {scores[ig][ip]:.3f} vs shown: {curr_score:.3f}")
-        self.view(model, policy, self.fitness, sim_time=sd[ig][ip])
+        sd = obj_t['sim_duration'][ig]
+        curr_score = self.evaluate(model, policy, self.fitness, sim_time=sd)
+        print(f"saved score: {obj_t['scores'][ig][ip]:.3f} vs shown: {curr_score:.3f}")
+        # self.view(model, policy, self.fitness, sim_time=sd[ig])
 
 
 
@@ -218,6 +218,6 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='cma_cma_satJS', config=_main_config)
-    # MainExperiment().view_results("cma_cma_post_rebase")
+    # MainExperiment().run(name='cma_cma_satJS', config=_main_config)
+    MainExperiment().view_results("cma_cma_satJS")
 
