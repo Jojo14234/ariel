@@ -224,6 +224,7 @@ class MainExperiment(Experiment):
                 if not self.exists(f"{name}_{i:03}"): break
                 obj = self.load(f"{name}_{i:03}")
                 graphs = [self._string_to_graph(x) for x in obj['body_graphs']]
+                g_str = [self._graph_to_string(x) for x in graphs]
                 models = [world(self._graph_to_mj_spec(x)).compile() for x in graphs]
                 policies = [NNPolicy.from_model(m)().bind(g) for m, g in zip(models, obj['brain_genomes'])]
                 sd = obj['sim_duration']
@@ -232,6 +233,7 @@ class MainExperiment(Experiment):
                 ]
                 scores = [fut.result() for fut in futures]
                 print("=" * 20, f"{i:03}", "=" * 20)
+                print("same graphs?", obj['body_graphs'] == g_str)
                 print(f" ".join(f"{f:.3f}" for f in scores))
                 print(f" ".join(f"{f:.3f}" for f in obj['scores']))
                 print(f" ".join(f"{x - y:.3f}" for x, y in zip(scores, obj['scores'])))
@@ -256,7 +258,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    name = "cma_cma_sat_JS"
+    name = "cma_cma_satJS"
     # MainExperiment().run(name=name, config=_main_config)
     MainExperiment().confirm_results(name)
 
