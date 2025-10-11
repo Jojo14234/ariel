@@ -67,7 +67,6 @@ class MainExperiment(Experiment):
         sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
         # quit_map = {0: -5, 5: -4.0, 10: -3.9, 15: -3.8, 20: -3.6, 25: -3.4, 35: -3.0}
         quit_map = {0: -7, 5: -5.4, 10: -5, 15: -4.7, 20: -4.2, 25: -3.9, 35: -3.5}
-        # quit_map = {}
 
         bsc = []
         bg = []
@@ -80,18 +79,13 @@ class MainExperiment(Experiment):
             amax = argmax(scores)
             bsc.append(scores[amax])
             bg.append(genomes[amax])
-            res = cls.evaluate(**sim_kw, policy=factory().bind(genomes[amax]))
-            print(scores[amax], res)
 
             print(f"og:{og:>2} op:{op:>2} ig:{i_gen:>2} | {bsc[-1]:.2f} | {max(bsc):.2f} | {repr_now()}")
             if i_gen in quit_map and max(bsc) < quit_map[i_gen]:
                 break
-            # if gen % 5 == 0 and max(bsc[-10:]) - min(bsc) < gen / 10:
-            #     break
 
         amax = argmax(bsc)
         return bsc[amax], bg[amax], repr_now()
-        # return bsc[-1], bg[-1], repr_now()
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
