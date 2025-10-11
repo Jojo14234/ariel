@@ -74,6 +74,7 @@ class Experiment:
     @staticmethod
     def evaluate(mj_model: mj.MjModel, policy, fitness, sim_time: int = 20, n_steps_per_cycle: int = 10):
         mj_data = mj.MjData(mj_model)
+        mj.mj_resetData(mj_model, mj_data)
 
         while mj_data.time < sim_time:
             mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)

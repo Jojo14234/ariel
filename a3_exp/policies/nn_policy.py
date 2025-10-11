@@ -37,7 +37,7 @@ class NNPolicy(EAPolicy):
         return sum(p.numel() for p in self.network.parameters())
 
     def bind(self, genome: np.ndarray):
-        _load_genome_to_network(genome, self.network)
+        _load_genome_to_network(genome.copy(), self.network)
         return self
 
     @classmethod
