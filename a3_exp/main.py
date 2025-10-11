@@ -128,6 +128,10 @@ class MainExperiment(Experiment):
                 if self.exists(f"{name}_{i_og:03}"):
                     obj = self.load(f"{name}_{i_og:03}")
                     gen_scores = obj['scores']
+                    for x, y in zip(genomes, obj['body_genomes']):
+                        print(x)
+                        print(y)
+                        print(x - y)
                     assert all((x == y).all() for x, y in zip(genomes, obj['body_genomes']))
                 else:
                     graphs = [self._genotype_to_graph(list(x.reshape(3, 64).astype(np.float32))) for x in genomes]
