@@ -154,7 +154,7 @@ class MainExperiment(Experiment):
 
     def confirm_results(self, name: str):
         self.init_nde_hpd(16)
-        world = lambda spec: self.spec_to_olympic_world(spec, SPAWN_RUGGED)
+        world = lambda spec: self.spec_to_olympic_world(spec)
 
         with PPool() as pool:
             for i in range(1, 400):
@@ -196,6 +196,6 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='cma_cma_sunday', config=_main_config)
-    # MainExperiment().view_results("cma_cma_post_rebase")
+    # MainExperiment().run(name='cma_cma_sunday', config=_main_config)
+    MainExperiment().confirm_results("cma_cma_sunday")
 
