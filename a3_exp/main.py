@@ -125,7 +125,7 @@ class MainExperiment(Experiment):
                 print(repr_kw(inner_kw))
                 genomes = es.ask() # BODY GENOMES
                 graphs = [self._genotype_to_graph(list(x.reshape(3, 64).astype(np.float32))) for x in genomes]
-                graph_str = map_(self._string_to_graph, graphs)
+                graph_str = map_(self._graph_to_string, graphs)
                 models = [world(self._graph_to_mj_spec(x)).compile() for x in graphs]
                 futures = [
                     opool.submit(self.run_inner, mj_model=model, **inner_kw, pool=ipool, og=i_og, op=i)
@@ -167,7 +167,7 @@ class MainExperiment(Experiment):
                 if not self.exists(f"{name}_{i:03}"): break
                 obj = self.load(f"{name}_{i:03}")
                 graphs = map_(self._string_to_graph, obj['body_graphs'])
-                graph_str = map_(self._string_to_graph, graphs)
+                graph_str = map_(self._graph_to_string, graphs)
                 models = [world(self._graph_to_mj_spec(x)).compile() for x in graphs]
                 policies = [NNPolicy.from_model(m)().bind(g) for m, g in zip(models, obj['brain_genomes'])]
                 sd = obj['sim_duration']
