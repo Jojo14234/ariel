@@ -210,7 +210,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    # MainExperiment().run(name='cma_cma_20op', config=_main_config)
-    MainExperiment().confirm_results("cma_cma_sunday")
-    MainExperiment().record_best("cma_cma_sunday")
+    MainExperiment().run(name='cma_cma_20op', config=_main_config)
+    # MainExperiment().confirm_results("cma_cma_sunday")
+    # MainExperiment().record_best("cma_cma_sunday")
 
