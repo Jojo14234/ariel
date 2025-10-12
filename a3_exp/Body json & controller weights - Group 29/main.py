@@ -94,6 +94,7 @@ CONTROLLER = NNPolicy(37, 12).bind(brain_genome)
 GRAPH = _string_to_graph((CDIR / "best_graph.json").read_text()) # DO NOT LOAD WITH 'load_graph_from_json'
 SIM_DURATION = 28
 """
+NOTES:
 - The provided robot and brain scores a maximum fitness of -2.5 within 30 seconds, but if ran for >40 seconds will fall
   off the map.
 
