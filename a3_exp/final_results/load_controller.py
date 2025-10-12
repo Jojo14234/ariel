@@ -2,13 +2,11 @@ import pickle
 import sys
 from pathlib import Path
 
+import mujoco as mj
 import numpy as np
 import torch
-import mujoco as mj
 
 from ariel.body_phenotypes.robogen_lite.constructor import construct_mjspec_from_graph
-from ariel.body_phenotypes.robogen_lite.decoders.hi_prob_decoding import load_graph_from_json
-from ariel.simulation.environments import OlympicArena
 
 TARGET_POSITION = [5, 0, 0.5]
 CDIR = Path(__file__).parent
@@ -45,26 +43,45 @@ class NNPolicy:
         return self
 
 
+def _string_to_graph(graph: str):
+    import json
+    from networkx.readwrite import json_graph
+
+    return json_graph.node_link_graph(json.loads(graph), edges="edges")
+
+
+def spec_to_olympic_world(spec: mj.MjSpec, position=(-0.8, 0, 0.1)) -> mj.MjSpec:
+    from ariel.simulation.environments import OlympicArena
+    spec: mj.MjSpec = (w := OlympicArena()).spawn(spec, position=position) or w.spec
+
+    return spec
+
+
 def fitness(_: mj.MjModel, mj_data: mj.MjData):
     distance = np.sqrt(sum((b - a) ** 2 for a, b in zip(mj_data.geom('robot1_core').xpos, TARGET_POSITION)))
     return -distance
 
 
-def simulate(sim_time: int = 20, n_steps_per_cycle: int = 10):
-    robot_graph = load_graph_from_json(GRAPH_JSON)
-    robot_core = construct_mjspec_from_graph(robot_graph).spec
-    spec = (w := OlympicArena()).spawn(robot_core) or w.spec
-    mj_model = spec.compile()
+def simulate(mj_model: mj.MjModel, policy, sim_time: int = 20, n_steps_per_cycle: int = 10):
     mj_data = mj.MjData(mj_model)
     mj.mj_resetData(mj_model, mj_data)
-
     max_fitness = float("-inf")
+
     while mj_data.time < sim_time:
         mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
-        mj_data.ctrl = np.clip(CONTROLLER(mj_model, mj_data), -np.pi / 2, np.pi / 2)
+        mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
         max_fitness = max(max_fitness, fitness(mj_model, mj_data))
 
-    print(f"max fitness: {max_fitness:.3f}, final fitness: {fitness(mj_model, mj_data):.3f}")
+    return max_fitness, fitness(mj_model, mj_data)
+
+
+def main(sim_time: int = 32):
+    robot_graph = _string_to_graph(GRAPH_JSON.read_text())
+    robot_core = construct_mjspec_from_graph(robot_graph).spec
+    spec = spec_to_olympic_world(robot_core)
+    mj_model = spec.compile()
+    max_fitness, final_fitness = simulate(mj_model, CONTROLLER, sim_time=sim_time)
+    print(f"max fitness: {max_fitness:.3f}, final fitness: {final_fitness:.3f}")
 
 
 with open(CDIR / "best_brain.pkl", "rb") as f:
@@ -73,4 +90,4 @@ with open(CDIR / "best_brain.pkl", "rb") as f:
 CONTROLLER = NNPolicy(37, 12).bind(brain_genome)
 
 if __name__ == '__main__':
-    simulate(sim_time=int(sys.argv[1]) if len(sys.argv) > 1 else 32)
+    main(sim_time=int(sys.argv[1]) if len(sys.argv) > 1 else 32)
