@@ -170,7 +170,7 @@ class MainExperiment(Experiment):
                     pool.submit(self.evaluate, m, p, self.fitness, sim_time=sd) for m, p in zip(models, policies)
                 ]
                 scores = [fut.result() for fut in futures]
-                print("=" * 20, f"{i:03}", "=" * 20)
+                print("=" * 20, f"{i:03}, {sd=}", "=" * 20)
                 print("same graphs?", obj['body_graphs'] == graph_str)
                 print(f" ".join(f"{f:.3f}" for f in scores))
                 print(f" ".join(f"{f:.3f}" for f in obj['scores']))
@@ -212,6 +212,6 @@ if __name__ == '__main__':
         sim_steps_per_cycle=10,
     )
     # MainExperiment().run(name='cma_cma_20op', config=_main_config)
-    # MainExperiment().confirm_results("cma_cma_sunday")
-    MainExperiment().record_best("cma_cma_sunday")
+    MainExperiment().confirm_results("cma_cma_sunday")
+    # MainExperiment().record_best("cma_cma_sunday")
 
