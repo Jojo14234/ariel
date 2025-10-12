@@ -1,7 +1,9 @@
 import pickle
+import time
 from pathlib import Path
 
 import mujoco as mj
+import mujoco.viewer as mjv
 import numpy as np
 import torch
 
@@ -64,13 +66,15 @@ def simulate(mj_model: mj.MjModel, policy, sim_time: int = 20, n_steps_per_cycle
     mj_data = mj.MjData(mj_model)
     mj.mj_resetData(mj_model, mj_data)
     max_fitness = float("-inf")
-
-    while mj_data.time < sim_time:
-        mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
-        mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
-        x = fitness(mj_model, mj_data)
-        max_fitness = max(max_fitness, x)
-
+    with mjv.launch_passive(mj_model, mj_data) as viewer:
+        while mj_data.time < sim_time:
+            mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
+            mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
+            x = fitness(mj_model, mj_data)
+            max_fitness = max(max_fitness, x)
+            viewer.sync()
+            time.sleep(1 / 60)
+    print(f"final fitness: {fitness(mj_model, mj_data)}")
     return max_fitness, fitness(mj_model, mj_data)
 
 
