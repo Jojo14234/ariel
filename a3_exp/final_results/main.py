@@ -10,7 +10,6 @@ from ariel.body_phenotypes.robogen_lite.constructor import construct_mjspec_from
 
 TARGET_POSITION = [5, 0, 0.5]
 CDIR = Path(__file__).parent
-GRAPH_JSON = CDIR / "best_graph.json"
 
 
 def _load_genome_to_network(genome: np.ndarray, network: torch.nn.Module) -> None:
@@ -70,13 +69,14 @@ def simulate(mj_model: mj.MjModel, policy, sim_time: int = 20, n_steps_per_cycle
     while mj_data.time < sim_time:
         mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
         mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
-        max_fitness = max(max_fitness, fitness(mj_model, mj_data))
+        x = fitness(mj_model, mj_data)
+        max_fitness = max(max_fitness, x)
 
     return max_fitness, fitness(mj_model, mj_data)
 
 
 def main(sim_time: int = 32):
-    robot_graph = _string_to_graph(GRAPH_JSON.read_text())
+    robot_graph = _string_to_graph((CDIR / "best_graph.json").read_text())
     robot_core = construct_mjspec_from_graph(robot_graph).spec
     spec = spec_to_olympic_world(robot_core)
     mj_model = spec.compile()
@@ -88,6 +88,8 @@ with open(CDIR / "best_brain.pkl", "rb") as f:
     brain_genome = pickle.load(f)
 
 CONTROLLER = NNPolicy(37, 12).bind(brain_genome)
+GRAPH = _string_to_graph((CDIR / "best_graph.json").read_text()) # DO NOT LOAD WITH 'load_graph_from_json'
+SIM_DURATION = 28
 
 if __name__ == '__main__':
-    main(sim_time=int(sys.argv[1]) if len(sys.argv) > 1 else 32)
+    main(sim_time=SIM_DURATION)
