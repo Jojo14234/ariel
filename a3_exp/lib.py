@@ -171,8 +171,9 @@ class Experiment:
                     frames.append(rend.render())
 
         import cv2
+        path = (_ARTIFACT_DIR / f"vid_{name}").with_suffix(".mp4")
         writer = cv2.VideoWriter(
-            (_ARTIFACT_DIR / f"vid_{name}").with_suffix(".mp4"),
+            path,
             cv2.VideoWriter_fourcc(*"mp4v"),
             fps,
             (640, 480),
