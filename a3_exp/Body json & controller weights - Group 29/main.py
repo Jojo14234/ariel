@@ -101,6 +101,7 @@ NOTES:
 - The graph is loaded in the `main.py` already, if you use ARIEL's `load_graph_from_json` function, it will not get the
   same fitness as what was observed during training, so please don't do that!
 
+- There is a video showing our model getting -2.5 fitness as proof.
 """
 
 if __name__ == '__main__':
