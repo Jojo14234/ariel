@@ -182,7 +182,7 @@ class MainExperiment(Experiment):
         objs = [self.load(f"{name}_{i:03}") for i in range(1, 400) if self.exists(f"{name}_{i:03}")]
         objt = {k: [o[k] for o in objs] for k in objs[0]}
 
-        ig = argmax(map(max, objt['scores']))
+        ig = argmax(map_(max, objt['scores']))
         ip = argmax(objt['scores'][ig])
         graph = self._string_to_graph(objt['body_graphs'][ig][ip])
         model = world(self._graph_to_mj_spec(graph)).compile()
