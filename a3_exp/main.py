@@ -199,7 +199,7 @@ if __name__ == '__main__':
         outer_strategy_cls="CMA",
         outer_strat_kw=dict(seed=16),
         # outer_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=3),
-        outer_population=8,
+        outer_population=20,
         outer_generations=400,
         inner_strategy_cls="CMA",
         inner_strat_kw=dict(seed=16),
@@ -210,7 +210,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='cma_cma_sunday', config=_main_config)
-    # MainExperiment().confirm_results("cma_cma_sunday")
-    # MainExperiment().record_best("cma_cma_sunday")
+    # MainExperiment().run(name='cma_cma_20op', config=_main_config)
+    MainExperiment().confirm_results("cma_cma_sunday")
+    MainExperiment().record_best("cma_cma_sunday")
 
