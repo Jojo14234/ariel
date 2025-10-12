@@ -187,8 +187,9 @@ class MainExperiment(Experiment):
         graph = self._string_to_graph(objt['body_graphs'][ig][ip])
         model = world(self._graph_to_mj_spec(graph)).compile()
         sd = objt['sim_duration'][ig]
-        policy = NNPolicy.from_model(model)().bind(objt['brain_genomes'][ig][ip])
-        self.record(model, policy, self.fitness, f"{name}_best", sim_time=sd)
+        print(ig, ip, sd)
+        # policy = NNPolicy.from_model(model)().bind(objt['brain_genomes'][ig][ip])
+        # self.record(model, policy, self.fitness, f"{name}_best", sim_time=sd)
 
 
 if __name__ == '__main__':
@@ -210,7 +211,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='cma_cma_20op', config=_main_config)
+    # MainExperiment().run(name='cma_cma_20op', config=_main_config)
     # MainExperiment().confirm_results("cma_cma_sunday")
-    # MainExperiment().record_best("cma_cma_sunday")
+    MainExperiment().record_best("cma_cma_sunday")
 
