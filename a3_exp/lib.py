@@ -147,3 +147,38 @@ class Experiment:
 
     def _genotype_to_graph(self, genotype: Any) -> Graph:
         return self._hpd().probability_matrices_to_graph(*self._nde.forward(list(genotype)))
+
+    @staticmethod
+    def record(mj_model: mj.MjModel, policy, fitness, name: str, sim_time: int = 20, n_steps_per_cycle: int = 10):
+        viz_options = mj.MjvOption()
+        viz_options.flags[mj.mjtVisFlag.mjVIS_JOINT] = False
+        viz_options.flags[mj.mjtVisFlag.mjVIS_TRANSPARENT] = False
+        viz_options.flags[mj.mjtVisFlag.mjVIS_ACTUATOR] = False
+        viz_options.flags[mj.mjtVisFlag.mjVIS_BODYBVH] = False
+        fps = 60
+        last = -1
+        frames = []
+
+        mj_data = mj.MjData(mj_model)
+        with mj.Renderer(mj_model, width=640, height=480) as rend:
+            while mj_data.time < sim_time:
+                mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
+                mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
+
+                if mj_data.time - last > (1 / fps):
+                    last = mj_data.time
+                    rend.update_scene(mj_data, scene_option=viz_options)
+                    frames.append(rend.render())
+
+        import cv2
+        writer = cv2.VideoWriter(
+            (_ARTIFACT_DIR / f"vid_{name}").with_suffix(".mp4"),
+            cv2.VideoWriter_fourcc(*"mp4v"),
+            fps,
+            (640, 480),
+        )
+        for frame in frames:
+            writer.write(cv2.cvtColor(np.array(frame), cv2.COLOR_RGB2BGR))
+        writer.release()
+        print(f"final fitness: {fitness(mj_model, mj_data)}")
+

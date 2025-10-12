@@ -175,7 +175,21 @@ class MainExperiment(Experiment):
                 print(f" ".join(f"{f:.3f}" for f in scores))
                 print(f" ".join(f"{f:.3f}" for f in obj['scores']))
                 print(f" ".join(f"{x - y:.3f}" for x, y in zip(scores, obj['scores'])))
-#
+
+    def record_best(self, name: str):
+        self.init_nde_hpd(16)
+        world = lambda spec: self.spec_to_olympic_world(spec)
+        objs = [self.load(f"{name}_{i:03}") for i in range(1, 400) if self.exists(f"{name}_{i:03}")]
+        objt = {k: [o[k] for o in objs] for k in objs[0]}
+
+        ig = argmax(map(max, objt['scores']))
+        ip = argmax(objt['scores'][ig])
+        graph = self._string_to_graph(objt['body_graphs'][ig][ip])
+        model = world(self._graph_to_mj_spec(graph)).compile()
+        sd = objt['sim_duration'][ig]
+        policy = NNPolicy.from_model(model)().bind(objt['brain_genomes'][ig][ip])
+        self.record(model, policy, self.fitness, f"{name}_best", sim_time=sd)
+
 
 if __name__ == '__main__':
     print("PYTHONHASHSEED", os.environ.get("PYTHONHASHSEED"))
@@ -197,5 +211,6 @@ if __name__ == '__main__':
         sim_steps_per_cycle=10,
     )
     # MainExperiment().run(name='cma_cma_sunday', config=_main_config)
-    MainExperiment().confirm_results("cma_cma_sunday")
+    # MainExperiment().confirm_results("cma_cma_sunday")
+    MainExperiment().record_best("cma_cma_sunday")
 
