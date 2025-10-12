@@ -58,11 +58,13 @@ def simulate(sim_time: int = 20, n_steps_per_cycle: int = 10):
     mj_data = mj.MjData(mj_model)
     mj.mj_resetData(mj_model, mj_data)
 
+    max_fitness = float("-inf")
     while mj_data.time < sim_time:
         mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
         mj_data.ctrl = np.clip(CONTROLLER(mj_model, mj_data), -np.pi / 2, np.pi / 2)
+        max_fitness = max(max_fitness, fitness(mj_model, mj_data))
 
-    print(f"fitness: {fitness(mj_model, mj_data):.3f}")
+    print(f"max fitness: {max_fitness:.3f}, final fitness: {fitness(mj_model, mj_data):.3f}")
 
 
 with open(CDIR / "best_brain.pkl", "rb") as f:
@@ -71,4 +73,4 @@ with open(CDIR / "best_brain.pkl", "rb") as f:
 CONTROLLER = NNPolicy(37, 12).bind(brain_genome)
 
 if __name__ == '__main__':
-    simulate(sim_time=int(sys.argv[1]) if len(sys.argv) > 1 else 20)
+    simulate(sim_time=int(sys.argv[1]) if len(sys.argv) > 1 else 32)
