@@ -1,8 +1,9 @@
 import pickle
-import sys
+import time
 from pathlib import Path
 
 import mujoco as mj
+import mujoco.viewer as mjv
 import numpy as np
 import torch
 
@@ -65,13 +66,15 @@ def simulate(mj_model: mj.MjModel, policy, sim_time: int = 20, n_steps_per_cycle
     mj_data = mj.MjData(mj_model)
     mj.mj_resetData(mj_model, mj_data)
     max_fitness = float("-inf")
-
-    while mj_data.time < sim_time:
-        mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
-        mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
-        x = fitness(mj_model, mj_data)
-        max_fitness = max(max_fitness, x)
-
+    with mjv.launch_passive(mj_model, mj_data) as viewer:
+        while mj_data.time < sim_time:
+            mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
+            mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
+            x = fitness(mj_model, mj_data)
+            max_fitness = max(max_fitness, x)
+            viewer.sync()
+            time.sleep(1 / 60)
+    print(f"final fitness: {fitness(mj_model, mj_data)}")
     return max_fitness, fitness(mj_model, mj_data)
 
 
@@ -90,6 +93,16 @@ with open(CDIR / "best_brain.pkl", "rb") as f:
 CONTROLLER = NNPolicy(37, 12).bind(brain_genome)
 GRAPH = _string_to_graph((CDIR / "best_graph.json").read_text()) # DO NOT LOAD WITH 'load_graph_from_json'
 SIM_DURATION = 28
+"""
+NOTES:
+- The provided robot and brain scores a maximum fitness of -2.5 within 30 seconds, but if ran for >40 seconds will fall
+  off the map.
+
+- The graph is loaded in the `main.py` already, if you use ARIEL's `load_graph_from_json` function, it will not get the
+  same fitness as what was observed during training, so please don't do that!
+
+- There is a video showing our model getting -2.5 fitness as proof.
+"""
 
 if __name__ == '__main__':
     main(sim_time=SIM_DURATION)
