@@ -83,6 +83,18 @@ class Experiment:
         return fitness(mj_model, mj_data)
 
     @staticmethod
+    def sim_history(mj_model: mj.MjModel, policy, sim_time: int = 20, n_steps_per_cycle: int = 10):
+        mj_data = mj.MjData(mj_model)
+        mj.mj_resetData(mj_model, mj_data)
+        history = []
+
+        while mj_data.time < sim_time:
+            mj.mj_step(mj_model, mj_data, nstep=n_steps_per_cycle)
+            mj_data.ctrl = np.clip(policy(mj_model, mj_data), -np.pi / 2, np.pi / 2)
+            history.append(mj_data.geom('robot1_core').xpos.copy())
+        return history
+
+    @staticmethod
     def view(mj_model: mj.MjModel, policy, fitness, sim_time: int = 20, n_steps_per_cycle: int = 10):
         mj_data = mj.MjData(mj_model)
 

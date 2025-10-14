@@ -191,6 +191,49 @@ class MainExperiment(Experiment):
         # policy = NNPolicy.from_model(model)().bind(objt['brain_genomes'][ig][ip])
         # self.record(model, policy, self.fitness, f"{name}_best", sim_time=sd)
 
+    def plotting(self):
+        name = "cma_cma_sunday"
+
+        objs = [self.load(f"{name}_{i:03}") for i in range(1, 101)]
+        objt = {k: [o[k] for o in objs] for k in objs[0]}
+        scores = np.array(objt['scores'])
+        scores_rng = np.array([self.load(f"RNG_RNG_{i:03}")['scores'] for i in range(1, 101)])
+
+        from matplotlib import pyplot as plt
+
+        x = list(range(100))
+        mu, std = scores.mean(axis=-1), scores.std(axis=-1)
+        plt.plot(x, mu, label="algorithm", linewidth=0.8)
+        plt.fill_between(x, mu + std, mu - std, alpha=0.2)
+
+        mu, std = scores_rng.mean(axis=-1), scores_rng.std(axis=-1)
+        plt.plot(x, mu, label="baseline", linewidth=0.8)
+        plt.fill_between(x, mu + std, mu - std, alpha=0.2)
+
+        # plt.plot(x, min_, color='green')
+        plt.legend()
+        plt.title("mean performance per generation")
+        plt.show()
+        plt.plot(x, scores.max(axis=-1), color='blue', label="algorithm", linewidth=0.8, alpha=0.8)
+        plt.plot(x, scores_rng.max(axis=-1), color='orange', label="baseline", linewidth=0.8, alpha=0.8)
+        plt.legend()
+        plt.show()
+
+    def record_xpos_history(self, name: str):
+        self.init_nde_hpd(16)
+        world = lambda spec: self.spec_to_olympic_world(spec)
+
+        histories = []
+        for i in range(1, 101):
+            obj = self.load(f"{name}_{i:03}")
+            i_best = argmax(obj['scores'])
+            sd = obj['sim_duration']
+            graph = self._string_to_graph(obj['body_graphs'][i_best])
+            model = world(self._graph_to_mj_spec(graph)).compile()
+            policy = NNPolicy.from_model(model)().bind(obj['brain_genomes'][i_best])
+            histories.append(self.sim_history(model, policy, sim_time=sd))
+        self.save(f"{name}_histories", histories)
+
 
 if __name__ == '__main__':
     print("PYTHONHASHSEED", os.environ.get("PYTHONHASHSEED"))
@@ -211,7 +254,9 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    MainExperiment().run(name='RNG_RNG', config=_main_config)
+    # MainExperiment().plotting()
+    # MainExperiment().run(name='RNG_RNG', config=_main_config)
     # MainExperiment().confirm_results("cma_cma_sunday")
     # MainExperiment().record_best("cma_cma_sunday")
+    MainExperiment().record_xpos_history("cma_cma_sunday")
 
