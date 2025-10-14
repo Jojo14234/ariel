@@ -1,0 +1,2001 @@
+PYTHONHASHSEED 0
+outer gen 001 | fd=13 | starting 2025-10-14 12:08:38
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_10 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 1 op: 0 ig: 0 | -4.38 | -4.38 | 2025-10-14 12:08:51
+og: 1 op: 1 ig: 0 | -5.20 | -5.20 | 2025-10-14 12:09:02
+og: 1 op: 2 ig: 0 | -4.81 | -4.81 | 2025-10-14 12:09:13
+og: 1 op: 3 ig: 0 | -4.94 | -4.94 | 2025-10-14 12:09:25
+og: 1 op: 4 ig: 0 | -4.08 | -4.08 | 2025-10-14 12:09:36
+og: 1 op: 5 ig: 0 | -5.16 | -5.16 | 2025-10-14 12:09:46
+og: 1 op: 6 ig: 0 | -4.63 | -4.63 | 2025-10-14 12:09:58
+og: 1 op: 7 ig: 0 | -4.54 | -4.54 | 2025-10-14 12:10:09
+outer gen 001 00 | score=-4.38 | 2025-10-14 12:08:51
+outer gen 001 01 | score=-5.20 | 2025-10-14 12:09:02
+outer gen 001 02 | score=-4.81 | 2025-10-14 12:09:13
+outer gen 001 03 | score=-4.94 | 2025-10-14 12:09:25
+outer gen 001 04 | score=-4.08 | 2025-10-14 12:09:36
+outer gen 001 05 | score=-5.16 | 2025-10-14 12:09:46
+outer gen 001 06 | score=-4.63 | 2025-10-14 12:09:58
+outer gen 001 07 | score=-4.54 | 2025-10-14 12:10:09
+outer gen 001 | fin, mu: -4.72, genmax -4.08 vs cmax -4.08 | 2025-10-14 12:10:09
+outer gen 001 took 91.37s (1m)
+outer gen 002 | fd=142 | starting 2025-10-14 12:10:09
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_11 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 2 op: 0 ig: 0 | -4.46 | -4.46 | 2025-10-14 12:10:21
+og: 2 op: 1 ig: 0 | -4.60 | -4.60 | 2025-10-14 12:10:33
+og: 2 op: 2 ig: 0 | -4.17 | -4.17 | 2025-10-14 12:10:45
+og: 2 op: 3 ig: 0 | -4.81 | -4.81 | 2025-10-14 12:10:57
+og: 2 op: 4 ig: 0 | -5.04 | -5.04 | 2025-10-14 12:11:09
+og: 2 op: 5 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:11:21
+og: 2 op: 6 ig: 0 | -5.00 | -5.00 | 2025-10-14 12:11:33
+og: 2 op: 7 ig: 0 | -4.54 | -4.54 | 2025-10-14 12:11:45
+outer gen 002 00 | score=-4.46 | 2025-10-14 12:10:21
+outer gen 002 01 | score=-4.60 | 2025-10-14 12:10:33
+outer gen 002 02 | score=-4.17 | 2025-10-14 12:10:45
+outer gen 002 03 | score=-4.81 | 2025-10-14 12:10:57
+outer gen 002 04 | score=-5.04 | 2025-10-14 12:11:09
+outer gen 002 05 | score=-4.39 | 2025-10-14 12:11:21
+outer gen 002 06 | score=-5.00 | 2025-10-14 12:11:33
+outer gen 002 07 | score=-4.54 | 2025-10-14 12:11:45
+outer gen 002 | fin, mu: -4.62, genmax -4.17 vs cmax -4.08 | 2025-10-14 12:11:45
+outer gen 002 took 95.86s (1m)
+outer gen 003 | fd=142 | starting 2025-10-14 12:11:45
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_11 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 3 op: 0 ig: 0 | -4.94 | -4.94 | 2025-10-14 12:11:57
+og: 3 op: 1 ig: 0 | -4.99 | -4.99 | 2025-10-14 12:12:09
+og: 3 op: 2 ig: 0 | -4.51 | -4.51 | 2025-10-14 12:12:21
+og: 3 op: 3 ig: 0 | -4.97 | -4.97 | 2025-10-14 12:12:32
+og: 3 op: 4 ig: 0 | -5.17 | -5.17 | 2025-10-14 12:12:44
+og: 3 op: 5 ig: 0 | -4.80 | -4.80 | 2025-10-14 12:12:56
+og: 3 op: 6 ig: 0 | -4.86 | -4.86 | 2025-10-14 12:13:08
+og: 3 op: 7 ig: 0 | -4.93 | -4.93 | 2025-10-14 12:13:20
+outer gen 003 00 | score=-4.94 | 2025-10-14 12:11:57
+outer gen 003 01 | score=-4.99 | 2025-10-14 12:12:09
+outer gen 003 02 | score=-4.51 | 2025-10-14 12:12:21
+outer gen 003 03 | score=-4.97 | 2025-10-14 12:12:32
+outer gen 003 04 | score=-5.17 | 2025-10-14 12:12:44
+outer gen 003 05 | score=-4.80 | 2025-10-14 12:12:56
+outer gen 003 06 | score=-4.86 | 2025-10-14 12:13:08
+outer gen 003 07 | score=-4.93 | 2025-10-14 12:13:20
+outer gen 003 | fin, mu: -4.90, genmax -4.51 vs cmax -4.08 | 2025-10-14 12:13:20
+outer gen 003 took 95.07s (1m)
+outer gen 004 | fd=142 | starting 2025-10-14 12:13:20
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_12 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 4 op: 0 ig: 0 | -4.52 | -4.52 | 2025-10-14 12:13:33
+og: 4 op: 1 ig: 0 | -4.78 | -4.78 | 2025-10-14 12:13:45
+og: 4 op: 2 ig: 0 | -4.70 | -4.70 | 2025-10-14 12:13:57
+og: 4 op: 3 ig: 0 | -4.69 | -4.69 | 2025-10-14 12:14:11
+og: 4 op: 4 ig: 0 | -4.45 | -4.45 | 2025-10-14 12:14:22
+og: 4 op: 5 ig: 0 | -4.73 | -4.73 | 2025-10-14 12:14:35
+og: 4 op: 6 ig: 0 | -5.24 | -5.24 | 2025-10-14 12:14:47
+og: 4 op: 7 ig: 0 | -5.10 | -5.10 | 2025-10-14 12:15:00
+outer gen 004 00 | score=-4.52 | 2025-10-14 12:13:33
+outer gen 004 01 | score=-4.78 | 2025-10-14 12:13:45
+outer gen 004 02 | score=-4.70 | 2025-10-14 12:13:57
+outer gen 004 03 | score=-4.69 | 2025-10-14 12:14:11
+outer gen 004 04 | score=-4.45 | 2025-10-14 12:14:22
+outer gen 004 05 | score=-4.73 | 2025-10-14 12:14:35
+outer gen 004 06 | score=-5.24 | 2025-10-14 12:14:47
+outer gen 004 07 | score=-5.10 | 2025-10-14 12:15:00
+outer gen 004 | fin, mu: -4.78, genmax -4.45 vs cmax -4.08 | 2025-10-14 12:15:00
+outer gen 004 took 99.78s (1m)
+outer gen 005 | fd=142 | starting 2025-10-14 12:15:00
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_12 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 5 op: 0 ig: 0 | -4.18 | -4.18 | 2025-10-14 12:15:12
+og: 5 op: 1 ig: 0 | -5.00 | -5.00 | 2025-10-14 12:15:25
+og: 5 op: 2 ig: 0 | -4.57 | -4.57 | 2025-10-14 12:15:37
+og: 5 op: 3 ig: 0 | -5.60 | -5.60 | 2025-10-14 12:15:50
+og: 5 op: 4 ig: 0 | -4.70 | -4.70 | 2025-10-14 12:16:02
+og: 5 op: 5 ig: 0 | -4.59 | -4.59 | 2025-10-14 12:16:15
+og: 5 op: 6 ig: 0 | -5.03 | -5.03 | 2025-10-14 12:16:28
+og: 5 op: 7 ig: 0 | -4.46 | -4.46 | 2025-10-14 12:16:41
+outer gen 005 00 | score=-4.18 | 2025-10-14 12:15:12
+outer gen 005 01 | score=-5.00 | 2025-10-14 12:15:25
+outer gen 005 02 | score=-4.57 | 2025-10-14 12:15:37
+outer gen 005 03 | score=-5.60 | 2025-10-14 12:15:50
+outer gen 005 04 | score=-4.70 | 2025-10-14 12:16:02
+outer gen 005 05 | score=-4.59 | 2025-10-14 12:16:15
+outer gen 005 06 | score=-5.03 | 2025-10-14 12:16:28
+outer gen 005 07 | score=-4.46 | 2025-10-14 12:16:41
+outer gen 005 | fin, mu: -4.77, genmax -4.18 vs cmax -4.08 | 2025-10-14 12:16:41
+outer gen 005 took 100.83s (1m)
+outer gen 006 | fd=142 | starting 2025-10-14 12:16:41
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_13 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 6 op: 0 ig: 0 | -4.85 | -4.85 | 2025-10-14 12:16:54
+og: 6 op: 1 ig: 0 | -4.78 | -4.78 | 2025-10-14 12:17:07
+og: 6 op: 2 ig: 0 | -4.57 | -4.57 | 2025-10-14 12:17:22
+og: 6 op: 3 ig: 0 | -4.30 | -4.30 | 2025-10-14 12:17:36
+og: 6 op: 4 ig: 0 | -4.43 | -4.43 | 2025-10-14 12:17:50
+og: 6 op: 5 ig: 0 | -4.69 | -4.69 | 2025-10-14 12:18:03
+og: 6 op: 6 ig: 0 | -4.64 | -4.64 | 2025-10-14 12:18:16
+og: 6 op: 7 ig: 0 | -4.97 | -4.97 | 2025-10-14 12:18:29
+outer gen 006 00 | score=-4.85 | 2025-10-14 12:16:54
+outer gen 006 01 | score=-4.78 | 2025-10-14 12:17:07
+outer gen 006 02 | score=-4.57 | 2025-10-14 12:17:22
+outer gen 006 03 | score=-4.30 | 2025-10-14 12:17:36
+outer gen 006 04 | score=-4.43 | 2025-10-14 12:17:50
+outer gen 006 05 | score=-4.69 | 2025-10-14 12:18:03
+outer gen 006 06 | score=-4.64 | 2025-10-14 12:18:16
+outer gen 006 07 | score=-4.97 | 2025-10-14 12:18:29
+outer gen 006 | fin, mu: -4.65, genmax -4.30 vs cmax -4.08 | 2025-10-14 12:18:29
+outer gen 006 took 107.95s (1m)
+outer gen 007 | fd=142 | starting 2025-10-14 12:18:29
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_13 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 7 op: 0 ig: 0 | -4.58 | -4.58 | 2025-10-14 12:18:42
+og: 7 op: 1 ig: 0 | -4.08 | -4.08 | 2025-10-14 12:18:55
+og: 7 op: 2 ig: 0 | -4.77 | -4.77 | 2025-10-14 12:19:10
+og: 7 op: 3 ig: 0 | -4.55 | -4.55 | 2025-10-14 12:19:23
+og: 7 op: 4 ig: 0 | -4.51 | -4.51 | 2025-10-14 12:19:36
+og: 7 op: 5 ig: 0 | -4.65 | -4.65 | 2025-10-14 12:19:50
+og: 7 op: 6 ig: 0 | -4.51 | -4.51 | 2025-10-14 12:20:03
+og: 7 op: 7 ig: 0 | -4.98 | -4.98 | 2025-10-14 12:20:16
+outer gen 007 00 | score=-4.58 | 2025-10-14 12:18:42
+outer gen 007 01 | score=-4.08 | 2025-10-14 12:18:55
+outer gen 007 02 | score=-4.77 | 2025-10-14 12:19:10
+outer gen 007 03 | score=-4.55 | 2025-10-14 12:19:23
+outer gen 007 04 | score=-4.51 | 2025-10-14 12:19:36
+outer gen 007 05 | score=-4.65 | 2025-10-14 12:19:50
+outer gen 007 06 | score=-4.51 | 2025-10-14 12:20:03
+outer gen 007 07 | score=-4.98 | 2025-10-14 12:20:16
+outer gen 007 | fin, mu: -4.58, genmax -4.08 vs cmax -4.08 | 2025-10-14 12:20:16
+outer gen 007 took 107.63s (1m)
+outer gen 008 | fd=142 | starting 2025-10-14 12:20:16
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_14 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 8 op: 0 ig: 0 | -4.54 | -4.54 | 2025-10-14 12:20:31
+og: 8 op: 1 ig: 0 | -4.58 | -4.58 | 2025-10-14 12:20:48
+og: 8 op: 2 ig: 0 | -4.57 | -4.57 | 2025-10-14 12:21:02
+og: 8 op: 3 ig: 0 | -4.22 | -4.22 | 2025-10-14 12:21:16
+og: 8 op: 4 ig: 0 | -4.92 | -4.92 | 2025-10-14 12:21:29
+og: 8 op: 5 ig: 0 | -4.69 | -4.69 | 2025-10-14 12:21:43
+og: 8 op: 6 ig: 0 | -4.37 | -4.37 | 2025-10-14 12:21:57
+og: 8 op: 7 ig: 0 | -4.92 | -4.92 | 2025-10-14 12:22:12
+outer gen 008 00 | score=-4.54 | 2025-10-14 12:20:31
+outer gen 008 01 | score=-4.58 | 2025-10-14 12:20:48
+outer gen 008 02 | score=-4.57 | 2025-10-14 12:21:02
+outer gen 008 03 | score=-4.22 | 2025-10-14 12:21:16
+outer gen 008 04 | score=-4.92 | 2025-10-14 12:21:29
+outer gen 008 05 | score=-4.69 | 2025-10-14 12:21:43
+outer gen 008 06 | score=-4.37 | 2025-10-14 12:21:57
+outer gen 008 07 | score=-4.92 | 2025-10-14 12:22:12
+outer gen 008 | fin, mu: -4.60, genmax -4.22 vs cmax -4.08 | 2025-10-14 12:22:12
+outer gen 008 took 116.05s (1m)
+outer gen 009 | fd=142 | starting 2025-10-14 12:22:12
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_14 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og: 9 op: 0 ig: 0 | -4.32 | -4.32 | 2025-10-14 12:22:27
+og: 9 op: 1 ig: 0 | -4.90 | -4.90 | 2025-10-14 12:22:42
+og: 9 op: 2 ig: 0 | -4.26 | -4.26 | 2025-10-14 12:22:56
+og: 9 op: 3 ig: 0 | -5.18 | -5.18 | 2025-10-14 12:23:09
+og: 9 op: 4 ig: 0 | -4.82 | -4.82 | 2025-10-14 12:23:24
+og: 9 op: 5 ig: 0 | -4.65 | -4.65 | 2025-10-14 12:23:36
+og: 9 op: 6 ig: 0 | -4.85 | -4.85 | 2025-10-14 12:23:51
+og: 9 op: 7 ig: 0 | -4.13 | -4.13 | 2025-10-14 12:24:04
+outer gen 009 00 | score=-4.32 | 2025-10-14 12:22:27
+outer gen 009 01 | score=-4.90 | 2025-10-14 12:22:42
+outer gen 009 02 | score=-4.26 | 2025-10-14 12:22:56
+outer gen 009 03 | score=-5.18 | 2025-10-14 12:23:09
+outer gen 009 04 | score=-4.82 | 2025-10-14 12:23:24
+outer gen 009 05 | score=-4.65 | 2025-10-14 12:23:36
+outer gen 009 06 | score=-4.85 | 2025-10-14 12:23:51
+outer gen 009 07 | score=-4.13 | 2025-10-14 12:24:04
+outer gen 009 | fin, mu: -4.64, genmax -4.13 vs cmax -4.08 | 2025-10-14 12:24:04
+outer gen 009 took 111.30s (1m)
+outer gen 010 | fd=142 | starting 2025-10-14 12:24:04
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_15 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:10 op: 0 ig: 0 | -4.20 | -4.20 | 2025-10-14 12:24:19
+og:10 op: 1 ig: 0 | -4.95 | -4.95 | 2025-10-14 12:24:34
+og:10 op: 2 ig: 0 | -4.24 | -4.24 | 2025-10-14 12:24:49
+og:10 op: 3 ig: 0 | -4.46 | -4.46 | 2025-10-14 12:25:05
+og:10 op: 4 ig: 0 | -4.56 | -4.56 | 2025-10-14 12:25:18
+og:10 op: 5 ig: 0 | -4.81 | -4.81 | 2025-10-14 12:25:33
+og:10 op: 6 ig: 0 | -4.50 | -4.50 | 2025-10-14 12:25:47
+og:10 op: 7 ig: 0 | -5.02 | -5.02 | 2025-10-14 12:26:01
+outer gen 010 00 | score=-4.20 | 2025-10-14 12:24:19
+outer gen 010 01 | score=-4.95 | 2025-10-14 12:24:34
+outer gen 010 02 | score=-4.24 | 2025-10-14 12:24:49
+outer gen 010 03 | score=-4.46 | 2025-10-14 12:25:05
+outer gen 010 04 | score=-4.56 | 2025-10-14 12:25:18
+outer gen 010 05 | score=-4.81 | 2025-10-14 12:25:33
+outer gen 010 06 | score=-4.50 | 2025-10-14 12:25:47
+outer gen 010 07 | score=-5.02 | 2025-10-14 12:26:01
+outer gen 010 | fin, mu: -4.59, genmax -4.20 vs cmax -4.08 | 2025-10-14 12:26:01
+outer gen 010 took 117.84s (1m)
+outer gen 011 | fd=142 | starting 2025-10-14 12:26:01
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_15 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:11 op: 0 ig: 0 | -4.45 | -4.45 | 2025-10-14 12:26:16
+og:11 op: 1 ig: 0 | -5.06 | -5.06 | 2025-10-14 12:26:31
+og:11 op: 2 ig: 0 | -4.49 | -4.49 | 2025-10-14 12:26:47
+og:11 op: 3 ig: 0 | -4.49 | -4.49 | 2025-10-14 12:27:04
+og:11 op: 4 ig: 0 | -4.25 | -4.25 | 2025-10-14 12:27:20
+og:11 op: 5 ig: 0 | -4.45 | -4.45 | 2025-10-14 12:27:34
+og:11 op: 6 ig: 0 | -4.69 | -4.69 | 2025-10-14 12:27:50
+og:11 op: 7 ig: 0 | -4.87 | -4.87 | 2025-10-14 12:28:05
+outer gen 011 00 | score=-4.45 | 2025-10-14 12:26:16
+outer gen 011 01 | score=-5.06 | 2025-10-14 12:26:31
+outer gen 011 02 | score=-4.49 | 2025-10-14 12:26:47
+outer gen 011 03 | score=-4.49 | 2025-10-14 12:27:04
+outer gen 011 04 | score=-4.25 | 2025-10-14 12:27:20
+outer gen 011 05 | score=-4.45 | 2025-10-14 12:27:34
+outer gen 011 06 | score=-4.69 | 2025-10-14 12:27:50
+outer gen 011 07 | score=-4.87 | 2025-10-14 12:28:05
+outer gen 011 | fin, mu: -4.59, genmax -4.25 vs cmax -4.08 | 2025-10-14 12:28:05
+outer gen 011 took 123.94s (2m)
+outer gen 012 | fd=142 | starting 2025-10-14 12:28:05
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_16 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:12 op: 0 ig: 0 | -4.13 | -4.13 | 2025-10-14 12:28:22
+og:12 op: 1 ig: 0 | -4.31 | -4.31 | 2025-10-14 12:28:38
+og:12 op: 2 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:28:53
+og:12 op: 3 ig: 0 | -4.36 | -4.36 | 2025-10-14 12:29:10
+og:12 op: 4 ig: 0 | -4.02 | -4.02 | 2025-10-14 12:29:24
+og:12 op: 5 ig: 0 | -4.68 | -4.68 | 2025-10-14 12:29:40
+og:12 op: 6 ig: 0 | -4.81 | -4.81 | 2025-10-14 12:29:54
+og:12 op: 7 ig: 0 | -4.55 | -4.55 | 2025-10-14 12:30:11
+outer gen 012 00 | score=-4.13 | 2025-10-14 12:28:22
+outer gen 012 01 | score=-4.31 | 2025-10-14 12:28:38
+outer gen 012 02 | score=-4.39 | 2025-10-14 12:28:53
+outer gen 012 03 | score=-4.36 | 2025-10-14 12:29:10
+outer gen 012 04 | score=-4.02 | 2025-10-14 12:29:24
+outer gen 012 05 | score=-4.68 | 2025-10-14 12:29:40
+outer gen 012 06 | score=-4.81 | 2025-10-14 12:29:54
+outer gen 012 07 | score=-4.55 | 2025-10-14 12:30:11
+outer gen 012 | fin, mu: -4.41, genmax -4.02 vs cmax -4.02 | 2025-10-14 12:30:11
+outer gen 012 took 125.29s (2m)
+outer gen 013 | fd=142 | starting 2025-10-14 12:30:11
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_16 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:13 op: 0 ig: 0 | -4.45 | -4.45 | 2025-10-14 12:30:26
+og:13 op: 1 ig: 0 | -4.73 | -4.73 | 2025-10-14 12:30:42
+og:13 op: 2 ig: 0 | -5.03 | -5.03 | 2025-10-14 12:30:58
+og:13 op: 3 ig: 0 | -4.16 | -4.16 | 2025-10-14 12:31:14
+og:13 op: 4 ig: 0 | -4.47 | -4.47 | 2025-10-14 12:31:31
+og:13 op: 5 ig: 0 | -5.22 | -5.22 | 2025-10-14 12:31:48
+og:13 op: 6 ig: 0 | -4.37 | -4.37 | 2025-10-14 12:32:03
+og:13 op: 7 ig: 0 | -4.38 | -4.38 | 2025-10-14 12:32:19
+outer gen 013 00 | score=-4.45 | 2025-10-14 12:30:26
+outer gen 013 01 | score=-4.73 | 2025-10-14 12:30:42
+outer gen 013 02 | score=-5.03 | 2025-10-14 12:30:58
+outer gen 013 03 | score=-4.16 | 2025-10-14 12:31:14
+outer gen 013 04 | score=-4.47 | 2025-10-14 12:31:31
+outer gen 013 05 | score=-5.22 | 2025-10-14 12:31:48
+outer gen 013 06 | score=-4.37 | 2025-10-14 12:32:03
+outer gen 013 07 | score=-4.38 | 2025-10-14 12:32:19
+outer gen 013 | fin, mu: -4.60, genmax -4.16 vs cmax -4.02 | 2025-10-14 12:32:19
+outer gen 013 took 128.13s (2m)
+outer gen 014 | fd=142 | starting 2025-10-14 12:32:19
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_17 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:14 op: 0 ig: 0 | -4.41 | -4.41 | 2025-10-14 12:32:35
+og:14 op: 1 ig: 0 | -4.98 | -4.98 | 2025-10-14 12:32:52
+og:14 op: 2 ig: 0 | -4.81 | -4.81 | 2025-10-14 12:33:09
+og:14 op: 3 ig: 0 | -4.51 | -4.51 | 2025-10-14 12:33:24
+og:14 op: 4 ig: 0 | -4.61 | -4.61 | 2025-10-14 12:33:41
+og:14 op: 5 ig: 0 | -4.90 | -4.90 | 2025-10-14 12:33:57
+og:14 op: 6 ig: 0 | -5.10 | -5.10 | 2025-10-14 12:34:13
+og:14 op: 7 ig: 0 | -4.43 | -4.43 | 2025-10-14 12:34:31
+outer gen 014 00 | score=-4.41 | 2025-10-14 12:32:35
+outer gen 014 01 | score=-4.98 | 2025-10-14 12:32:52
+outer gen 014 02 | score=-4.81 | 2025-10-14 12:33:09
+outer gen 014 03 | score=-4.51 | 2025-10-14 12:33:24
+outer gen 014 04 | score=-4.61 | 2025-10-14 12:33:41
+outer gen 014 05 | score=-4.90 | 2025-10-14 12:33:57
+outer gen 014 06 | score=-5.10 | 2025-10-14 12:34:13
+outer gen 014 07 | score=-4.43 | 2025-10-14 12:34:31
+outer gen 014 | fin, mu: -4.72, genmax -4.41 vs cmax -4.02 | 2025-10-14 12:34:31
+outer gen 014 took 132.15s (2m)
+outer gen 015 | fd=142 | starting 2025-10-14 12:34:31
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_17 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:15 op: 0 ig: 0 | -4.15 | -4.15 | 2025-10-14 12:34:48
+og:15 op: 1 ig: 0 | -4.60 | -4.60 | 2025-10-14 12:35:07
+og:15 op: 2 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:35:24
+og:15 op: 3 ig: 0 | -4.45 | -4.45 | 2025-10-14 12:35:41
+og:15 op: 4 ig: 0 | -4.72 | -4.72 | 2025-10-14 12:35:58
+og:15 op: 5 ig: 0 | -4.62 | -4.62 | 2025-10-14 12:36:17
+og:15 op: 6 ig: 0 | -4.56 | -4.56 | 2025-10-14 12:36:35
+og:15 op: 7 ig: 0 | -4.20 | -4.20 | 2025-10-14 12:36:50
+outer gen 015 00 | score=-4.15 | 2025-10-14 12:34:48
+outer gen 015 01 | score=-4.60 | 2025-10-14 12:35:07
+outer gen 015 02 | score=-4.39 | 2025-10-14 12:35:24
+outer gen 015 03 | score=-4.45 | 2025-10-14 12:35:41
+outer gen 015 04 | score=-4.72 | 2025-10-14 12:35:58
+outer gen 015 05 | score=-4.62 | 2025-10-14 12:36:17
+outer gen 015 06 | score=-4.56 | 2025-10-14 12:36:35
+outer gen 015 07 | score=-4.20 | 2025-10-14 12:36:50
+outer gen 015 | fin, mu: -4.46, genmax -4.15 vs cmax -4.02 | 2025-10-14 12:36:51
+outer gen 015 took 139.58s (2m)
+outer gen 016 | fd=142 | starting 2025-10-14 12:36:51
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_18 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:16 op: 0 ig: 0 | -4.27 | -4.27 | 2025-10-14 12:37:08
+og:16 op: 1 ig: 0 | -4.57 | -4.57 | 2025-10-14 12:37:26
+og:16 op: 2 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:37:44
+og:16 op: 3 ig: 0 | -4.29 | -4.29 | 2025-10-14 12:38:04
+og:16 op: 4 ig: 0 | -4.58 | -4.58 | 2025-10-14 12:38:22
+og:16 op: 5 ig: 0 | -4.97 | -4.97 | 2025-10-14 12:38:39
+og:16 op: 6 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:38:57
+og:16 op: 7 ig: 0 | -4.25 | -4.25 | 2025-10-14 12:39:15
+outer gen 016 00 | score=-4.27 | 2025-10-14 12:37:08
+outer gen 016 01 | score=-4.57 | 2025-10-14 12:37:26
+outer gen 016 02 | score=-4.39 | 2025-10-14 12:37:44
+outer gen 016 03 | score=-4.29 | 2025-10-14 12:38:04
+outer gen 016 04 | score=-4.58 | 2025-10-14 12:38:22
+outer gen 016 05 | score=-4.97 | 2025-10-14 12:38:39
+outer gen 016 06 | score=-4.39 | 2025-10-14 12:38:57
+outer gen 016 07 | score=-4.25 | 2025-10-14 12:39:15
+outer gen 016 | fin, mu: -4.46, genmax -4.25 vs cmax -4.02 | 2025-10-14 12:39:15
+outer gen 016 took 144.84s (2m)
+outer gen 017 | fd=142 | starting 2025-10-14 12:39:15
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_18 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:17 op: 0 ig: 0 | -4.37 | -4.37 | 2025-10-14 12:39:34
+og:17 op: 1 ig: 0 | -4.41 | -4.41 | 2025-10-14 12:39:53
+og:17 op: 2 ig: 0 | -4.05 | -4.05 | 2025-10-14 12:40:11
+og:17 op: 3 ig: 0 | -4.94 | -4.94 | 2025-10-14 12:40:28
+og:17 op: 4 ig: 0 | -4.86 | -4.86 | 2025-10-14 12:40:45
+og:17 op: 5 ig: 0 | -4.81 | -4.81 | 2025-10-14 12:41:05
+og:17 op: 6 ig: 0 | -4.51 | -4.51 | 2025-10-14 12:41:21
+og:17 op: 7 ig: 0 | -4.14 | -4.14 | 2025-10-14 12:41:38
+outer gen 017 00 | score=-4.37 | 2025-10-14 12:39:34
+outer gen 017 01 | score=-4.41 | 2025-10-14 12:39:53
+outer gen 017 02 | score=-4.05 | 2025-10-14 12:40:11
+outer gen 017 03 | score=-4.94 | 2025-10-14 12:40:28
+outer gen 017 04 | score=-4.86 | 2025-10-14 12:40:45
+outer gen 017 05 | score=-4.81 | 2025-10-14 12:41:05
+outer gen 017 06 | score=-4.51 | 2025-10-14 12:41:21
+outer gen 017 07 | score=-4.14 | 2025-10-14 12:41:38
+outer gen 017 | fin, mu: -4.51, genmax -4.05 vs cmax -4.02 | 2025-10-14 12:41:38
+outer gen 017 took 142.56s (2m)
+outer gen 018 | fd=142 | starting 2025-10-14 12:41:38
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_19 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:18 op: 0 ig: 0 | -4.52 | -4.52 | 2025-10-14 12:41:55
+og:18 op: 1 ig: 0 | -4.30 | -4.30 | 2025-10-14 12:42:14
+og:18 op: 2 ig: 0 | -4.45 | -4.45 | 2025-10-14 12:42:32
+og:18 op: 3 ig: 0 | -4.27 | -4.27 | 2025-10-14 12:42:51
+og:18 op: 4 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:43:11
+og:18 op: 5 ig: 0 | -4.95 | -4.95 | 2025-10-14 12:43:29
+og:18 op: 6 ig: 0 | -5.18 | -5.18 | 2025-10-14 12:43:46
+og:18 op: 7 ig: 0 | -4.27 | -4.27 | 2025-10-14 12:44:04
+outer gen 018 00 | score=-4.52 | 2025-10-14 12:41:55
+outer gen 018 01 | score=-4.30 | 2025-10-14 12:42:14
+outer gen 018 02 | score=-4.45 | 2025-10-14 12:42:32
+outer gen 018 03 | score=-4.27 | 2025-10-14 12:42:51
+outer gen 018 04 | score=-4.39 | 2025-10-14 12:43:11
+outer gen 018 05 | score=-4.95 | 2025-10-14 12:43:29
+outer gen 018 06 | score=-5.18 | 2025-10-14 12:43:46
+outer gen 018 07 | score=-4.27 | 2025-10-14 12:44:04
+outer gen 018 | fin, mu: -4.54, genmax -4.27 vs cmax -4.02 | 2025-10-14 12:44:04
+outer gen 018 took 145.76s (2m)
+outer gen 019 | fd=142 | starting 2025-10-14 12:44:04
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_19 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:19 op: 0 ig: 0 | -4.47 | -4.47 | 2025-10-14 12:44:23
+og:19 op: 1 ig: 0 | -4.61 | -4.61 | 2025-10-14 12:44:42
+og:19 op: 2 ig: 0 | -4.40 | -4.40 | 2025-10-14 12:45:00
+og:19 op: 3 ig: 0 | -4.25 | -4.25 | 2025-10-14 12:45:21
+og:19 op: 4 ig: 0 | -4.43 | -4.43 | 2025-10-14 12:45:38
+og:19 op: 5 ig: 0 | -4.57 | -4.57 | 2025-10-14 12:45:56
+og:19 op: 6 ig: 0 | -4.48 | -4.48 | 2025-10-14 12:46:18
+og:19 op: 7 ig: 0 | -4.78 | -4.78 | 2025-10-14 12:46:40
+outer gen 019 00 | score=-4.47 | 2025-10-14 12:44:23
+outer gen 019 01 | score=-4.61 | 2025-10-14 12:44:42
+outer gen 019 02 | score=-4.40 | 2025-10-14 12:45:00
+outer gen 019 03 | score=-4.25 | 2025-10-14 12:45:21
+outer gen 019 04 | score=-4.43 | 2025-10-14 12:45:38
+outer gen 019 05 | score=-4.57 | 2025-10-14 12:45:56
+outer gen 019 06 | score=-4.48 | 2025-10-14 12:46:18
+outer gen 019 07 | score=-4.78 | 2025-10-14 12:46:40
+outer gen 019 | fin, mu: -4.50, genmax -4.25 vs cmax -4.02 | 2025-10-14 12:46:40
+outer gen 019 took 156.21s (2m)
+outer gen 020 | fd=142 | starting 2025-10-14 12:46:40
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_20 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:20 op: 0 ig: 0 | -4.41 | -4.41 | 2025-10-14 12:47:00
+og:20 op: 1 ig: 0 | -4.47 | -4.47 | 2025-10-14 12:47:19
+og:20 op: 2 ig: 0 | -4.53 | -4.53 | 2025-10-14 12:47:40
+og:20 op: 3 ig: 0 | -5.05 | -5.05 | 2025-10-14 12:48:00
+og:20 op: 4 ig: 0 | -5.10 | -5.10 | 2025-10-14 12:48:23
+og:20 op: 5 ig: 0 | -4.34 | -4.34 | 2025-10-14 12:48:41
+og:20 op: 6 ig: 0 | -4.15 | -4.15 | 2025-10-14 12:49:00
+og:20 op: 7 ig: 0 | -4.47 | -4.47 | 2025-10-14 12:49:19
+outer gen 020 00 | score=-4.41 | 2025-10-14 12:47:00
+outer gen 020 01 | score=-4.47 | 2025-10-14 12:47:19
+outer gen 020 02 | score=-4.53 | 2025-10-14 12:47:40
+outer gen 020 03 | score=-5.05 | 2025-10-14 12:48:00
+outer gen 020 04 | score=-5.10 | 2025-10-14 12:48:23
+outer gen 020 05 | score=-4.34 | 2025-10-14 12:48:41
+outer gen 020 06 | score=-4.15 | 2025-10-14 12:49:00
+outer gen 020 07 | score=-4.47 | 2025-10-14 12:49:19
+outer gen 020 | fin, mu: -4.56, genmax -4.15 vs cmax -4.02 | 2025-10-14 12:49:19
+outer gen 020 took 159.52s (2m)
+outer gen 021 | fd=142 | starting 2025-10-14 12:49:19
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_20 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:21 op: 0 ig: 0 | -4.60 | -4.60 | 2025-10-14 12:49:39
+og:21 op: 1 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:49:58
+og:21 op: 2 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:50:19
+og:21 op: 3 ig: 0 | -4.11 | -4.11 | 2025-10-14 12:50:38
+og:21 op: 4 ig: 0 | -4.16 | -4.16 | 2025-10-14 12:51:00
+og:21 op: 5 ig: 0 | -4.25 | -4.25 | 2025-10-14 12:51:19
+og:21 op: 6 ig: 0 | -4.23 | -4.23 | 2025-10-14 12:51:43
+og:21 op: 7 ig: 0 | -4.60 | -4.60 | 2025-10-14 12:52:02
+outer gen 021 00 | score=-4.60 | 2025-10-14 12:49:39
+outer gen 021 01 | score=-4.39 | 2025-10-14 12:49:58
+outer gen 021 02 | score=-4.39 | 2025-10-14 12:50:19
+outer gen 021 03 | score=-4.11 | 2025-10-14 12:50:38
+outer gen 021 04 | score=-4.16 | 2025-10-14 12:51:00
+outer gen 021 05 | score=-4.25 | 2025-10-14 12:51:19
+outer gen 021 06 | score=-4.23 | 2025-10-14 12:51:43
+outer gen 021 07 | score=-4.60 | 2025-10-14 12:52:02
+outer gen 021 | fin, mu: -4.34, genmax -4.11 vs cmax -4.02 | 2025-10-14 12:52:02
+outer gen 021 took 162.55s (2m)
+outer gen 022 | fd=142 | starting 2025-10-14 12:52:02
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_21 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:22 op: 0 ig: 0 | -4.74 | -4.74 | 2025-10-14 12:52:25
+og:22 op: 1 ig: 0 | -4.23 | -4.23 | 2025-10-14 12:52:44
+og:22 op: 2 ig: 0 | -4.39 | -4.39 | 2025-10-14 12:53:04
+og:22 op: 3 ig: 0 | -4.31 | -4.31 | 2025-10-14 12:53:23
+og:22 op: 4 ig: 0 | -4.17 | -4.17 | 2025-10-14 12:53:44
+og:22 op: 5 ig: 0 | -4.69 | -4.69 | 2025-10-14 12:54:04
+og:22 op: 6 ig: 0 | -4.33 | -4.33 | 2025-10-14 12:54:25
+og:22 op: 7 ig: 0 | -4.35 | -4.35 | 2025-10-14 12:54:45
+outer gen 022 00 | score=-4.74 | 2025-10-14 12:52:25
+outer gen 022 01 | score=-4.23 | 2025-10-14 12:52:44
+outer gen 022 02 | score=-4.39 | 2025-10-14 12:53:04
+outer gen 022 03 | score=-4.31 | 2025-10-14 12:53:23
+outer gen 022 04 | score=-4.17 | 2025-10-14 12:53:44
+outer gen 022 05 | score=-4.69 | 2025-10-14 12:54:04
+outer gen 022 06 | score=-4.33 | 2025-10-14 12:54:25
+outer gen 022 07 | score=-4.35 | 2025-10-14 12:54:45
+outer gen 022 | fin, mu: -4.40, genmax -4.17 vs cmax -4.02 | 2025-10-14 12:54:45
+outer gen 022 took 162.91s (2m)
+outer gen 023 | fd=142 | starting 2025-10-14 12:54:45
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_21 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:23 op: 0 ig: 0 | -4.32 | -4.32 | 2025-10-14 12:55:10
+og:23 op: 1 ig: 0 | -4.45 | -4.45 | 2025-10-14 12:55:28
+og:23 op: 2 ig: 0 | -5.14 | -5.14 | 2025-10-14 12:55:47
+og:23 op: 3 ig: 0 | -4.18 | -4.18 | 2025-10-14 12:56:09
+og:23 op: 4 ig: 0 | -4.04 | -4.04 | 2025-10-14 12:56:28
+og:23 op: 5 ig: 0 | -4.51 | -4.51 | 2025-10-14 12:56:54
+og:23 op: 6 ig: 0 | -4.80 | -4.80 | 2025-10-14 12:57:16
+og:23 op: 7 ig: 0 | -4.22 | -4.22 | 2025-10-14 12:57:36
+outer gen 023 00 | score=-4.32 | 2025-10-14 12:55:10
+outer gen 023 01 | score=-4.45 | 2025-10-14 12:55:28
+outer gen 023 02 | score=-5.14 | 2025-10-14 12:55:47
+outer gen 023 03 | score=-4.18 | 2025-10-14 12:56:09
+outer gen 023 04 | score=-4.04 | 2025-10-14 12:56:28
+outer gen 023 05 | score=-4.51 | 2025-10-14 12:56:54
+outer gen 023 06 | score=-4.80 | 2025-10-14 12:57:16
+outer gen 023 07 | score=-4.22 | 2025-10-14 12:57:36
+outer gen 023 | fin, mu: -4.46, genmax -4.04 vs cmax -4.02 | 2025-10-14 12:57:36
+outer gen 023 took 170.95s (2m)
+outer gen 024 | fd=142 | starting 2025-10-14 12:57:36
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_22 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:24 op: 0 ig: 0 | -4.12 | -4.12 | 2025-10-14 12:57:57
+og:24 op: 1 ig: 0 | -4.45 | -4.45 | 2025-10-14 12:58:18
+og:24 op: 2 ig: 0 | -4.24 | -4.24 | 2025-10-14 12:58:40
+og:24 op: 3 ig: 0 | -4.16 | -4.16 | 2025-10-14 12:59:02
+og:24 op: 4 ig: 0 | -4.43 | -4.43 | 2025-10-14 12:59:22
+og:24 op: 5 ig: 0 | -4.36 | -4.36 | 2025-10-14 12:59:45
+og:24 op: 6 ig: 0 | -4.30 | -4.30 | 2025-10-14 13:00:06
+og:24 op: 7 ig: 0 | -4.68 | -4.68 | 2025-10-14 13:00:30
+outer gen 024 00 | score=-4.12 | 2025-10-14 12:57:57
+outer gen 024 01 | score=-4.45 | 2025-10-14 12:58:18
+outer gen 024 02 | score=-4.24 | 2025-10-14 12:58:40
+outer gen 024 03 | score=-4.16 | 2025-10-14 12:59:02
+outer gen 024 04 | score=-4.43 | 2025-10-14 12:59:22
+outer gen 024 05 | score=-4.36 | 2025-10-14 12:59:45
+outer gen 024 06 | score=-4.30 | 2025-10-14 13:00:06
+outer gen 024 07 | score=-4.68 | 2025-10-14 13:00:30
+outer gen 024 | fin, mu: -4.34, genmax -4.12 vs cmax -4.02 | 2025-10-14 13:00:30
+outer gen 024 took 174.35s (2m)
+outer gen 025 | fd=142 | starting 2025-10-14 13:00:30
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_22 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:25 op: 0 ig: 0 | -4.26 | -4.26 | 2025-10-14 13:00:51
+og:25 op: 1 ig: 0 | -4.25 | -4.25 | 2025-10-14 13:01:11
+og:25 op: 2 ig: 0 | -4.69 | -4.69 | 2025-10-14 13:01:32
+og:25 op: 3 ig: 0 | -4.16 | -4.16 | 2025-10-14 13:01:52
+og:25 op: 4 ig: 0 | -4.43 | -4.43 | 2025-10-14 13:02:14
+og:25 op: 5 ig: 0 | -4.44 | -4.44 | 2025-10-14 13:02:35
+og:25 op: 6 ig: 0 | -4.26 | -4.26 | 2025-10-14 13:02:56
+og:25 op: 7 ig: 0 | -4.42 | -4.42 | 2025-10-14 13:03:18
+outer gen 025 00 | score=-4.26 | 2025-10-14 13:00:51
+outer gen 025 01 | score=-4.25 | 2025-10-14 13:01:11
+outer gen 025 02 | score=-4.69 | 2025-10-14 13:01:32
+outer gen 025 03 | score=-4.16 | 2025-10-14 13:01:52
+outer gen 025 04 | score=-4.43 | 2025-10-14 13:02:14
+outer gen 025 05 | score=-4.44 | 2025-10-14 13:02:35
+outer gen 025 06 | score=-4.26 | 2025-10-14 13:02:56
+outer gen 025 07 | score=-4.42 | 2025-10-14 13:03:18
+outer gen 025 | fin, mu: -4.36, genmax -4.16 vs cmax -4.02 | 2025-10-14 13:03:18
+outer gen 025 took 167.41s (2m)
+outer gen 026 | fd=142 | starting 2025-10-14 13:03:18
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_23 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:26 op: 0 ig: 0 | -4.92 | -4.92 | 2025-10-14 13:03:38
+og:26 op: 1 ig: 0 | -4.34 | -4.34 | 2025-10-14 13:04:00
+og:26 op: 2 ig: 0 | -4.30 | -4.30 | 2025-10-14 13:04:22
+og:26 op: 3 ig: 0 | -4.47 | -4.47 | 2025-10-14 13:04:44
+og:26 op: 4 ig: 0 | -4.16 | -4.16 | 2025-10-14 13:05:05
+og:26 op: 5 ig: 0 | -4.48 | -4.48 | 2025-10-14 13:05:26
+og:26 op: 6 ig: 0 | -4.78 | -4.78 | 2025-10-14 13:05:47
+og:26 op: 7 ig: 0 | -4.63 | -4.63 | 2025-10-14 13:06:07
+outer gen 026 00 | score=-4.92 | 2025-10-14 13:03:38
+outer gen 026 01 | score=-4.34 | 2025-10-14 13:04:00
+outer gen 026 02 | score=-4.30 | 2025-10-14 13:04:22
+outer gen 026 03 | score=-4.47 | 2025-10-14 13:04:44
+outer gen 026 04 | score=-4.16 | 2025-10-14 13:05:05
+outer gen 026 05 | score=-4.48 | 2025-10-14 13:05:26
+outer gen 026 06 | score=-4.78 | 2025-10-14 13:05:47
+outer gen 026 07 | score=-4.63 | 2025-10-14 13:06:07
+outer gen 026 | fin, mu: -4.51, genmax -4.16 vs cmax -4.02 | 2025-10-14 13:06:08
+outer gen 026 took 169.96s (2m)
+outer gen 027 | fd=142 | starting 2025-10-14 13:06:08
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_23 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:27 op: 0 ig: 0 | -4.88 | -4.88 | 2025-10-14 13:06:29
+og:27 op: 1 ig: 0 | -4.38 | -4.38 | 2025-10-14 13:06:52
+og:27 op: 2 ig: 0 | -4.35 | -4.35 | 2025-10-14 13:07:14
+og:27 op: 3 ig: 0 | -4.19 | -4.19 | 2025-10-14 13:07:37
+og:27 op: 4 ig: 0 | -4.15 | -4.15 | 2025-10-14 13:07:58
+og:27 op: 5 ig: 0 | -4.31 | -4.31 | 2025-10-14 13:08:22
+og:27 op: 6 ig: 0 | -4.19 | -4.19 | 2025-10-14 13:08:44
+og:27 op: 7 ig: 0 | -4.48 | -4.48 | 2025-10-14 13:09:07
+outer gen 027 00 | score=-4.88 | 2025-10-14 13:06:29
+outer gen 027 01 | score=-4.38 | 2025-10-14 13:06:52
+outer gen 027 02 | score=-4.35 | 2025-10-14 13:07:14
+outer gen 027 03 | score=-4.19 | 2025-10-14 13:07:37
+outer gen 027 04 | score=-4.15 | 2025-10-14 13:07:58
+outer gen 027 05 | score=-4.31 | 2025-10-14 13:08:22
+outer gen 027 06 | score=-4.19 | 2025-10-14 13:08:44
+outer gen 027 07 | score=-4.48 | 2025-10-14 13:09:07
+outer gen 027 | fin, mu: -4.37, genmax -4.15 vs cmax -4.02 | 2025-10-14 13:09:07
+outer gen 027 took 179.28s (2m)
+outer gen 028 | fd=142 | starting 2025-10-14 13:09:07
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_24 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:28 op: 0 ig: 0 | -4.21 | -4.21 | 2025-10-14 13:09:32
+og:28 op: 1 ig: 0 | -4.48 | -4.48 | 2025-10-14 13:09:56
+og:28 op: 2 ig: 0 | -4.10 | -4.10 | 2025-10-14 13:10:20
+og:28 op: 3 ig: 0 | -4.41 | -4.41 | 2025-10-14 13:10:41
+og:28 op: 4 ig: 0 | -4.44 | -4.44 | 2025-10-14 13:11:05
+og:28 op: 5 ig: 0 | -4.69 | -4.69 | 2025-10-14 13:11:29
+og:28 op: 6 ig: 0 | -4.65 | -4.65 | 2025-10-14 13:11:55
+og:28 op: 7 ig: 0 | -4.31 | -4.31 | 2025-10-14 13:12:18
+outer gen 028 00 | score=-4.21 | 2025-10-14 13:09:32
+outer gen 028 01 | score=-4.48 | 2025-10-14 13:09:56
+outer gen 028 02 | score=-4.10 | 2025-10-14 13:10:20
+outer gen 028 03 | score=-4.41 | 2025-10-14 13:10:41
+outer gen 028 04 | score=-4.44 | 2025-10-14 13:11:05
+outer gen 028 05 | score=-4.69 | 2025-10-14 13:11:29
+outer gen 028 06 | score=-4.65 | 2025-10-14 13:11:55
+outer gen 028 07 | score=-4.31 | 2025-10-14 13:12:18
+outer gen 028 | fin, mu: -4.41, genmax -4.10 vs cmax -4.02 | 2025-10-14 13:12:18
+outer gen 028 took 190.74s (3m)
+outer gen 029 | fd=142 | starting 2025-10-14 13:12:18
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_24 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:29 op: 0 ig: 0 | -4.29 | -4.29 | 2025-10-14 13:12:44
+og:29 op: 1 ig: 0 | -4.24 | -4.24 | 2025-10-14 13:13:05
+og:29 op: 2 ig: 0 | -4.41 | -4.41 | 2025-10-14 13:13:31
+og:29 op: 3 ig: 0 | -4.21 | -4.21 | 2025-10-14 13:13:54
+og:29 op: 4 ig: 0 | -5.48 | -5.48 | 2025-10-14 13:14:16
+og:29 op: 5 ig: 0 | -4.39 | -4.39 | 2025-10-14 13:14:39
+og:29 op: 6 ig: 0 | -4.27 | -4.27 | 2025-10-14 13:15:01
+og:29 op: 7 ig: 0 | -4.39 | -4.39 | 2025-10-14 13:15:23
+outer gen 029 00 | score=-4.29 | 2025-10-14 13:12:44
+outer gen 029 01 | score=-4.24 | 2025-10-14 13:13:05
+outer gen 029 02 | score=-4.41 | 2025-10-14 13:13:31
+outer gen 029 03 | score=-4.21 | 2025-10-14 13:13:54
+outer gen 029 04 | score=-5.48 | 2025-10-14 13:14:16
+outer gen 029 05 | score=-4.39 | 2025-10-14 13:14:39
+outer gen 029 06 | score=-4.27 | 2025-10-14 13:15:01
+outer gen 029 07 | score=-4.39 | 2025-10-14 13:15:23
+outer gen 029 | fin, mu: -4.46, genmax -4.21 vs cmax -4.02 | 2025-10-14 13:15:23
+outer gen 029 took 185.26s (3m)
+outer gen 030 | fd=142 | starting 2025-10-14 13:15:23
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_25 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:30 op: 0 ig: 0 | -4.25 | -4.25 | 2025-10-14 13:15:46
+og:30 op: 1 ig: 0 | -4.57 | -4.57 | 2025-10-14 13:16:11
+og:30 op: 2 ig: 0 | -4.27 | -4.27 | 2025-10-14 13:16:36
+og:30 op: 3 ig: 0 | -4.48 | -4.48 | 2025-10-14 13:17:00
+og:30 op: 4 ig: 0 | -4.42 | -4.42 | 2025-10-14 13:17:27
+og:30 op: 5 ig: 0 | -4.38 | -4.38 | 2025-10-14 13:17:49
+og:30 op: 6 ig: 0 | -4.26 | -4.26 | 2025-10-14 13:18:13
+og:30 op: 7 ig: 0 | -4.80 | -4.80 | 2025-10-14 13:18:39
+outer gen 030 00 | score=-4.25 | 2025-10-14 13:15:46
+outer gen 030 01 | score=-4.57 | 2025-10-14 13:16:11
+outer gen 030 02 | score=-4.27 | 2025-10-14 13:16:36
+outer gen 030 03 | score=-4.48 | 2025-10-14 13:17:00
+outer gen 030 04 | score=-4.42 | 2025-10-14 13:17:27
+outer gen 030 05 | score=-4.38 | 2025-10-14 13:17:49
+outer gen 030 06 | score=-4.26 | 2025-10-14 13:18:13
+outer gen 030 07 | score=-4.80 | 2025-10-14 13:18:39
+outer gen 030 | fin, mu: -4.43, genmax -4.25 vs cmax -4.02 | 2025-10-14 13:18:39
+outer gen 030 took 196.19s (3m)
+outer gen 031 | fd=142 | starting 2025-10-14 13:18:39
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_25 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:31 op: 0 ig: 0 | -4.39 | -4.39 | 2025-10-14 13:19:03
+og:31 op: 1 ig: 0 | -4.36 | -4.36 | 2025-10-14 13:19:33
+og:31 op: 2 ig: 0 | -4.30 | -4.30 | 2025-10-14 13:19:57
+og:31 op: 3 ig: 0 | -4.43 | -4.43 | 2025-10-14 13:20:21
+og:31 op: 4 ig: 0 | -4.08 | -4.08 | 2025-10-14 13:20:46
+og:31 op: 5 ig: 0 | -4.15 | -4.15 | 2025-10-14 13:21:08
+og:31 op: 6 ig: 0 | -4.35 | -4.35 | 2025-10-14 13:21:32
+og:31 op: 7 ig: 0 | -4.15 | -4.15 | 2025-10-14 13:21:56
+outer gen 031 00 | score=-4.39 | 2025-10-14 13:19:03
+outer gen 031 01 | score=-4.36 | 2025-10-14 13:19:33
+outer gen 031 02 | score=-4.30 | 2025-10-14 13:19:57
+outer gen 031 03 | score=-4.43 | 2025-10-14 13:20:21
+outer gen 031 04 | score=-4.08 | 2025-10-14 13:20:46
+outer gen 031 05 | score=-4.15 | 2025-10-14 13:21:08
+outer gen 031 06 | score=-4.35 | 2025-10-14 13:21:32
+outer gen 031 07 | score=-4.15 | 2025-10-14 13:21:56
+outer gen 031 | fin, mu: -4.28, genmax -4.08 vs cmax -4.02 | 2025-10-14 13:21:56
+outer gen 031 took 197.10s (3m)
+outer gen 032 | fd=142 | starting 2025-10-14 13:21:56
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_26 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:32 op: 0 ig: 0 | -4.63 | -4.63 | 2025-10-14 13:22:24
+og:32 op: 1 ig: 0 | -4.15 | -4.15 | 2025-10-14 13:22:49
+og:32 op: 2 ig: 0 | -4.23 | -4.23 | 2025-10-14 13:23:15
+og:32 op: 3 ig: 0 | -4.28 | -4.28 | 2025-10-14 13:23:38
+og:32 op: 4 ig: 0 | -4.29 | -4.29 | 2025-10-14 13:24:02
+og:32 op: 5 ig: 0 | -4.32 | -4.32 | 2025-10-14 13:24:26
+og:32 op: 6 ig: 0 | -3.97 | -3.97 | 2025-10-14 13:24:54
+og:32 op: 7 ig: 0 | -4.11 | -4.11 | 2025-10-14 13:25:18
+outer gen 032 00 | score=-4.63 | 2025-10-14 13:22:24
+outer gen 032 01 | score=-4.15 | 2025-10-14 13:22:49
+outer gen 032 02 | score=-4.23 | 2025-10-14 13:23:15
+outer gen 032 03 | score=-4.28 | 2025-10-14 13:23:38
+outer gen 032 04 | score=-4.29 | 2025-10-14 13:24:02
+outer gen 032 05 | score=-4.32 | 2025-10-14 13:24:26
+outer gen 032 06 | score=-3.97 | 2025-10-14 13:24:54
+outer gen 032 07 | score=-4.11 | 2025-10-14 13:25:18
+outer gen 032 | fin, mu: -4.25, genmax -3.97 vs cmax -3.97 | 2025-10-14 13:25:18
+outer gen 032 took 201.49s (3m)
+outer gen 033 | fd=142 | starting 2025-10-14 13:25:18
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_26 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:33 op: 0 ig: 0 | -4.36 | -4.36 | 2025-10-14 13:25:45
+og:33 op: 1 ig: 0 | -4.47 | -4.47 | 2025-10-14 13:26:10
+og:33 op: 2 ig: 0 | -4.61 | -4.61 | 2025-10-14 13:26:33
+og:33 op: 3 ig: 0 | -4.47 | -4.47 | 2025-10-14 13:26:57
+og:33 op: 4 ig: 0 | -4.38 | -4.38 | 2025-10-14 13:27:22
+og:33 op: 5 ig: 0 | -4.45 | -4.45 | 2025-10-14 13:27:49
+og:33 op: 6 ig: 0 | -4.46 | -4.46 | 2025-10-14 13:28:14
+og:33 op: 7 ig: 0 | -4.87 | -4.87 | 2025-10-14 13:28:39
+outer gen 033 00 | score=-4.36 | 2025-10-14 13:25:45
+outer gen 033 01 | score=-4.47 | 2025-10-14 13:26:10
+outer gen 033 02 | score=-4.61 | 2025-10-14 13:26:33
+outer gen 033 03 | score=-4.47 | 2025-10-14 13:26:57
+outer gen 033 04 | score=-4.38 | 2025-10-14 13:27:22
+outer gen 033 05 | score=-4.45 | 2025-10-14 13:27:49
+outer gen 033 06 | score=-4.46 | 2025-10-14 13:28:14
+outer gen 033 07 | score=-4.87 | 2025-10-14 13:28:39
+outer gen 033 | fin, mu: -4.51, genmax -4.36 vs cmax -3.97 | 2025-10-14 13:28:39
+outer gen 033 took 201.18s (3m)
+outer gen 034 | fd=142 | starting 2025-10-14 13:28:39
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_27 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:34 op: 0 ig: 0 | -4.22 | -4.22 | 2025-10-14 13:29:04
+og:34 op: 1 ig: 0 | -4.78 | -4.78 | 2025-10-14 13:29:30
+og:34 op: 2 ig: 0 | -4.34 | -4.34 | 2025-10-14 13:29:55
+og:34 op: 3 ig: 0 | -4.35 | -4.35 | 2025-10-14 13:30:20
+og:34 op: 4 ig: 0 | -4.41 | -4.41 | 2025-10-14 13:30:47
+og:34 op: 5 ig: 0 | -4.46 | -4.46 | 2025-10-14 13:31:12
+og:34 op: 6 ig: 0 | -4.43 | -4.43 | 2025-10-14 13:31:35
+og:34 op: 7 ig: 0 | -4.17 | -4.17 | 2025-10-14 13:32:02
+outer gen 034 00 | score=-4.22 | 2025-10-14 13:29:04
+outer gen 034 01 | score=-4.78 | 2025-10-14 13:29:30
+outer gen 034 02 | score=-4.34 | 2025-10-14 13:29:55
+outer gen 034 03 | score=-4.35 | 2025-10-14 13:30:20
+outer gen 034 04 | score=-4.41 | 2025-10-14 13:30:47
+outer gen 034 05 | score=-4.46 | 2025-10-14 13:31:12
+outer gen 034 06 | score=-4.43 | 2025-10-14 13:31:35
+outer gen 034 07 | score=-4.17 | 2025-10-14 13:32:03
+outer gen 034 | fin, mu: -4.40, genmax -4.17 vs cmax -3.97 | 2025-10-14 13:32:03
+outer gen 034 took 203.77s (3m)
+outer gen 035 | fd=142 | starting 2025-10-14 13:32:03
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_27 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:35 op: 0 ig: 0 | -4.61 | -4.61 | 2025-10-14 13:32:28
+og:35 op: 1 ig: 0 | -4.36 | -4.36 | 2025-10-14 13:32:54
+og:35 op: 2 ig: 0 | -4.28 | -4.28 | 2025-10-14 13:33:20
+og:35 op: 3 ig: 0 | -4.90 | -4.90 | 2025-10-14 13:33:47
+og:35 op: 4 ig: 0 | -4.15 | -4.15 | 2025-10-14 13:34:13
+og:35 op: 5 ig: 0 | -4.56 | -4.56 | 2025-10-14 13:34:44
+og:35 op: 6 ig: 0 | -4.21 | -4.21 | 2025-10-14 13:35:08
+og:35 op: 7 ig: 0 | -4.37 | -4.37 | 2025-10-14 13:35:33
+outer gen 035 00 | score=-4.61 | 2025-10-14 13:32:28
+outer gen 035 01 | score=-4.36 | 2025-10-14 13:32:54
+outer gen 035 02 | score=-4.28 | 2025-10-14 13:33:20
+outer gen 035 03 | score=-4.90 | 2025-10-14 13:33:47
+outer gen 035 04 | score=-4.15 | 2025-10-14 13:34:13
+outer gen 035 05 | score=-4.56 | 2025-10-14 13:34:44
+outer gen 035 06 | score=-4.21 | 2025-10-14 13:35:08
+outer gen 035 07 | score=-4.37 | 2025-10-14 13:35:33
+outer gen 035 | fin, mu: -4.43, genmax -4.15 vs cmax -3.97 | 2025-10-14 13:35:33
+outer gen 035 took 210.35s (3m)
+outer gen 036 | fd=142 | starting 2025-10-14 13:35:33
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_28 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:36 op: 0 ig: 0 | -4.47 | -4.47 | 2025-10-14 13:35:59
+og:36 op: 1 ig: 0 | -4.26 | -4.26 | 2025-10-14 13:36:26
+og:36 op: 2 ig: 0 | -4.23 | -4.23 | 2025-10-14 13:36:51
+og:36 op: 3 ig: 0 | -3.97 | -3.97 | 2025-10-14 13:37:17
+og:36 op: 4 ig: 0 | -4.47 | -4.47 | 2025-10-14 13:37:45
+og:36 op: 5 ig: 0 | -4.37 | -4.37 | 2025-10-14 13:38:10
+og:36 op: 6 ig: 0 | -4.01 | -4.01 | 2025-10-14 13:38:36
+og:36 op: 7 ig: 0 | -4.15 | -4.15 | 2025-10-14 13:39:03
+outer gen 036 00 | score=-4.47 | 2025-10-14 13:35:59
+outer gen 036 01 | score=-4.26 | 2025-10-14 13:36:26
+outer gen 036 02 | score=-4.23 | 2025-10-14 13:36:51
+outer gen 036 03 | score=-3.97 | 2025-10-14 13:37:17
+outer gen 036 04 | score=-4.47 | 2025-10-14 13:37:45
+outer gen 036 05 | score=-4.37 | 2025-10-14 13:38:10
+outer gen 036 06 | score=-4.01 | 2025-10-14 13:38:36
+outer gen 036 07 | score=-4.15 | 2025-10-14 13:39:03
+outer gen 036 | fin, mu: -4.24, genmax -3.97 vs cmax -3.97 | 2025-10-14 13:39:03
+outer gen 036 took 210.02s (3m)
+outer gen 037 | fd=142 | starting 2025-10-14 13:39:03
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_28 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:37 op: 0 ig: 0 | -4.54 | -4.54 | 2025-10-14 13:39:31
+og:37 op: 1 ig: 0 | -4.54 | -4.54 | 2025-10-14 13:40:02
+og:37 op: 2 ig: 0 | -5.20 | -5.20 | 2025-10-14 13:40:29
+og:37 op: 3 ig: 0 | -4.67 | -4.67 | 2025-10-14 13:40:55
+og:37 op: 4 ig: 0 | -4.37 | -4.37 | 2025-10-14 13:41:18
+og:37 op: 5 ig: 0 | -4.41 | -4.41 | 2025-10-14 13:41:46
+og:37 op: 6 ig: 0 | -4.20 | -4.20 | 2025-10-14 13:42:14
+og:37 op: 7 ig: 0 | -4.38 | -4.38 | 2025-10-14 13:42:40
+outer gen 037 00 | score=-4.54 | 2025-10-14 13:39:31
+outer gen 037 01 | score=-4.54 | 2025-10-14 13:40:02
+outer gen 037 02 | score=-5.20 | 2025-10-14 13:40:29
+outer gen 037 03 | score=-4.67 | 2025-10-14 13:40:55
+outer gen 037 04 | score=-4.37 | 2025-10-14 13:41:18
+outer gen 037 05 | score=-4.41 | 2025-10-14 13:41:46
+outer gen 037 06 | score=-4.20 | 2025-10-14 13:42:14
+outer gen 037 07 | score=-4.38 | 2025-10-14 13:42:40
+outer gen 037 | fin, mu: -4.54, genmax -4.20 vs cmax -3.97 | 2025-10-14 13:42:40
+outer gen 037 took 216.66s (3m)
+outer gen 038 | fd=142 | starting 2025-10-14 13:42:40
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_29 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:38 op: 0 ig: 0 | -4.35 | -4.35 | 2025-10-14 13:43:07
+og:38 op: 1 ig: 0 | -4.13 | -4.13 | 2025-10-14 13:43:35
+og:38 op: 2 ig: 0 | -4.84 | -4.84 | 2025-10-14 13:44:07
+og:38 op: 3 ig: 0 | -4.16 | -4.16 | 2025-10-14 13:44:34
+og:38 op: 4 ig: 0 | -4.32 | -4.32 | 2025-10-14 13:45:03
+og:38 op: 5 ig: 0 | -4.50 | -4.50 | 2025-10-14 13:45:30
+og:38 op: 6 ig: 0 | -4.34 | -4.34 | 2025-10-14 13:45:59
+og:38 op: 7 ig: 0 | -4.46 | -4.46 | 2025-10-14 13:46:26
+outer gen 038 00 | score=-4.35 | 2025-10-14 13:43:07
+outer gen 038 01 | score=-4.13 | 2025-10-14 13:43:35
+outer gen 038 02 | score=-4.84 | 2025-10-14 13:44:07
+outer gen 038 03 | score=-4.16 | 2025-10-14 13:44:34
+outer gen 038 04 | score=-4.32 | 2025-10-14 13:45:03
+outer gen 038 05 | score=-4.50 | 2025-10-14 13:45:30
+outer gen 038 06 | score=-4.34 | 2025-10-14 13:45:59
+outer gen 038 07 | score=-4.46 | 2025-10-14 13:46:26
+outer gen 038 | fin, mu: -4.39, genmax -4.13 vs cmax -3.97 | 2025-10-14 13:46:26
+outer gen 038 took 226.01s (3m)
+outer gen 039 | fd=142 | starting 2025-10-14 13:46:26
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_29 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:39 op: 0 ig: 0 | -4.39 | -4.39 | 2025-10-14 13:46:53
+og:39 op: 1 ig: 0 | -4.45 | -4.45 | 2025-10-14 13:47:19
+og:39 op: 2 ig: 0 | -3.90 | -3.90 | 2025-10-14 13:47:46
+og:39 op: 3 ig: 0 | -4.50 | -4.50 | 2025-10-14 13:48:19
+og:39 op: 4 ig: 0 | -4.34 | -4.34 | 2025-10-14 13:48:44
+og:39 op: 5 ig: 0 | -4.61 | -4.61 | 2025-10-14 13:49:09
+og:39 op: 6 ig: 0 | -4.56 | -4.56 | 2025-10-14 13:49:37
+og:39 op: 7 ig: 0 | -4.19 | -4.19 | 2025-10-14 13:50:05
+outer gen 039 00 | score=-4.39 | 2025-10-14 13:46:53
+outer gen 039 01 | score=-4.45 | 2025-10-14 13:47:19
+outer gen 039 02 | score=-3.90 | 2025-10-14 13:47:46
+outer gen 039 03 | score=-4.50 | 2025-10-14 13:48:19
+outer gen 039 04 | score=-4.34 | 2025-10-14 13:48:44
+outer gen 039 05 | score=-4.61 | 2025-10-14 13:49:09
+outer gen 039 06 | score=-4.56 | 2025-10-14 13:49:37
+outer gen 039 07 | score=-4.19 | 2025-10-14 13:50:05
+outer gen 039 | fin, mu: -4.37, genmax -3.90 vs cmax -3.90 | 2025-10-14 13:50:05
+outer gen 039 took 219.59s (3m)
+outer gen 040 | fd=142 | starting 2025-10-14 13:50:05
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:40 op: 0 ig: 0 | -4.22 | -4.22 | 2025-10-14 13:50:33
+og:40 op: 1 ig: 0 | -4.41 | -4.41 | 2025-10-14 13:51:03
+og:40 op: 2 ig: 0 | -4.14 | -4.14 | 2025-10-14 13:51:29
+og:40 op: 3 ig: 0 | -4.40 | -4.40 | 2025-10-14 13:51:57
+og:40 op: 4 ig: 0 | -4.27 | -4.27 | 2025-10-14 13:52:24
+og:40 op: 5 ig: 0 | -4.27 | -4.27 | 2025-10-14 13:52:53
+og:40 op: 6 ig: 0 | -4.46 | -4.46 | 2025-10-14 13:53:19
+og:40 op: 7 ig: 0 | -4.46 | -4.46 | 2025-10-14 13:53:47
+outer gen 040 00 | score=-4.22 | 2025-10-14 13:50:33
+outer gen 040 01 | score=-4.41 | 2025-10-14 13:51:03
+outer gen 040 02 | score=-4.14 | 2025-10-14 13:51:29
+outer gen 040 03 | score=-4.40 | 2025-10-14 13:51:57
+outer gen 040 04 | score=-4.27 | 2025-10-14 13:52:24
+outer gen 040 05 | score=-4.27 | 2025-10-14 13:52:53
+outer gen 040 06 | score=-4.46 | 2025-10-14 13:53:19
+outer gen 040 07 | score=-4.46 | 2025-10-14 13:53:47
+outer gen 040 | fin, mu: -4.33, genmax -4.14 vs cmax -3.90 | 2025-10-14 13:53:47
+outer gen 040 took 221.44s (3m)
+outer gen 041 | fd=142 | starting 2025-10-14 13:53:47
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:41 op: 0 ig: 0 | -4.18 | -4.18 | 2025-10-14 13:54:16
+og:41 op: 1 ig: 0 | -4.22 | -4.22 | 2025-10-14 13:54:42
+og:41 op: 2 ig: 0 | -4.13 | -4.13 | 2025-10-14 13:55:10
+og:41 op: 3 ig: 0 | -4.23 | -4.23 | 2025-10-14 13:55:38
+og:41 op: 4 ig: 0 | -4.07 | -4.07 | 2025-10-14 13:56:07
+og:41 op: 5 ig: 0 | -4.39 | -4.39 | 2025-10-14 13:56:43
+og:41 op: 6 ig: 0 | -4.44 | -4.44 | 2025-10-14 13:57:10
+og:41 op: 7 ig: 0 | -4.25 | -4.25 | 2025-10-14 13:57:37
+outer gen 041 00 | score=-4.18 | 2025-10-14 13:54:16
+outer gen 041 01 | score=-4.22 | 2025-10-14 13:54:42
+outer gen 041 02 | score=-4.13 | 2025-10-14 13:55:10
+outer gen 041 03 | score=-4.23 | 2025-10-14 13:55:38
+outer gen 041 04 | score=-4.07 | 2025-10-14 13:56:07
+outer gen 041 05 | score=-4.39 | 2025-10-14 13:56:43
+outer gen 041 06 | score=-4.44 | 2025-10-14 13:57:10
+outer gen 041 07 | score=-4.25 | 2025-10-14 13:57:37
+outer gen 041 | fin, mu: -4.24, genmax -4.07 vs cmax -3.90 | 2025-10-14 13:57:37
+outer gen 041 took 230.17s (3m)
+outer gen 042 | fd=142 | starting 2025-10-14 13:57:37
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:42 op: 0 ig: 0 | -4.04 | -4.04 | 2025-10-14 13:58:18
+og:42 op: 1 ig: 0 | -4.29 | -4.29 | 2025-10-14 13:58:46
+og:42 op: 2 ig: 0 | -3.79 | -3.79 | 2025-10-14 13:59:13
+og:42 op: 3 ig: 0 | -4.50 | -4.50 | 2025-10-14 13:59:49
+og:42 op: 4 ig: 0 | -4.23 | -4.23 | 2025-10-14 14:00:19
+og:42 op: 5 ig: 0 | -4.30 | -4.30 | 2025-10-14 14:00:46
+og:42 op: 6 ig: 0 | -3.85 | -3.85 | 2025-10-14 14:01:16
+og:42 op: 7 ig: 0 | -4.27 | -4.27 | 2025-10-14 14:01:47
+outer gen 042 00 | score=-4.04 | 2025-10-14 13:58:18
+outer gen 042 01 | score=-4.29 | 2025-10-14 13:58:46
+outer gen 042 02 | score=-3.79 | 2025-10-14 13:59:13
+outer gen 042 03 | score=-4.50 | 2025-10-14 13:59:49
+outer gen 042 04 | score=-4.23 | 2025-10-14 14:00:19
+outer gen 042 05 | score=-4.30 | 2025-10-14 14:00:46
+outer gen 042 06 | score=-3.85 | 2025-10-14 14:01:16
+outer gen 042 07 | score=-4.27 | 2025-10-14 14:01:47
+outer gen 042 | fin, mu: -4.16, genmax -3.79 vs cmax -3.79 | 2025-10-14 14:01:47
+outer gen 042 took 250.18s (4m)
+outer gen 043 | fd=142 | starting 2025-10-14 14:01:47
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:43 op: 0 ig: 0 | -4.95 | -4.95 | 2025-10-14 14:02:16
+og:43 op: 1 ig: 0 | -4.67 | -4.67 | 2025-10-14 14:02:44
+og:43 op: 2 ig: 0 | -4.58 | -4.58 | 2025-10-14 14:03:19
+og:43 op: 3 ig: 0 | -4.21 | -4.21 | 2025-10-14 14:03:49
+og:43 op: 4 ig: 0 | -4.27 | -4.27 | 2025-10-14 14:04:17
+og:43 op: 5 ig: 0 | -4.34 | -4.34 | 2025-10-14 14:04:46
+og:43 op: 6 ig: 0 | -4.46 | -4.46 | 2025-10-14 14:05:13
+og:43 op: 7 ig: 0 | -4.21 | -4.21 | 2025-10-14 14:05:42
+outer gen 043 00 | score=-4.95 | 2025-10-14 14:02:16
+outer gen 043 01 | score=-4.67 | 2025-10-14 14:02:44
+outer gen 043 02 | score=-4.58 | 2025-10-14 14:03:19
+outer gen 043 03 | score=-4.21 | 2025-10-14 14:03:49
+outer gen 043 04 | score=-4.27 | 2025-10-14 14:04:17
+outer gen 043 05 | score=-4.34 | 2025-10-14 14:04:46
+outer gen 043 06 | score=-4.46 | 2025-10-14 14:05:13
+outer gen 043 07 | score=-4.21 | 2025-10-14 14:05:42
+outer gen 043 | fin, mu: -4.46, genmax -4.21 vs cmax -3.79 | 2025-10-14 14:05:43
+outer gen 043 took 235.53s (3m)
+outer gen 044 | fd=142 | starting 2025-10-14 14:05:43
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:44 op: 0 ig: 0 | -4.11 | -4.11 | 2025-10-14 14:06:09
+og:44 op: 1 ig: 0 | -4.74 | -4.74 | 2025-10-14 14:06:41
+og:44 op: 2 ig: 0 | -4.41 | -4.41 | 2025-10-14 14:07:08
+og:44 op: 3 ig: 0 | -4.16 | -4.16 | 2025-10-14 14:07:36
+og:44 op: 4 ig: 0 | -4.78 | -4.78 | 2025-10-14 14:08:05
+og:44 op: 5 ig: 0 | -4.11 | -4.11 | 2025-10-14 14:08:33
+og:44 op: 6 ig: 0 | -4.31 | -4.31 | 2025-10-14 14:09:02
+og:44 op: 7 ig: 0 | -4.20 | -4.20 | 2025-10-14 14:09:31
+outer gen 044 00 | score=-4.11 | 2025-10-14 14:06:09
+outer gen 044 01 | score=-4.74 | 2025-10-14 14:06:41
+outer gen 044 02 | score=-4.41 | 2025-10-14 14:07:08
+outer gen 044 03 | score=-4.16 | 2025-10-14 14:07:36
+outer gen 044 04 | score=-4.78 | 2025-10-14 14:08:05
+outer gen 044 05 | score=-4.11 | 2025-10-14 14:08:33
+outer gen 044 06 | score=-4.31 | 2025-10-14 14:09:02
+outer gen 044 07 | score=-4.20 | 2025-10-14 14:09:31
+outer gen 044 | fin, mu: -4.35, genmax -4.11 vs cmax -3.79 | 2025-10-14 14:09:31
+outer gen 044 took 228.45s (3m)
+outer gen 045 | fd=142 | starting 2025-10-14 14:09:31
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:45 op: 0 ig: 0 | -4.07 | -4.07 | 2025-10-14 14:09:59
+og:45 op: 1 ig: 0 | -4.02 | -4.02 | 2025-10-14 14:10:31
+og:45 op: 2 ig: 0 | -4.18 | -4.18 | 2025-10-14 14:11:00
+og:45 op: 3 ig: 0 | -4.21 | -4.21 | 2025-10-14 14:11:28
+og:45 op: 4 ig: 0 | -4.51 | -4.51 | 2025-10-14 14:11:55
+og:45 op: 5 ig: 0 | -4.30 | -4.30 | 2025-10-14 14:12:24
+og:45 op: 6 ig: 0 | -4.26 | -4.26 | 2025-10-14 14:12:53
+og:45 op: 7 ig: 0 | -3.88 | -3.88 | 2025-10-14 14:13:23
+outer gen 045 00 | score=-4.07 | 2025-10-14 14:09:59
+outer gen 045 01 | score=-4.02 | 2025-10-14 14:10:31
+outer gen 045 02 | score=-4.18 | 2025-10-14 14:11:00
+outer gen 045 03 | score=-4.21 | 2025-10-14 14:11:28
+outer gen 045 04 | score=-4.51 | 2025-10-14 14:11:55
+outer gen 045 05 | score=-4.30 | 2025-10-14 14:12:24
+outer gen 045 06 | score=-4.26 | 2025-10-14 14:12:53
+outer gen 045 07 | score=-3.88 | 2025-10-14 14:13:23
+outer gen 045 | fin, mu: -4.18, genmax -3.88 vs cmax -3.79 | 2025-10-14 14:13:23
+outer gen 045 took 232.09s (3m)
+outer gen 046 | fd=142 | starting 2025-10-14 14:13:23
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:46 op: 0 ig: 0 | -4.31 | -4.31 | 2025-10-14 14:13:50
+og:46 op: 1 ig: 0 | -4.46 | -4.46 | 2025-10-14 14:14:17
+og:46 op: 2 ig: 0 | -4.41 | -4.41 | 2025-10-14 14:14:46
+og:46 op: 3 ig: 0 | -4.21 | -4.21 | 2025-10-14 14:15:14
+og:46 op: 4 ig: 0 | -4.22 | -4.22 | 2025-10-14 14:15:43
+og:46 op: 5 ig: 0 | -4.40 | -4.40 | 2025-10-14 14:16:14
+og:46 op: 6 ig: 0 | -4.19 | -4.19 | 2025-10-14 14:16:42
+og:46 op: 7 ig: 0 | -4.31 | -4.31 | 2025-10-14 14:17:09
+outer gen 046 00 | score=-4.31 | 2025-10-14 14:13:50
+outer gen 046 01 | score=-4.46 | 2025-10-14 14:14:17
+outer gen 046 02 | score=-4.41 | 2025-10-14 14:14:46
+outer gen 046 03 | score=-4.21 | 2025-10-14 14:15:14
+outer gen 046 04 | score=-4.22 | 2025-10-14 14:15:43
+outer gen 046 05 | score=-4.40 | 2025-10-14 14:16:14
+outer gen 046 06 | score=-4.19 | 2025-10-14 14:16:42
+outer gen 046 07 | score=-4.31 | 2025-10-14 14:17:09
+outer gen 046 | fin, mu: -4.31, genmax -4.19 vs cmax -3.79 | 2025-10-14 14:17:09
+outer gen 046 took 226.20s (3m)
+outer gen 047 | fd=142 | starting 2025-10-14 14:17:09
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:47 op: 0 ig: 0 | -4.36 | -4.36 | 2025-10-14 14:17:37
+og:47 op: 1 ig: 0 | -4.22 | -4.22 | 2025-10-14 14:18:06
+og:47 op: 2 ig: 0 | -4.18 | -4.18 | 2025-10-14 14:18:34
+og:47 op: 3 ig: 0 | -4.15 | -4.15 | 2025-10-14 14:19:04
+og:47 op: 4 ig: 0 | -4.28 | -4.28 | 2025-10-14 14:19:33
+og:47 op: 5 ig: 0 | -4.65 | -4.65 | 2025-10-14 14:20:01
+og:47 op: 6 ig: 0 | -4.50 | -4.50 | 2025-10-14 14:20:30
+og:47 op: 7 ig: 0 | -4.37 | -4.37 | 2025-10-14 14:21:00
+outer gen 047 00 | score=-4.36 | 2025-10-14 14:17:37
+outer gen 047 01 | score=-4.22 | 2025-10-14 14:18:06
+outer gen 047 02 | score=-4.18 | 2025-10-14 14:18:34
+outer gen 047 03 | score=-4.15 | 2025-10-14 14:19:04
+outer gen 047 04 | score=-4.28 | 2025-10-14 14:19:33
+outer gen 047 05 | score=-4.65 | 2025-10-14 14:20:01
+outer gen 047 06 | score=-4.50 | 2025-10-14 14:20:30
+outer gen 047 07 | score=-4.37 | 2025-10-14 14:21:00
+outer gen 047 | fin, mu: -4.34, genmax -4.15 vs cmax -3.79 | 2025-10-14 14:21:00
+outer gen 047 took 230.42s (3m)
+outer gen 048 | fd=142 | starting 2025-10-14 14:21:00
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:48 op: 0 ig: 0 | -4.15 | -4.15 | 2025-10-14 14:21:28
+og:48 op: 1 ig: 0 | -4.39 | -4.39 | 2025-10-14 14:21:57
+og:48 op: 2 ig: 0 | -4.17 | -4.17 | 2025-10-14 14:22:25
+og:48 op: 3 ig: 0 | -4.30 | -4.30 | 2025-10-14 14:22:55
+og:48 op: 4 ig: 0 | -4.31 | -4.31 | 2025-10-14 14:23:25
+og:48 op: 5 ig: 0 | -4.07 | -4.07 | 2025-10-14 14:23:53
+og:48 op: 6 ig: 0 | -4.43 | -4.43 | 2025-10-14 14:24:21
+og:48 op: 7 ig: 0 | -4.26 | -4.26 | 2025-10-14 14:24:49
+outer gen 048 00 | score=-4.15 | 2025-10-14 14:21:28
+outer gen 048 01 | score=-4.39 | 2025-10-14 14:21:57
+outer gen 048 02 | score=-4.17 | 2025-10-14 14:22:25
+outer gen 048 03 | score=-4.30 | 2025-10-14 14:22:55
+outer gen 048 04 | score=-4.31 | 2025-10-14 14:23:25
+outer gen 048 05 | score=-4.07 | 2025-10-14 14:23:53
+outer gen 048 06 | score=-4.43 | 2025-10-14 14:24:21
+outer gen 048 07 | score=-4.26 | 2025-10-14 14:24:49
+outer gen 048 | fin, mu: -4.26, genmax -4.07 vs cmax -3.79 | 2025-10-14 14:24:49
+outer gen 048 took 229.57s (3m)
+outer gen 049 | fd=142 | starting 2025-10-14 14:24:49
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:49 op: 0 ig: 0 | -5.03 | -5.03 | 2025-10-14 14:25:21
+og:49 op: 1 ig: 0 | -4.37 | -4.37 | 2025-10-14 14:25:57
+og:49 op: 2 ig: 0 | -4.23 | -4.23 | 2025-10-14 14:26:22
+og:49 op: 3 ig: 0 | -4.16 | -4.16 | 2025-10-14 14:26:53
+og:49 op: 4 ig: 0 | -4.31 | -4.31 | 2025-10-14 14:27:20
+og:49 op: 5 ig: 0 | -4.44 | -4.44 | 2025-10-14 14:27:50
+og:49 op: 6 ig: 0 | -4.13 | -4.13 | 2025-10-14 14:28:19
+og:49 op: 7 ig: 0 | -4.23 | -4.23 | 2025-10-14 14:28:46
+outer gen 049 00 | score=-5.03 | 2025-10-14 14:25:21
+outer gen 049 01 | score=-4.37 | 2025-10-14 14:25:57
+outer gen 049 02 | score=-4.23 | 2025-10-14 14:26:22
+outer gen 049 03 | score=-4.16 | 2025-10-14 14:26:53
+outer gen 049 04 | score=-4.31 | 2025-10-14 14:27:20
+outer gen 049 05 | score=-4.44 | 2025-10-14 14:27:50
+outer gen 049 06 | score=-4.13 | 2025-10-14 14:28:19
+outer gen 049 07 | score=-4.23 | 2025-10-14 14:28:46
+outer gen 049 | fin, mu: -4.36, genmax -4.13 vs cmax -3.79 | 2025-10-14 14:28:46
+outer gen 049 took 236.42s (3m)
+outer gen 050 | fd=142 | starting 2025-10-14 14:28:46
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:50 op: 0 ig: 0 | -4.34 | -4.34 | 2025-10-14 14:29:14
+og:50 op: 1 ig: 0 | -4.58 | -4.58 | 2025-10-14 14:29:43
+og:50 op: 2 ig: 0 | -4.47 | -4.47 | 2025-10-14 14:30:17
+og:50 op: 3 ig: 0 | -4.36 | -4.36 | 2025-10-14 14:30:44
+og:50 op: 4 ig: 0 | -4.03 | -4.03 | 2025-10-14 14:31:11
+og:50 op: 5 ig: 0 | -4.25 | -4.25 | 2025-10-14 14:31:40
+og:50 op: 6 ig: 0 | -4.49 | -4.49 | 2025-10-14 14:32:07
+og:50 op: 7 ig: 0 | -4.26 | -4.26 | 2025-10-14 14:32:37
+outer gen 050 00 | score=-4.34 | 2025-10-14 14:29:14
+outer gen 050 01 | score=-4.58 | 2025-10-14 14:29:43
+outer gen 050 02 | score=-4.47 | 2025-10-14 14:30:17
+outer gen 050 03 | score=-4.36 | 2025-10-14 14:30:44
+outer gen 050 04 | score=-4.03 | 2025-10-14 14:31:11
+outer gen 050 05 | score=-4.25 | 2025-10-14 14:31:40
+outer gen 050 06 | score=-4.49 | 2025-10-14 14:32:07
+outer gen 050 07 | score=-4.26 | 2025-10-14 14:32:37
+outer gen 050 | fin, mu: -4.35, genmax -4.03 vs cmax -3.79 | 2025-10-14 14:32:37
+outer gen 050 took 231.64s (3m)
+outer gen 051 | fd=142 | starting 2025-10-14 14:32:37
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:51 op: 0 ig: 0 | -4.35 | -4.35 | 2025-10-14 14:33:09
+og:51 op: 1 ig: 0 | -4.51 | -4.51 | 2025-10-14 14:33:37
+og:51 op: 2 ig: 0 | -4.40 | -4.40 | 2025-10-14 14:34:05
+og:51 op: 3 ig: 0 | -4.47 | -4.47 | 2025-10-14 14:34:38
+og:51 op: 4 ig: 0 | -4.14 | -4.14 | 2025-10-14 14:35:05
+og:51 op: 5 ig: 0 | -4.09 | -4.09 | 2025-10-14 14:35:36
+og:51 op: 6 ig: 0 | -4.22 | -4.22 | 2025-10-14 14:36:04
+og:51 op: 7 ig: 0 | -4.19 | -4.19 | 2025-10-14 14:36:35
+outer gen 051 00 | score=-4.35 | 2025-10-14 14:33:09
+outer gen 051 01 | score=-4.51 | 2025-10-14 14:33:37
+outer gen 051 02 | score=-4.40 | 2025-10-14 14:34:05
+outer gen 051 03 | score=-4.47 | 2025-10-14 14:34:38
+outer gen 051 04 | score=-4.14 | 2025-10-14 14:35:05
+outer gen 051 05 | score=-4.09 | 2025-10-14 14:35:36
+outer gen 051 06 | score=-4.22 | 2025-10-14 14:36:04
+outer gen 051 07 | score=-4.19 | 2025-10-14 14:36:35
+outer gen 051 | fin, mu: -4.30, genmax -4.09 vs cmax -3.79 | 2025-10-14 14:36:35
+outer gen 051 took 237.85s (3m)
+outer gen 052 | fd=142 | starting 2025-10-14 14:36:35
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:52 op: 0 ig: 0 | -4.32 | -4.32 | 2025-10-14 14:37:03
+og:52 op: 1 ig: 0 | -5.07 | -5.07 | 2025-10-14 14:37:30
+og:52 op: 2 ig: 0 | -4.40 | -4.40 | 2025-10-14 14:37:59
+og:52 op: 3 ig: 0 | -3.90 | -3.90 | 2025-10-14 14:38:28
+og:52 op: 4 ig: 0 | -4.11 | -4.11 | 2025-10-14 14:38:57
+og:52 op: 5 ig: 0 | -4.20 | -4.20 | 2025-10-14 14:39:22
+og:52 op: 6 ig: 0 | -4.69 | -4.69 | 2025-10-14 14:39:51
+og:52 op: 7 ig: 0 | -4.35 | -4.35 | 2025-10-14 14:40:20
+outer gen 052 00 | score=-4.32 | 2025-10-14 14:37:03
+outer gen 052 01 | score=-5.07 | 2025-10-14 14:37:30
+outer gen 052 02 | score=-4.40 | 2025-10-14 14:37:59
+outer gen 052 03 | score=-3.90 | 2025-10-14 14:38:28
+outer gen 052 04 | score=-4.11 | 2025-10-14 14:38:57
+outer gen 052 05 | score=-4.20 | 2025-10-14 14:39:22
+outer gen 052 06 | score=-4.69 | 2025-10-14 14:39:51
+outer gen 052 07 | score=-4.35 | 2025-10-14 14:40:20
+outer gen 052 | fin, mu: -4.38, genmax -3.90 vs cmax -3.79 | 2025-10-14 14:40:20
+outer gen 052 took 225.13s (3m)
+outer gen 053 | fd=142 | starting 2025-10-14 14:40:20
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:53 op: 0 ig: 0 | -4.44 | -4.44 | 2025-10-14 14:40:48
+og:53 op: 1 ig: 0 | -4.28 | -4.28 | 2025-10-14 14:41:14
+og:53 op: 2 ig: 0 | -4.89 | -4.89 | 2025-10-14 14:41:42
+og:53 op: 3 ig: 0 | -4.35 | -4.35 | 2025-10-14 14:42:11
+og:53 op: 4 ig: 0 | -4.11 | -4.11 | 2025-10-14 14:42:41
+og:53 op: 5 ig: 0 | -4.70 | -4.70 | 2025-10-14 14:43:09
+og:53 op: 6 ig: 0 | -4.35 | -4.35 | 2025-10-14 14:43:36
+og:53 op: 7 ig: 0 | -4.24 | -4.24 | 2025-10-14 14:44:07
+outer gen 053 00 | score=-4.44 | 2025-10-14 14:40:48
+outer gen 053 01 | score=-4.28 | 2025-10-14 14:41:14
+outer gen 053 02 | score=-4.89 | 2025-10-14 14:41:42
+outer gen 053 03 | score=-4.35 | 2025-10-14 14:42:11
+outer gen 053 04 | score=-4.11 | 2025-10-14 14:42:41
+outer gen 053 05 | score=-4.70 | 2025-10-14 14:43:09
+outer gen 053 06 | score=-4.35 | 2025-10-14 14:43:36
+outer gen 053 07 | score=-4.24 | 2025-10-14 14:44:07
+outer gen 053 | fin, mu: -4.42, genmax -4.11 vs cmax -3.79 | 2025-10-14 14:44:07
+outer gen 053 took 227.09s (3m)
+outer gen 054 | fd=142 | starting 2025-10-14 14:44:07
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:54 op: 0 ig: 0 | -4.11 | -4.11 | 2025-10-14 14:44:36
+og:54 op: 1 ig: 0 | -4.25 | -4.25 | 2025-10-14 14:45:03
+og:54 op: 2 ig: 0 | -4.39 | -4.39 | 2025-10-14 14:45:33
+og:54 op: 3 ig: 0 | -4.21 | -4.21 | 2025-10-14 14:46:03
+og:54 op: 4 ig: 0 | -4.28 | -4.28 | 2025-10-14 14:46:31
+og:54 op: 5 ig: 0 | -4.29 | -4.29 | 2025-10-14 14:46:59
+og:54 op: 6 ig: 0 | -4.39 | -4.39 | 2025-10-14 14:47:29
+og:54 op: 7 ig: 0 | -4.05 | -4.05 | 2025-10-14 14:48:00
+outer gen 054 00 | score=-4.11 | 2025-10-14 14:44:36
+outer gen 054 01 | score=-4.25 | 2025-10-14 14:45:03
+outer gen 054 02 | score=-4.39 | 2025-10-14 14:45:33
+outer gen 054 03 | score=-4.21 | 2025-10-14 14:46:03
+outer gen 054 04 | score=-4.28 | 2025-10-14 14:46:31
+outer gen 054 05 | score=-4.29 | 2025-10-14 14:46:59
+outer gen 054 06 | score=-4.39 | 2025-10-14 14:47:29
+outer gen 054 07 | score=-4.05 | 2025-10-14 14:48:00
+outer gen 054 | fin, mu: -4.24, genmax -4.05 vs cmax -3.79 | 2025-10-14 14:48:00
+outer gen 054 took 232.73s (3m)
+outer gen 055 | fd=142 | starting 2025-10-14 14:48:00
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:55 op: 0 ig: 0 | -4.33 | -4.33 | 2025-10-14 14:48:29
+og:55 op: 1 ig: 0 | -4.17 | -4.17 | 2025-10-14 14:48:57
+og:55 op: 2 ig: 0 | -4.32 | -4.32 | 2025-10-14 14:49:24
+og:55 op: 3 ig: 0 | -4.28 | -4.28 | 2025-10-14 14:49:53
+og:55 op: 4 ig: 0 | -4.24 | -4.24 | 2025-10-14 14:50:23
+og:55 op: 5 ig: 0 | -4.38 | -4.38 | 2025-10-14 14:50:51
+og:55 op: 6 ig: 0 | -4.33 | -4.33 | 2025-10-14 14:51:20
+og:55 op: 7 ig: 0 | -4.00 | -4.00 | 2025-10-14 14:51:47
+outer gen 055 00 | score=-4.33 | 2025-10-14 14:48:29
+outer gen 055 01 | score=-4.17 | 2025-10-14 14:48:57
+outer gen 055 02 | score=-4.32 | 2025-10-14 14:49:24
+outer gen 055 03 | score=-4.28 | 2025-10-14 14:49:53
+outer gen 055 04 | score=-4.24 | 2025-10-14 14:50:23
+outer gen 055 05 | score=-4.38 | 2025-10-14 14:50:51
+outer gen 055 06 | score=-4.33 | 2025-10-14 14:51:20
+outer gen 055 07 | score=-4.00 | 2025-10-14 14:51:47
+outer gen 055 | fin, mu: -4.26, genmax -4.00 vs cmax -3.79 | 2025-10-14 14:51:47
+outer gen 055 took 227.02s (3m)
+outer gen 056 | fd=142 | starting 2025-10-14 14:51:47
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:56 op: 0 ig: 0 | -4.24 | -4.24 | 2025-10-14 14:52:15
+og:56 op: 1 ig: 0 | -4.17 | -4.17 | 2025-10-14 14:52:43
+og:56 op: 2 ig: 0 | -4.43 | -4.43 | 2025-10-14 14:53:12
+og:56 op: 3 ig: 0 | -4.26 | -4.26 | 2025-10-14 14:53:40
+og:56 op: 4 ig: 0 | -4.53 | -4.53 | 2025-10-14 14:54:09
+og:56 op: 5 ig: 0 | -3.99 | -3.99 | 2025-10-14 14:54:39
+og:56 op: 6 ig: 0 | -4.51 | -4.51 | 2025-10-14 14:55:08
+og:56 op: 7 ig: 0 | -4.31 | -4.31 | 2025-10-14 14:55:36
+outer gen 056 00 | score=-4.24 | 2025-10-14 14:52:15
+outer gen 056 01 | score=-4.17 | 2025-10-14 14:52:43
+outer gen 056 02 | score=-4.43 | 2025-10-14 14:53:12
+outer gen 056 03 | score=-4.26 | 2025-10-14 14:53:40
+outer gen 056 04 | score=-4.53 | 2025-10-14 14:54:09
+outer gen 056 05 | score=-3.99 | 2025-10-14 14:54:39
+outer gen 056 06 | score=-4.51 | 2025-10-14 14:55:08
+outer gen 056 07 | score=-4.31 | 2025-10-14 14:55:36
+outer gen 056 | fin, mu: -4.30, genmax -3.99 vs cmax -3.79 | 2025-10-14 14:55:36
+outer gen 056 took 229.12s (3m)
+outer gen 057 | fd=142 | starting 2025-10-14 14:55:36
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:57 op: 0 ig: 0 | -4.36 | -4.36 | 2025-10-14 14:56:04
+og:57 op: 1 ig: 0 | -4.36 | -4.36 | 2025-10-14 14:56:32
+og:57 op: 2 ig: 0 | -4.25 | -4.25 | 2025-10-14 14:57:01
+og:57 op: 3 ig: 0 | -4.18 | -4.18 | 2025-10-14 14:57:30
+og:57 op: 4 ig: 0 | -4.24 | -4.24 | 2025-10-14 14:58:01
+og:57 op: 5 ig: 0 | -4.18 | -4.18 | 2025-10-14 14:58:30
+og:57 op: 6 ig: 0 | -4.50 | -4.50 | 2025-10-14 14:58:59
+og:57 op: 7 ig: 0 | -4.42 | -4.42 | 2025-10-14 14:59:28
+outer gen 057 00 | score=-4.36 | 2025-10-14 14:56:04
+outer gen 057 01 | score=-4.36 | 2025-10-14 14:56:32
+outer gen 057 02 | score=-4.25 | 2025-10-14 14:57:01
+outer gen 057 03 | score=-4.18 | 2025-10-14 14:57:30
+outer gen 057 04 | score=-4.24 | 2025-10-14 14:58:01
+outer gen 057 05 | score=-4.18 | 2025-10-14 14:58:30
+outer gen 057 06 | score=-4.50 | 2025-10-14 14:58:59
+outer gen 057 07 | score=-4.42 | 2025-10-14 14:59:28
+outer gen 057 | fin, mu: -4.31, genmax -4.18 vs cmax -3.79 | 2025-10-14 14:59:28
+outer gen 057 took 231.51s (3m)
+outer gen 058 | fd=142 | starting 2025-10-14 14:59:28
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:58 op: 0 ig: 0 | -4.52 | -4.52 | 2025-10-14 14:59:55
+og:58 op: 1 ig: 0 | -4.25 | -4.25 | 2025-10-14 15:00:22
+og:58 op: 2 ig: 0 | -4.53 | -4.53 | 2025-10-14 15:00:50
+og:58 op: 3 ig: 0 | -4.82 | -4.82 | 2025-10-14 15:01:18
+og:58 op: 4 ig: 0 | -4.38 | -4.38 | 2025-10-14 15:01:44
+og:58 op: 5 ig: 0 | -3.90 | -3.90 | 2025-10-14 15:02:11
+og:58 op: 6 ig: 0 | -4.27 | -4.27 | 2025-10-14 15:02:38
+og:58 op: 7 ig: 0 | -4.34 | -4.34 | 2025-10-14 15:03:08
+outer gen 058 00 | score=-4.52 | 2025-10-14 14:59:55
+outer gen 058 01 | score=-4.25 | 2025-10-14 15:00:22
+outer gen 058 02 | score=-4.53 | 2025-10-14 15:00:50
+outer gen 058 03 | score=-4.82 | 2025-10-14 15:01:18
+outer gen 058 04 | score=-4.38 | 2025-10-14 15:01:44
+outer gen 058 05 | score=-3.90 | 2025-10-14 15:02:11
+outer gen 058 06 | score=-4.27 | 2025-10-14 15:02:38
+outer gen 058 07 | score=-4.34 | 2025-10-14 15:03:08
+outer gen 058 | fin, mu: -4.38, genmax -3.90 vs cmax -3.79 | 2025-10-14 15:03:08
+outer gen 058 took 220.03s (3m)
+outer gen 059 | fd=142 | starting 2025-10-14 15:03:08
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:59 op: 0 ig: 0 | -4.15 | -4.15 | 2025-10-14 15:03:39
+og:59 op: 1 ig: 0 | -4.03 | -4.03 | 2025-10-14 15:04:07
+og:59 op: 2 ig: 0 | -4.47 | -4.47 | 2025-10-14 15:04:33
+og:59 op: 3 ig: 0 | -4.64 | -4.64 | 2025-10-14 15:05:05
+og:59 op: 4 ig: 0 | -4.78 | -4.78 | 2025-10-14 15:05:33
+og:59 op: 5 ig: 0 | -4.38 | -4.38 | 2025-10-14 15:05:59
+og:59 op: 6 ig: 0 | -4.17 | -4.17 | 2025-10-14 15:06:28
+og:59 op: 7 ig: 0 | -3.60 | -3.60 | 2025-10-14 15:06:58
+outer gen 059 00 | score=-4.15 | 2025-10-14 15:03:39
+outer gen 059 01 | score=-4.03 | 2025-10-14 15:04:07
+outer gen 059 02 | score=-4.47 | 2025-10-14 15:04:33
+outer gen 059 03 | score=-4.64 | 2025-10-14 15:05:05
+outer gen 059 04 | score=-4.78 | 2025-10-14 15:05:33
+outer gen 059 05 | score=-4.38 | 2025-10-14 15:05:59
+outer gen 059 06 | score=-4.17 | 2025-10-14 15:06:28
+outer gen 059 07 | score=-3.60 | 2025-10-14 15:06:58
+outer gen 059 | fin, mu: -4.28, genmax -3.60 vs cmax -3.60 | 2025-10-14 15:06:58
+outer gen 059 took 229.83s (3m)
+outer gen 060 | fd=142 | starting 2025-10-14 15:06:58
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:60 op: 0 ig: 0 | -4.41 | -4.41 | 2025-10-14 15:07:29
+og:60 op: 1 ig: 0 | -4.44 | -4.44 | 2025-10-14 15:07:57
+og:60 op: 2 ig: 0 | -4.27 | -4.27 | 2025-10-14 15:08:27
+og:60 op: 3 ig: 0 | -4.33 | -4.33 | 2025-10-14 15:08:55
+og:60 op: 4 ig: 0 | -4.36 | -4.36 | 2025-10-14 15:09:26
+og:60 op: 5 ig: 0 | -4.30 | -4.30 | 2025-10-14 15:09:55
+og:60 op: 6 ig: 0 | -4.35 | -4.35 | 2025-10-14 15:10:25
+og:60 op: 7 ig: 0 | -3.95 | -3.95 | 2025-10-14 15:10:54
+outer gen 060 00 | score=-4.41 | 2025-10-14 15:07:29
+outer gen 060 01 | score=-4.44 | 2025-10-14 15:07:57
+outer gen 060 02 | score=-4.27 | 2025-10-14 15:08:27
+outer gen 060 03 | score=-4.33 | 2025-10-14 15:08:55
+outer gen 060 04 | score=-4.36 | 2025-10-14 15:09:26
+outer gen 060 05 | score=-4.30 | 2025-10-14 15:09:55
+outer gen 060 06 | score=-4.35 | 2025-10-14 15:10:25
+outer gen 060 07 | score=-3.95 | 2025-10-14 15:10:54
+outer gen 060 | fin, mu: -4.30, genmax -3.95 vs cmax -3.60 | 2025-10-14 15:10:54
+outer gen 060 took 236.24s (3m)
+outer gen 061 | fd=142 | starting 2025-10-14 15:10:54
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:61 op: 0 ig: 0 | -4.34 | -4.34 | 2025-10-14 15:11:21
+og:61 op: 1 ig: 0 | -4.47 | -4.47 | 2025-10-14 15:11:51
+og:61 op: 2 ig: 0 | -4.40 | -4.40 | 2025-10-14 15:12:22
+og:61 op: 3 ig: 0 | -4.35 | -4.35 | 2025-10-14 15:12:50
+og:61 op: 4 ig: 0 | -5.14 | -5.14 | 2025-10-14 15:13:22
+og:61 op: 5 ig: 0 | -4.03 | -4.03 | 2025-10-14 15:13:52
+og:61 op: 6 ig: 0 | -4.48 | -4.48 | 2025-10-14 15:14:20
+og:61 op: 7 ig: 0 | -4.47 | -4.47 | 2025-10-14 15:14:48
+outer gen 061 00 | score=-4.34 | 2025-10-14 15:11:21
+outer gen 061 01 | score=-4.47 | 2025-10-14 15:11:51
+outer gen 061 02 | score=-4.40 | 2025-10-14 15:12:22
+outer gen 061 03 | score=-4.35 | 2025-10-14 15:12:50
+outer gen 061 04 | score=-5.14 | 2025-10-14 15:13:22
+outer gen 061 05 | score=-4.03 | 2025-10-14 15:13:52
+outer gen 061 06 | score=-4.48 | 2025-10-14 15:14:20
+outer gen 061 07 | score=-4.47 | 2025-10-14 15:14:48
+outer gen 061 | fin, mu: -4.46, genmax -4.03 vs cmax -3.60 | 2025-10-14 15:14:48
+outer gen 061 took 234.08s (3m)
+outer gen 062 | fd=142 | starting 2025-10-14 15:14:48
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:62 op: 0 ig: 0 | -4.26 | -4.26 | 2025-10-14 15:15:17
+og:62 op: 1 ig: 0 | -4.87 | -4.87 | 2025-10-14 15:15:45
+og:62 op: 2 ig: 0 | -4.30 | -4.30 | 2025-10-14 15:16:16
+og:62 op: 3 ig: 0 | -4.78 | -4.78 | 2025-10-14 15:16:42
+og:62 op: 4 ig: 0 | -4.47 | -4.47 | 2025-10-14 15:17:11
+og:62 op: 5 ig: 0 | -4.36 | -4.36 | 2025-10-14 15:17:40
+og:62 op: 6 ig: 0 | -4.31 | -4.31 | 2025-10-14 15:18:10
+og:62 op: 7 ig: 0 | -4.18 | -4.18 | 2025-10-14 15:18:37
+outer gen 062 00 | score=-4.26 | 2025-10-14 15:15:17
+outer gen 062 01 | score=-4.87 | 2025-10-14 15:15:45
+outer gen 062 02 | score=-4.30 | 2025-10-14 15:16:16
+outer gen 062 03 | score=-4.78 | 2025-10-14 15:16:42
+outer gen 062 04 | score=-4.47 | 2025-10-14 15:17:11
+outer gen 062 05 | score=-4.36 | 2025-10-14 15:17:40
+outer gen 062 06 | score=-4.31 | 2025-10-14 15:18:10
+outer gen 062 07 | score=-4.18 | 2025-10-14 15:18:37
+outer gen 062 | fin, mu: -4.44, genmax -4.18 vs cmax -3.60 | 2025-10-14 15:18:37
+outer gen 062 took 228.93s (3m)
+outer gen 063 | fd=142 | starting 2025-10-14 15:18:37
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:63 op: 0 ig: 0 | -4.36 | -4.36 | 2025-10-14 15:19:04
+og:63 op: 1 ig: 0 | -4.11 | -4.11 | 2025-10-14 15:19:30
+og:63 op: 2 ig: 0 | -4.57 | -4.57 | 2025-10-14 15:20:00
+og:63 op: 3 ig: 0 | -4.35 | -4.35 | 2025-10-14 15:20:26
+og:63 op: 4 ig: 0 | -4.16 | -4.16 | 2025-10-14 15:20:55
+og:63 op: 5 ig: 0 | -4.21 | -4.21 | 2025-10-14 15:21:25
+og:63 op: 6 ig: 0 | -4.14 | -4.14 | 2025-10-14 15:21:56
+og:63 op: 7 ig: 0 | -4.67 | -4.67 | 2025-10-14 15:22:22
+outer gen 063 00 | score=-4.36 | 2025-10-14 15:19:04
+outer gen 063 01 | score=-4.11 | 2025-10-14 15:19:30
+outer gen 063 02 | score=-4.57 | 2025-10-14 15:20:00
+outer gen 063 03 | score=-4.35 | 2025-10-14 15:20:26
+outer gen 063 04 | score=-4.16 | 2025-10-14 15:20:55
+outer gen 063 05 | score=-4.21 | 2025-10-14 15:21:25
+outer gen 063 06 | score=-4.14 | 2025-10-14 15:21:56
+outer gen 063 07 | score=-4.67 | 2025-10-14 15:22:22
+outer gen 063 | fin, mu: -4.32, genmax -4.11 vs cmax -3.60 | 2025-10-14 15:22:22
+outer gen 063 took 224.99s (3m)
+outer gen 064 | fd=142 | starting 2025-10-14 15:22:22
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:64 op: 0 ig: 0 | -4.20 | -4.20 | 2025-10-14 15:22:57
+og:64 op: 1 ig: 0 | -4.49 | -4.49 | 2025-10-14 15:23:27
+og:64 op: 2 ig: 0 | -3.98 | -3.98 | 2025-10-14 15:23:56
+og:64 op: 3 ig: 0 | -4.81 | -4.81 | 2025-10-14 15:24:27
+og:64 op: 4 ig: 0 | -4.26 | -4.26 | 2025-10-14 15:24:55
+og:64 op: 5 ig: 0 | -4.30 | -4.30 | 2025-10-14 15:25:25
+og:64 op: 6 ig: 0 | -4.32 | -4.32 | 2025-10-14 15:25:51
+og:64 op: 7 ig: 0 | -4.47 | -4.47 | 2025-10-14 15:26:20
+outer gen 064 00 | score=-4.20 | 2025-10-14 15:22:57
+outer gen 064 01 | score=-4.49 | 2025-10-14 15:23:27
+outer gen 064 02 | score=-3.98 | 2025-10-14 15:23:56
+outer gen 064 03 | score=-4.81 | 2025-10-14 15:24:27
+outer gen 064 04 | score=-4.26 | 2025-10-14 15:24:55
+outer gen 064 05 | score=-4.30 | 2025-10-14 15:25:25
+outer gen 064 06 | score=-4.32 | 2025-10-14 15:25:51
+outer gen 064 07 | score=-4.47 | 2025-10-14 15:26:20
+outer gen 064 | fin, mu: -4.35, genmax -3.98 vs cmax -3.60 | 2025-10-14 15:26:20
+outer gen 064 took 238.59s (3m)
+outer gen 065 | fd=142 | starting 2025-10-14 15:26:20
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:65 op: 0 ig: 0 | -4.06 | -4.06 | 2025-10-14 15:26:47
+og:65 op: 1 ig: 0 | -4.44 | -4.44 | 2025-10-14 15:27:16
+og:65 op: 2 ig: 0 | -4.11 | -4.11 | 2025-10-14 15:27:45
+og:65 op: 3 ig: 0 | -4.34 | -4.34 | 2025-10-14 15:28:14
+og:65 op: 4 ig: 0 | -4.21 | -4.21 | 2025-10-14 15:28:41
+og:65 op: 5 ig: 0 | -4.35 | -4.35 | 2025-10-14 15:29:12
+og:65 op: 6 ig: 0 | -4.04 | -4.04 | 2025-10-14 15:29:41
+og:65 op: 7 ig: 0 | -4.29 | -4.29 | 2025-10-14 15:30:10
+outer gen 065 00 | score=-4.06 | 2025-10-14 15:26:47
+outer gen 065 01 | score=-4.44 | 2025-10-14 15:27:16
+outer gen 065 02 | score=-4.11 | 2025-10-14 15:27:45
+outer gen 065 03 | score=-4.34 | 2025-10-14 15:28:14
+outer gen 065 04 | score=-4.21 | 2025-10-14 15:28:41
+outer gen 065 05 | score=-4.35 | 2025-10-14 15:29:12
+outer gen 065 06 | score=-4.04 | 2025-10-14 15:29:41
+outer gen 065 07 | score=-4.29 | 2025-10-14 15:30:10
+outer gen 065 | fin, mu: -4.23, genmax -4.04 vs cmax -3.60 | 2025-10-14 15:30:10
+outer gen 065 took 229.26s (3m)
+outer gen 066 | fd=142 | starting 2025-10-14 15:30:10
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:66 op: 0 ig: 0 | -4.06 | -4.06 | 2025-10-14 15:30:36
+og:66 op: 1 ig: 0 | -3.66 | -3.66 | 2025-10-14 15:31:04
+og:66 op: 2 ig: 0 | -4.31 | -4.31 | 2025-10-14 15:31:31
+og:66 op: 3 ig: 0 | -4.25 | -4.25 | 2025-10-14 15:32:00
+og:66 op: 4 ig: 0 | -4.72 | -4.72 | 2025-10-14 15:32:26
+og:66 op: 5 ig: 0 | -4.19 | -4.19 | 2025-10-14 15:32:56
+og:66 op: 6 ig: 0 | -4.89 | -4.89 | 2025-10-14 15:33:27
+og:66 op: 7 ig: 0 | -4.59 | -4.59 | 2025-10-14 15:33:54
+outer gen 066 00 | score=-4.06 | 2025-10-14 15:30:36
+outer gen 066 01 | score=-3.66 | 2025-10-14 15:31:04
+outer gen 066 02 | score=-4.31 | 2025-10-14 15:31:31
+outer gen 066 03 | score=-4.25 | 2025-10-14 15:32:00
+outer gen 066 04 | score=-4.72 | 2025-10-14 15:32:26
+outer gen 066 05 | score=-4.19 | 2025-10-14 15:32:56
+outer gen 066 06 | score=-4.89 | 2025-10-14 15:33:27
+outer gen 066 07 | score=-4.59 | 2025-10-14 15:33:54
+outer gen 066 | fin, mu: -4.33, genmax -3.66 vs cmax -3.60 | 2025-10-14 15:33:54
+outer gen 066 took 224.36s (3m)
+outer gen 067 | fd=142 | starting 2025-10-14 15:33:54
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:67 op: 0 ig: 0 | -4.57 | -4.57 | 2025-10-14 15:34:21
+og:67 op: 1 ig: 0 | -3.86 | -3.86 | 2025-10-14 15:34:48
+og:67 op: 2 ig: 0 | -4.31 | -4.31 | 2025-10-14 15:35:16
+og:67 op: 3 ig: 0 | -4.43 | -4.43 | 2025-10-14 15:35:43
+og:67 op: 4 ig: 0 | -3.74 | -3.74 | 2025-10-14 15:36:10
+og:67 op: 5 ig: 0 | -4.30 | -4.30 | 2025-10-14 15:36:45
+og:67 op: 6 ig: 0 | -4.42 | -4.42 | 2025-10-14 15:37:11
+og:67 op: 7 ig: 0 | -4.89 | -4.89 | 2025-10-14 15:37:45
+outer gen 067 00 | score=-4.57 | 2025-10-14 15:34:21
+outer gen 067 01 | score=-3.86 | 2025-10-14 15:34:48
+outer gen 067 02 | score=-4.31 | 2025-10-14 15:35:16
+outer gen 067 03 | score=-4.43 | 2025-10-14 15:35:43
+outer gen 067 04 | score=-3.74 | 2025-10-14 15:36:10
+outer gen 067 05 | score=-4.30 | 2025-10-14 15:36:45
+outer gen 067 06 | score=-4.42 | 2025-10-14 15:37:11
+outer gen 067 07 | score=-4.89 | 2025-10-14 15:37:45
+outer gen 067 | fin, mu: -4.32, genmax -3.74 vs cmax -3.60 | 2025-10-14 15:37:45
+outer gen 067 took 231.17s (3m)
+outer gen 068 | fd=142 | starting 2025-10-14 15:37:45
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:68 op: 0 ig: 0 | -4.02 | -4.02 | 2025-10-14 15:38:17
+og:68 op: 1 ig: 0 | -4.24 | -4.24 | 2025-10-14 15:38:47
+og:68 op: 2 ig: 0 | -4.27 | -4.27 | 2025-10-14 15:39:17
+og:68 op: 3 ig: 0 | -4.28 | -4.28 | 2025-10-14 15:39:47
+og:68 op: 4 ig: 0 | -3.79 | -3.79 | 2025-10-14 15:40:16
+og:68 op: 5 ig: 0 | -4.35 | -4.35 | 2025-10-14 15:40:44
+og:68 op: 6 ig: 0 | -4.05 | -4.05 | 2025-10-14 15:41:13
+og:68 op: 7 ig: 0 | -4.18 | -4.18 | 2025-10-14 15:41:40
+outer gen 068 00 | score=-4.02 | 2025-10-14 15:38:17
+outer gen 068 01 | score=-4.24 | 2025-10-14 15:38:47
+outer gen 068 02 | score=-4.27 | 2025-10-14 15:39:17
+outer gen 068 03 | score=-4.28 | 2025-10-14 15:39:47
+outer gen 068 04 | score=-3.79 | 2025-10-14 15:40:16
+outer gen 068 05 | score=-4.35 | 2025-10-14 15:40:44
+outer gen 068 06 | score=-4.05 | 2025-10-14 15:41:13
+outer gen 068 07 | score=-4.18 | 2025-10-14 15:41:40
+outer gen 068 | fin, mu: -4.15, genmax -3.79 vs cmax -3.60 | 2025-10-14 15:41:40
+outer gen 068 took 234.70s (3m)
+outer gen 069 | fd=142 | starting 2025-10-14 15:41:40
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:69 op: 0 ig: 0 | -4.37 | -4.37 | 2025-10-14 15:42:11
+og:69 op: 1 ig: 0 | -4.15 | -4.15 | 2025-10-14 15:42:41
+og:69 op: 2 ig: 0 | -4.24 | -4.24 | 2025-10-14 15:43:09
+og:69 op: 3 ig: 0 | -4.44 | -4.44 | 2025-10-14 15:43:38
+og:69 op: 4 ig: 0 | -4.44 | -4.44 | 2025-10-14 15:44:05
+og:69 op: 5 ig: 0 | -3.68 | -3.68 | 2025-10-14 15:44:34
+og:69 op: 6 ig: 0 | -4.62 | -4.62 | 2025-10-14 15:45:06
+og:69 op: 7 ig: 0 | -4.88 | -4.88 | 2025-10-14 15:45:37
+outer gen 069 00 | score=-4.37 | 2025-10-14 15:42:11
+outer gen 069 01 | score=-4.15 | 2025-10-14 15:42:41
+outer gen 069 02 | score=-4.24 | 2025-10-14 15:43:09
+outer gen 069 03 | score=-4.44 | 2025-10-14 15:43:38
+outer gen 069 04 | score=-4.44 | 2025-10-14 15:44:05
+outer gen 069 05 | score=-3.68 | 2025-10-14 15:44:34
+outer gen 069 06 | score=-4.62 | 2025-10-14 15:45:06
+outer gen 069 07 | score=-4.88 | 2025-10-14 15:45:37
+outer gen 069 | fin, mu: -4.35, genmax -3.68 vs cmax -3.60 | 2025-10-14 15:45:37
+outer gen 069 took 236.88s (3m)
+outer gen 070 | fd=142 | starting 2025-10-14 15:45:37
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:70 op: 0 ig: 0 | -4.59 | -4.59 | 2025-10-14 15:46:07
+og:70 op: 1 ig: 0 | -4.26 | -4.26 | 2025-10-14 15:46:37
+og:70 op: 2 ig: 0 | -4.40 | -4.40 | 2025-10-14 15:47:05
+og:70 op: 3 ig: 0 | -4.39 | -4.39 | 2025-10-14 15:47:33
+og:70 op: 4 ig: 0 | -4.32 | -4.32 | 2025-10-14 15:48:00
+og:70 op: 5 ig: 0 | -4.43 | -4.43 | 2025-10-14 15:48:29
+og:70 op: 6 ig: 0 | -4.49 | -4.49 | 2025-10-14 15:48:58
+og:70 op: 7 ig: 0 | -4.35 | -4.35 | 2025-10-14 15:49:28
+outer gen 070 00 | score=-4.59 | 2025-10-14 15:46:07
+outer gen 070 01 | score=-4.26 | 2025-10-14 15:46:37
+outer gen 070 02 | score=-4.40 | 2025-10-14 15:47:05
+outer gen 070 03 | score=-4.39 | 2025-10-14 15:47:33
+outer gen 070 04 | score=-4.32 | 2025-10-14 15:48:00
+outer gen 070 05 | score=-4.43 | 2025-10-14 15:48:29
+outer gen 070 06 | score=-4.49 | 2025-10-14 15:48:58
+outer gen 070 07 | score=-4.35 | 2025-10-14 15:49:28
+outer gen 070 | fin, mu: -4.40, genmax -4.26 vs cmax -3.60 | 2025-10-14 15:49:29
+outer gen 070 took 231.66s (3m)
+outer gen 071 | fd=142 | starting 2025-10-14 15:49:29
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:71 op: 0 ig: 0 | -4.22 | -4.22 | 2025-10-14 15:50:05
+og:71 op: 1 ig: 0 | -4.30 | -4.30 | 2025-10-14 15:50:36
+og:71 op: 2 ig: 0 | -4.68 | -4.68 | 2025-10-14 15:51:04
+og:71 op: 3 ig: 0 | -4.42 | -4.42 | 2025-10-14 15:51:33
+og:71 op: 4 ig: 0 | -4.33 | -4.33 | 2025-10-14 15:51:59
+og:71 op: 5 ig: 0 | -4.51 | -4.51 | 2025-10-14 15:52:29
+og:71 op: 6 ig: 0 | -4.29 | -4.29 | 2025-10-14 15:52:57
+og:71 op: 7 ig: 0 | -4.21 | -4.21 | 2025-10-14 15:53:26
+outer gen 071 00 | score=-4.22 | 2025-10-14 15:50:05
+outer gen 071 01 | score=-4.30 | 2025-10-14 15:50:36
+outer gen 071 02 | score=-4.68 | 2025-10-14 15:51:04
+outer gen 071 03 | score=-4.42 | 2025-10-14 15:51:33
+outer gen 071 04 | score=-4.33 | 2025-10-14 15:51:59
+outer gen 071 05 | score=-4.51 | 2025-10-14 15:52:29
+outer gen 071 06 | score=-4.29 | 2025-10-14 15:52:57
+outer gen 071 07 | score=-4.21 | 2025-10-14 15:53:26
+outer gen 071 | fin, mu: -4.37, genmax -4.21 vs cmax -3.60 | 2025-10-14 15:53:26
+outer gen 071 took 237.97s (3m)
+outer gen 072 | fd=142 | starting 2025-10-14 15:53:26
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:72 op: 0 ig: 0 | -4.40 | -4.40 | 2025-10-14 15:53:56
+og:72 op: 1 ig: 0 | -4.31 | -4.31 | 2025-10-14 15:54:24
+og:72 op: 2 ig: 0 | -4.74 | -4.74 | 2025-10-14 15:54:56
+og:72 op: 3 ig: 0 | -4.07 | -4.07 | 2025-10-14 15:55:26
+og:72 op: 4 ig: 0 | -4.60 | -4.60 | 2025-10-14 15:55:55
+og:72 op: 5 ig: 0 | -4.22 | -4.22 | 2025-10-14 15:56:24
+og:72 op: 6 ig: 0 | -4.22 | -4.22 | 2025-10-14 15:56:52
+og:72 op: 7 ig: 0 | -4.21 | -4.21 | 2025-10-14 15:57:23
+outer gen 072 00 | score=-4.40 | 2025-10-14 15:53:56
+outer gen 072 01 | score=-4.31 | 2025-10-14 15:54:24
+outer gen 072 02 | score=-4.74 | 2025-10-14 15:54:56
+outer gen 072 03 | score=-4.07 | 2025-10-14 15:55:26
+outer gen 072 04 | score=-4.60 | 2025-10-14 15:55:55
+outer gen 072 05 | score=-4.22 | 2025-10-14 15:56:24
+outer gen 072 06 | score=-4.22 | 2025-10-14 15:56:52
+outer gen 072 07 | score=-4.21 | 2025-10-14 15:57:23
+outer gen 072 | fin, mu: -4.35, genmax -4.07 vs cmax -3.60 | 2025-10-14 15:57:23
+outer gen 072 took 236.71s (3m)
+outer gen 073 | fd=142 | starting 2025-10-14 15:57:23
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:73 op: 0 ig: 0 | -4.06 | -4.06 | 2025-10-14 15:57:52
+og:73 op: 1 ig: 0 | -3.40 | -3.40 | 2025-10-14 15:58:19
+og:73 op: 2 ig: 0 | -4.27 | -4.27 | 2025-10-14 15:58:47
+og:73 op: 3 ig: 0 | -3.72 | -3.72 | 2025-10-14 15:59:15
+og:73 op: 4 ig: 0 | -4.47 | -4.47 | 2025-10-14 15:59:43
+og:73 op: 5 ig: 0 | -3.80 | -3.80 | 2025-10-14 16:00:10
+og:73 op: 6 ig: 0 | -4.55 | -4.55 | 2025-10-14 16:00:39
+og:73 op: 7 ig: 0 | -4.41 | -4.41 | 2025-10-14 16:01:07
+outer gen 073 00 | score=-4.06 | 2025-10-14 15:57:52
+outer gen 073 01 | score=-3.40 | 2025-10-14 15:58:19
+outer gen 073 02 | score=-4.27 | 2025-10-14 15:58:47
+outer gen 073 03 | score=-3.72 | 2025-10-14 15:59:15
+outer gen 073 04 | score=-4.47 | 2025-10-14 15:59:43
+outer gen 073 05 | score=-3.80 | 2025-10-14 16:00:10
+outer gen 073 06 | score=-4.55 | 2025-10-14 16:00:39
+outer gen 073 07 | score=-4.41 | 2025-10-14 16:01:07
+outer gen 073 | fin, mu: -4.09, genmax -3.40 vs cmax -3.40 | 2025-10-14 16:01:07
+outer gen 073 took 223.57s (3m)
+outer gen 074 | fd=142 | starting 2025-10-14 16:01:07
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:74 op: 0 ig: 0 | -4.31 | -4.31 | 2025-10-14 16:01:33
+og:74 op: 1 ig: 0 | -4.70 | -4.70 | 2025-10-14 16:02:01
+og:74 op: 2 ig: 0 | -4.41 | -4.41 | 2025-10-14 16:02:28
+og:74 op: 3 ig: 0 | -4.87 | -4.87 | 2025-10-14 16:02:59
+og:74 op: 4 ig: 0 | -4.41 | -4.41 | 2025-10-14 16:03:25
+og:74 op: 5 ig: 0 | -4.44 | -4.44 | 2025-10-14 16:03:55
+og:74 op: 6 ig: 0 | -4.44 | -4.44 | 2025-10-14 16:04:26
+og:74 op: 7 ig: 0 | -4.14 | -4.14 | 2025-10-14 16:04:57
+outer gen 074 00 | score=-4.31 | 2025-10-14 16:01:33
+outer gen 074 01 | score=-4.70 | 2025-10-14 16:02:01
+outer gen 074 02 | score=-4.41 | 2025-10-14 16:02:28
+outer gen 074 03 | score=-4.87 | 2025-10-14 16:02:59
+outer gen 074 04 | score=-4.41 | 2025-10-14 16:03:25
+outer gen 074 05 | score=-4.44 | 2025-10-14 16:03:55
+outer gen 074 06 | score=-4.44 | 2025-10-14 16:04:26
+outer gen 074 07 | score=-4.14 | 2025-10-14 16:04:57
+outer gen 074 | fin, mu: -4.47, genmax -4.14 vs cmax -3.40 | 2025-10-14 16:04:57
+outer gen 074 took 230.62s (3m)
+outer gen 075 | fd=142 | starting 2025-10-14 16:04:57
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:75 op: 0 ig: 0 | -3.89 | -3.89 | 2025-10-14 16:05:26
+og:75 op: 1 ig: 0 | -4.30 | -4.30 | 2025-10-14 16:05:53
+og:75 op: 2 ig: 0 | -4.12 | -4.12 | 2025-10-14 16:06:22
+og:75 op: 3 ig: 0 | -4.30 | -4.30 | 2025-10-14 16:06:49
+og:75 op: 4 ig: 0 | -4.17 | -4.17 | 2025-10-14 16:07:16
+og:75 op: 5 ig: 0 | -4.39 | -4.39 | 2025-10-14 16:07:46
+og:75 op: 6 ig: 0 | -4.11 | -4.11 | 2025-10-14 16:08:13
+og:75 op: 7 ig: 0 | -4.58 | -4.58 | 2025-10-14 16:08:45
+outer gen 075 00 | score=-3.89 | 2025-10-14 16:05:26
+outer gen 075 01 | score=-4.30 | 2025-10-14 16:05:53
+outer gen 075 02 | score=-4.12 | 2025-10-14 16:06:22
+outer gen 075 03 | score=-4.30 | 2025-10-14 16:06:49
+outer gen 075 04 | score=-4.17 | 2025-10-14 16:07:16
+outer gen 075 05 | score=-4.39 | 2025-10-14 16:07:46
+outer gen 075 06 | score=-4.11 | 2025-10-14 16:08:13
+outer gen 075 07 | score=-4.58 | 2025-10-14 16:08:45
+outer gen 075 | fin, mu: -4.23, genmax -3.89 vs cmax -3.40 | 2025-10-14 16:08:45
+outer gen 075 took 227.72s (3m)
+outer gen 076 | fd=142 | starting 2025-10-14 16:08:45
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:76 op: 0 ig: 0 | -4.32 | -4.32 | 2025-10-14 16:09:12
+og:76 op: 1 ig: 0 | -4.34 | -4.34 | 2025-10-14 16:09:38
+og:76 op: 2 ig: 0 | -4.87 | -4.87 | 2025-10-14 16:10:06
+og:76 op: 3 ig: 0 | -4.16 | -4.16 | 2025-10-14 16:10:32
+og:76 op: 4 ig: 0 | -4.67 | -4.67 | 2025-10-14 16:11:03
+og:76 op: 5 ig: 0 | -4.40 | -4.40 | 2025-10-14 16:11:29
+og:76 op: 6 ig: 0 | -4.42 | -4.42 | 2025-10-14 16:12:04
+og:76 op: 7 ig: 0 | -4.96 | -4.96 | 2025-10-14 16:12:37
+outer gen 076 00 | score=-4.32 | 2025-10-14 16:09:12
+outer gen 076 01 | score=-4.34 | 2025-10-14 16:09:38
+outer gen 076 02 | score=-4.87 | 2025-10-14 16:10:06
+outer gen 076 03 | score=-4.16 | 2025-10-14 16:10:32
+outer gen 076 04 | score=-4.67 | 2025-10-14 16:11:03
+outer gen 076 05 | score=-4.40 | 2025-10-14 16:11:29
+outer gen 076 06 | score=-4.42 | 2025-10-14 16:12:04
+outer gen 076 07 | score=-4.96 | 2025-10-14 16:12:37
+outer gen 076 | fin, mu: -4.52, genmax -4.16 vs cmax -3.40 | 2025-10-14 16:12:37
+outer gen 076 took 231.55s (3m)
+outer gen 077 | fd=142 | starting 2025-10-14 16:12:37
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:77 op: 0 ig: 0 | -4.02 | -4.02 | 2025-10-14 16:13:04
+og:77 op: 1 ig: 0 | -4.22 | -4.22 | 2025-10-14 16:13:31
+og:77 op: 2 ig: 0 | -4.28 | -4.28 | 2025-10-14 16:14:02
+og:77 op: 3 ig: 0 | -4.49 | -4.49 | 2025-10-14 16:14:32
+og:77 op: 4 ig: 0 | -4.79 | -4.79 | 2025-10-14 16:15:12
+og:77 op: 5 ig: 0 | -4.61 | -4.61 | 2025-10-14 16:15:40
+og:77 op: 6 ig: 0 | -4.46 | -4.46 | 2025-10-14 16:16:10
+og:77 op: 7 ig: 0 | -4.48 | -4.48 | 2025-10-14 16:16:38
+outer gen 077 00 | score=-4.02 | 2025-10-14 16:13:04
+outer gen 077 01 | score=-4.22 | 2025-10-14 16:13:31
+outer gen 077 02 | score=-4.28 | 2025-10-14 16:14:02
+outer gen 077 03 | score=-4.49 | 2025-10-14 16:14:32
+outer gen 077 04 | score=-4.79 | 2025-10-14 16:15:12
+outer gen 077 05 | score=-4.61 | 2025-10-14 16:15:40
+outer gen 077 06 | score=-4.46 | 2025-10-14 16:16:10
+outer gen 077 07 | score=-4.48 | 2025-10-14 16:16:38
+outer gen 077 | fin, mu: -4.42, genmax -4.02 vs cmax -3.40 | 2025-10-14 16:16:38
+outer gen 077 took 241.18s (4m)
+outer gen 078 | fd=142 | starting 2025-10-14 16:16:38
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:78 op: 0 ig: 0 | -4.39 | -4.39 | 2025-10-14 16:17:07
+og:78 op: 1 ig: 0 | -4.31 | -4.31 | 2025-10-14 16:17:34
+og:78 op: 2 ig: 0 | -4.39 | -4.39 | 2025-10-14 16:18:02
+og:78 op: 3 ig: 0 | -4.42 | -4.42 | 2025-10-14 16:18:31
+og:78 op: 4 ig: 0 | -4.40 | -4.40 | 2025-10-14 16:19:00
+og:78 op: 5 ig: 0 | -4.83 | -4.83 | 2025-10-14 16:19:29
+og:78 op: 6 ig: 0 | -4.38 | -4.38 | 2025-10-14 16:20:03
+og:78 op: 7 ig: 0 | -4.12 | -4.12 | 2025-10-14 16:20:30
+outer gen 078 00 | score=-4.39 | 2025-10-14 16:17:07
+outer gen 078 01 | score=-4.31 | 2025-10-14 16:17:34
+outer gen 078 02 | score=-4.39 | 2025-10-14 16:18:02
+outer gen 078 03 | score=-4.42 | 2025-10-14 16:18:31
+outer gen 078 04 | score=-4.40 | 2025-10-14 16:19:00
+outer gen 078 05 | score=-4.83 | 2025-10-14 16:19:29
+outer gen 078 06 | score=-4.38 | 2025-10-14 16:20:03
+outer gen 078 07 | score=-4.12 | 2025-10-14 16:20:30
+outer gen 078 | fin, mu: -4.40, genmax -4.12 vs cmax -3.40 | 2025-10-14 16:20:30
+outer gen 078 took 232.58s (3m)
+outer gen 079 | fd=142 | starting 2025-10-14 16:20:30
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:79 op: 0 ig: 0 | -4.48 | -4.48 | 2025-10-14 16:20:58
+og:79 op: 1 ig: 0 | -4.26 | -4.26 | 2025-10-14 16:21:29
+og:79 op: 2 ig: 0 | -4.31 | -4.31 | 2025-10-14 16:21:59
+og:79 op: 3 ig: 0 | -4.69 | -4.69 | 2025-10-14 16:22:27
+og:79 op: 4 ig: 0 | -4.70 | -4.70 | 2025-10-14 16:22:55
+og:79 op: 5 ig: 0 | -4.46 | -4.46 | 2025-10-14 16:23:25
+og:79 op: 6 ig: 0 | -4.23 | -4.23 | 2025-10-14 16:23:52
+og:79 op: 7 ig: 0 | -4.13 | -4.13 | 2025-10-14 16:24:20
+outer gen 079 00 | score=-4.48 | 2025-10-14 16:20:58
+outer gen 079 01 | score=-4.26 | 2025-10-14 16:21:29
+outer gen 079 02 | score=-4.31 | 2025-10-14 16:21:59
+outer gen 079 03 | score=-4.69 | 2025-10-14 16:22:27
+outer gen 079 04 | score=-4.70 | 2025-10-14 16:22:55
+outer gen 079 05 | score=-4.46 | 2025-10-14 16:23:25
+outer gen 079 06 | score=-4.23 | 2025-10-14 16:23:52
+outer gen 079 07 | score=-4.13 | 2025-10-14 16:24:20
+outer gen 079 | fin, mu: -4.41, genmax -4.13 vs cmax -3.40 | 2025-10-14 16:24:21
+outer gen 079 took 230.16s (3m)
+outer gen 080 | fd=142 | starting 2025-10-14 16:24:21
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:80 op: 0 ig: 0 | -4.11 | -4.11 | 2025-10-14 16:24:49
+og:80 op: 1 ig: 0 | -4.39 | -4.39 | 2025-10-14 16:25:17
+og:80 op: 2 ig: 0 | -4.44 | -4.44 | 2025-10-14 16:25:46
+og:80 op: 3 ig: 0 | -4.07 | -4.07 | 2025-10-14 16:26:16
+og:80 op: 4 ig: 0 | -4.96 | -4.96 | 2025-10-14 16:26:46
+og:80 op: 5 ig: 0 | -4.07 | -4.07 | 2025-10-14 16:27:21
+og:80 op: 6 ig: 0 | -4.46 | -4.46 | 2025-10-14 16:27:46
+og:80 op: 7 ig: 0 | -4.19 | -4.19 | 2025-10-14 16:28:16
+outer gen 080 00 | score=-4.11 | 2025-10-14 16:24:49
+outer gen 080 01 | score=-4.39 | 2025-10-14 16:25:17
+outer gen 080 02 | score=-4.44 | 2025-10-14 16:25:46
+outer gen 080 03 | score=-4.07 | 2025-10-14 16:26:16
+outer gen 080 04 | score=-4.96 | 2025-10-14 16:26:46
+outer gen 080 05 | score=-4.07 | 2025-10-14 16:27:21
+outer gen 080 06 | score=-4.46 | 2025-10-14 16:27:46
+outer gen 080 07 | score=-4.19 | 2025-10-14 16:28:16
+outer gen 080 | fin, mu: -4.34, genmax -4.07 vs cmax -3.40 | 2025-10-14 16:28:16
+outer gen 080 took 235.30s (3m)
+outer gen 081 | fd=142 | starting 2025-10-14 16:28:16
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:81 op: 0 ig: 0 | -4.28 | -4.28 | 2025-10-14 16:28:45
+og:81 op: 1 ig: 0 | -4.64 | -4.64 | 2025-10-14 16:29:12
+og:81 op: 2 ig: 0 | -4.33 | -4.33 | 2025-10-14 16:29:38
+og:81 op: 3 ig: 0 | -4.28 | -4.28 | 2025-10-14 16:30:05
+og:81 op: 4 ig: 0 | -4.32 | -4.32 | 2025-10-14 16:30:32
+og:81 op: 5 ig: 0 | -4.40 | -4.40 | 2025-10-14 16:30:59
+og:81 op: 6 ig: 0 | -4.45 | -4.45 | 2025-10-14 16:31:27
+og:81 op: 7 ig: 0 | -4.27 | -4.27 | 2025-10-14 16:31:57
+outer gen 081 00 | score=-4.28 | 2025-10-14 16:28:45
+outer gen 081 01 | score=-4.64 | 2025-10-14 16:29:12
+outer gen 081 02 | score=-4.33 | 2025-10-14 16:29:38
+outer gen 081 03 | score=-4.28 | 2025-10-14 16:30:05
+outer gen 081 04 | score=-4.32 | 2025-10-14 16:30:32
+outer gen 081 05 | score=-4.40 | 2025-10-14 16:30:59
+outer gen 081 06 | score=-4.45 | 2025-10-14 16:31:27
+outer gen 081 07 | score=-4.27 | 2025-10-14 16:31:57
+outer gen 081 | fin, mu: -4.37, genmax -4.27 vs cmax -3.40 | 2025-10-14 16:31:57
+outer gen 081 took 220.77s (3m)
+outer gen 082 | fd=142 | starting 2025-10-14 16:31:57
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:82 op: 0 ig: 0 | -4.63 | -4.63 | 2025-10-14 16:32:24
+og:82 op: 1 ig: 0 | -4.70 | -4.70 | 2025-10-14 16:32:57
+og:82 op: 2 ig: 0 | -3.97 | -3.97 | 2025-10-14 16:33:24
+og:82 op: 3 ig: 0 | -4.48 | -4.48 | 2025-10-14 16:33:51
+og:82 op: 4 ig: 0 | -4.15 | -4.15 | 2025-10-14 16:34:19
+og:82 op: 5 ig: 0 | -3.81 | -3.81 | 2025-10-14 16:34:46
+og:82 op: 6 ig: 0 | -4.39 | -4.39 | 2025-10-14 16:35:18
+og:82 op: 7 ig: 0 | -4.81 | -4.81 | 2025-10-14 16:35:53
+outer gen 082 00 | score=-4.63 | 2025-10-14 16:32:24
+outer gen 082 01 | score=-4.70 | 2025-10-14 16:32:57
+outer gen 082 02 | score=-3.97 | 2025-10-14 16:33:24
+outer gen 082 03 | score=-4.48 | 2025-10-14 16:33:51
+outer gen 082 04 | score=-4.15 | 2025-10-14 16:34:19
+outer gen 082 05 | score=-3.81 | 2025-10-14 16:34:46
+outer gen 082 06 | score=-4.39 | 2025-10-14 16:35:18
+outer gen 082 07 | score=-4.81 | 2025-10-14 16:35:53
+outer gen 082 | fin, mu: -4.37, genmax -3.81 vs cmax -3.40 | 2025-10-14 16:35:53
+outer gen 082 took 236.03s (3m)
+outer gen 083 | fd=142 | starting 2025-10-14 16:35:53
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:83 op: 0 ig: 0 | -4.18 | -4.18 | 2025-10-14 16:36:24
+og:83 op: 1 ig: 0 | -3.92 | -3.92 | 2025-10-14 16:36:57
+og:83 op: 2 ig: 0 | -4.67 | -4.67 | 2025-10-14 16:37:23
+og:83 op: 3 ig: 0 | -4.21 | -4.21 | 2025-10-14 16:37:51
+og:83 op: 4 ig: 0 | -4.40 | -4.40 | 2025-10-14 16:38:28
+og:83 op: 5 ig: 0 | -4.94 | -4.94 | 2025-10-14 16:39:01
+og:83 op: 6 ig: 0 | -4.50 | -4.50 | 2025-10-14 16:39:30
+og:83 op: 7 ig: 0 | -4.33 | -4.33 | 2025-10-14 16:39:56
+outer gen 083 00 | score=-4.18 | 2025-10-14 16:36:24
+outer gen 083 01 | score=-3.92 | 2025-10-14 16:36:57
+outer gen 083 02 | score=-4.67 | 2025-10-14 16:37:23
+outer gen 083 03 | score=-4.21 | 2025-10-14 16:37:51
+outer gen 083 04 | score=-4.40 | 2025-10-14 16:38:28
+outer gen 083 05 | score=-4.94 | 2025-10-14 16:39:01
+outer gen 083 06 | score=-4.50 | 2025-10-14 16:39:30
+outer gen 083 07 | score=-4.33 | 2025-10-14 16:39:56
+outer gen 083 | fin, mu: -4.39, genmax -3.92 vs cmax -3.40 | 2025-10-14 16:39:56
+outer gen 083 took 243.41s (4m)
+outer gen 084 | fd=142 | starting 2025-10-14 16:39:56
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:84 op: 0 ig: 0 | -4.25 | -4.25 | 2025-10-14 16:40:24
+og:84 op: 1 ig: 0 | -3.74 | -3.74 | 2025-10-14 16:40:53
+og:84 op: 2 ig: 0 | -4.19 | -4.19 | 2025-10-14 16:41:23
+og:84 op: 3 ig: 0 | -3.76 | -3.76 | 2025-10-14 16:41:50
+og:84 op: 4 ig: 0 | -4.00 | -4.00 | 2025-10-14 16:42:17
+og:84 op: 5 ig: 0 | -4.51 | -4.51 | 2025-10-14 16:42:48
+og:84 op: 6 ig: 0 | -5.06 | -5.06 | 2025-10-14 16:43:19
+og:84 op: 7 ig: 0 | -4.05 | -4.05 | 2025-10-14 16:43:44
+outer gen 084 00 | score=-4.25 | 2025-10-14 16:40:24
+outer gen 084 01 | score=-3.74 | 2025-10-14 16:40:53
+outer gen 084 02 | score=-4.19 | 2025-10-14 16:41:23
+outer gen 084 03 | score=-3.76 | 2025-10-14 16:41:50
+outer gen 084 04 | score=-4.00 | 2025-10-14 16:42:17
+outer gen 084 05 | score=-4.51 | 2025-10-14 16:42:48
+outer gen 084 06 | score=-5.06 | 2025-10-14 16:43:19
+outer gen 084 07 | score=-4.05 | 2025-10-14 16:43:44
+outer gen 084 | fin, mu: -4.19, genmax -3.74 vs cmax -3.40 | 2025-10-14 16:43:44
+outer gen 084 took 228.15s (3m)
+outer gen 085 | fd=142 | starting 2025-10-14 16:43:44
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:85 op: 0 ig: 0 | -3.87 | -3.87 | 2025-10-14 16:44:18
+og:85 op: 1 ig: 0 | -4.38 | -4.38 | 2025-10-14 16:44:51
+og:85 op: 2 ig: 0 | -4.89 | -4.89 | 2025-10-14 16:45:19
+og:85 op: 3 ig: 0 | -4.38 | -4.38 | 2025-10-14 16:45:48
+og:85 op: 4 ig: 0 | -4.23 | -4.23 | 2025-10-14 16:46:16
+og:85 op: 5 ig: 0 | -4.23 | -4.23 | 2025-10-14 16:46:45
+og:85 op: 6 ig: 0 | -4.20 | -4.20 | 2025-10-14 16:47:14
+og:85 op: 7 ig: 0 | -4.53 | -4.53 | 2025-10-14 16:47:43
+outer gen 085 00 | score=-3.87 | 2025-10-14 16:44:18
+outer gen 085 01 | score=-4.38 | 2025-10-14 16:44:51
+outer gen 085 02 | score=-4.89 | 2025-10-14 16:45:19
+outer gen 085 03 | score=-4.38 | 2025-10-14 16:45:48
+outer gen 085 04 | score=-4.23 | 2025-10-14 16:46:16
+outer gen 085 05 | score=-4.23 | 2025-10-14 16:46:45
+outer gen 085 06 | score=-4.20 | 2025-10-14 16:47:14
+outer gen 085 07 | score=-4.53 | 2025-10-14 16:47:43
+outer gen 085 | fin, mu: -4.34, genmax -3.87 vs cmax -3.40 | 2025-10-14 16:47:44
+outer gen 085 took 239.28s (3m)
+outer gen 086 | fd=142 | starting 2025-10-14 16:47:44
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:86 op: 0 ig: 0 | -4.06 | -4.06 | 2025-10-14 16:48:11
+og:86 op: 1 ig: 0 | -4.33 | -4.33 | 2025-10-14 16:48:38
+og:86 op: 2 ig: 0 | -4.17 | -4.17 | 2025-10-14 16:49:05
+og:86 op: 3 ig: 0 | -4.29 | -4.29 | 2025-10-14 16:49:33
+og:86 op: 4 ig: 0 | -4.00 | -4.00 | 2025-10-14 16:50:02
+og:86 op: 5 ig: 0 | -4.48 | -4.48 | 2025-10-14 16:50:33
+og:86 op: 6 ig: 0 | -4.18 | -4.18 | 2025-10-14 16:51:04
+og:86 op: 7 ig: 0 | -4.20 | -4.20 | 2025-10-14 16:51:34
+outer gen 086 00 | score=-4.06 | 2025-10-14 16:48:11
+outer gen 086 01 | score=-4.33 | 2025-10-14 16:48:38
+outer gen 086 02 | score=-4.17 | 2025-10-14 16:49:05
+outer gen 086 03 | score=-4.29 | 2025-10-14 16:49:33
+outer gen 086 04 | score=-4.00 | 2025-10-14 16:50:02
+outer gen 086 05 | score=-4.48 | 2025-10-14 16:50:33
+outer gen 086 06 | score=-4.18 | 2025-10-14 16:51:04
+outer gen 086 07 | score=-4.20 | 2025-10-14 16:51:34
+outer gen 086 | fin, mu: -4.21, genmax -4.00 vs cmax -3.40 | 2025-10-14 16:51:34
+outer gen 086 took 230.67s (3m)
+outer gen 087 | fd=142 | starting 2025-10-14 16:51:34
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:87 op: 0 ig: 0 | -4.25 | -4.25 | 2025-10-14 16:52:01
+og:87 op: 1 ig: 0 | -3.85 | -3.85 | 2025-10-14 16:52:29
+og:87 op: 2 ig: 0 | -4.19 | -4.19 | 2025-10-14 16:52:57
+og:87 op: 3 ig: 0 | -3.86 | -3.86 | 2025-10-14 16:53:28
+og:87 op: 4 ig: 0 | -4.23 | -4.23 | 2025-10-14 16:53:55
+og:87 op: 5 ig: 0 | -3.92 | -3.92 | 2025-10-14 16:54:25
+og:87 op: 6 ig: 0 | -4.25 | -4.25 | 2025-10-14 16:54:52
+og:87 op: 7 ig: 0 | -4.16 | -4.16 | 2025-10-14 16:55:20
+outer gen 087 00 | score=-4.25 | 2025-10-14 16:52:01
+outer gen 087 01 | score=-3.85 | 2025-10-14 16:52:29
+outer gen 087 02 | score=-4.19 | 2025-10-14 16:52:57
+outer gen 087 03 | score=-3.86 | 2025-10-14 16:53:28
+outer gen 087 04 | score=-4.23 | 2025-10-14 16:53:55
+outer gen 087 05 | score=-3.92 | 2025-10-14 16:54:25
+outer gen 087 06 | score=-4.25 | 2025-10-14 16:54:52
+outer gen 087 07 | score=-4.16 | 2025-10-14 16:55:20
+outer gen 087 | fin, mu: -4.09, genmax -3.85 vs cmax -3.40 | 2025-10-14 16:55:20
+outer gen 087 took 225.58s (3m)
+outer gen 088 | fd=142 | starting 2025-10-14 16:55:20
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:88 op: 0 ig: 0 | -4.00 | -4.00 | 2025-10-14 16:55:51
+og:88 op: 1 ig: 0 | -4.16 | -4.16 | 2025-10-14 16:56:23
+og:88 op: 2 ig: 0 | -4.71 | -4.71 | 2025-10-14 16:56:55
+og:88 op: 3 ig: 0 | -4.42 | -4.42 | 2025-10-14 16:57:35
+og:88 op: 4 ig: 0 | -4.36 | -4.36 | 2025-10-14 16:58:01
+og:88 op: 5 ig: 0 | -4.40 | -4.40 | 2025-10-14 16:58:29
+og:88 op: 6 ig: 0 | -4.24 | -4.24 | 2025-10-14 16:59:00
+og:88 op: 7 ig: 0 | -4.13 | -4.13 | 2025-10-14 16:59:28
+outer gen 088 00 | score=-4.00 | 2025-10-14 16:55:51
+outer gen 088 01 | score=-4.16 | 2025-10-14 16:56:23
+outer gen 088 02 | score=-4.71 | 2025-10-14 16:56:55
+outer gen 088 03 | score=-4.42 | 2025-10-14 16:57:35
+outer gen 088 04 | score=-4.36 | 2025-10-14 16:58:01
+outer gen 088 05 | score=-4.40 | 2025-10-14 16:58:29
+outer gen 088 06 | score=-4.24 | 2025-10-14 16:59:00
+outer gen 088 07 | score=-4.13 | 2025-10-14 16:59:28
+outer gen 088 | fin, mu: -4.30, genmax -4.00 vs cmax -3.40 | 2025-10-14 16:59:29
+outer gen 088 took 248.73s (4m)
+outer gen 089 | fd=142 | starting 2025-10-14 16:59:29
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:89 op: 0 ig: 0 | -4.53 | -4.53 | 2025-10-14 16:59:57
+og:89 op: 1 ig: 0 | -4.62 | -4.62 | 2025-10-14 17:00:29
+og:89 op: 2 ig: 0 | -4.27 | -4.27 | 2025-10-14 17:00:57
+og:89 op: 3 ig: 0 | -4.41 | -4.41 | 2025-10-14 17:01:24
+og:89 op: 4 ig: 0 | -4.49 | -4.49 | 2025-10-14 17:01:52
+og:89 op: 5 ig: 0 | -4.42 | -4.42 | 2025-10-14 17:02:21
+og:89 op: 6 ig: 0 | -4.17 | -4.17 | 2025-10-14 17:02:51
+og:89 op: 7 ig: 0 | -4.26 | -4.26 | 2025-10-14 17:03:17
+outer gen 089 00 | score=-4.53 | 2025-10-14 16:59:57
+outer gen 089 01 | score=-4.62 | 2025-10-14 17:00:29
+outer gen 089 02 | score=-4.27 | 2025-10-14 17:00:57
+outer gen 089 03 | score=-4.41 | 2025-10-14 17:01:24
+outer gen 089 04 | score=-4.49 | 2025-10-14 17:01:52
+outer gen 089 05 | score=-4.42 | 2025-10-14 17:02:21
+outer gen 089 06 | score=-4.17 | 2025-10-14 17:02:51
+outer gen 089 07 | score=-4.26 | 2025-10-14 17:03:17
+outer gen 089 | fin, mu: -4.40, genmax -4.17 vs cmax -3.40 | 2025-10-14 17:03:17
+outer gen 089 took 228.83s (3m)
+outer gen 090 | fd=142 | starting 2025-10-14 17:03:17
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:90 op: 0 ig: 0 | -4.06 | -4.06 | 2025-10-14 17:03:46
+og:90 op: 1 ig: 0 | -4.03 | -4.03 | 2025-10-14 17:04:12
+og:90 op: 2 ig: 0 | -4.34 | -4.34 | 2025-10-14 17:04:44
+og:90 op: 3 ig: 0 | -4.40 | -4.40 | 2025-10-14 17:05:12
+og:90 op: 4 ig: 0 | -4.34 | -4.34 | 2025-10-14 17:05:39
+og:90 op: 5 ig: 0 | -4.06 | -4.06 | 2025-10-14 17:06:06
+og:90 op: 6 ig: 0 | -4.32 | -4.32 | 2025-10-14 17:06:33
+og:90 op: 7 ig: 0 | -4.28 | -4.28 | 2025-10-14 17:07:03
+outer gen 090 00 | score=-4.06 | 2025-10-14 17:03:46
+outer gen 090 01 | score=-4.03 | 2025-10-14 17:04:12
+outer gen 090 02 | score=-4.34 | 2025-10-14 17:04:44
+outer gen 090 03 | score=-4.40 | 2025-10-14 17:05:12
+outer gen 090 04 | score=-4.34 | 2025-10-14 17:05:39
+outer gen 090 05 | score=-4.06 | 2025-10-14 17:06:06
+outer gen 090 06 | score=-4.32 | 2025-10-14 17:06:33
+outer gen 090 07 | score=-4.28 | 2025-10-14 17:07:03
+outer gen 090 | fin, mu: -4.23, genmax -4.03 vs cmax -3.40 | 2025-10-14 17:07:03
+outer gen 090 took 225.86s (3m)
+outer gen 091 | fd=142 | starting 2025-10-14 17:07:03
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:91 op: 0 ig: 0 | -4.25 | -4.25 | 2025-10-14 17:07:31
+og:91 op: 1 ig: 0 | -4.65 | -4.65 | 2025-10-14 17:08:00
+og:91 op: 2 ig: 0 | -4.28 | -4.28 | 2025-10-14 17:08:28
+og:91 op: 3 ig: 0 | -4.31 | -4.31 | 2025-10-14 17:08:54
+og:91 op: 4 ig: 0 | -4.18 | -4.18 | 2025-10-14 17:09:27
+og:91 op: 5 ig: 0 | -4.46 | -4.46 | 2025-10-14 17:09:54
+og:91 op: 6 ig: 0 | -4.37 | -4.37 | 2025-10-14 17:10:27
+og:91 op: 7 ig: 0 | -4.30 | -4.30 | 2025-10-14 17:10:57
+outer gen 091 00 | score=-4.25 | 2025-10-14 17:07:31
+outer gen 091 01 | score=-4.65 | 2025-10-14 17:08:00
+outer gen 091 02 | score=-4.28 | 2025-10-14 17:08:28
+outer gen 091 03 | score=-4.31 | 2025-10-14 17:08:54
+outer gen 091 04 | score=-4.18 | 2025-10-14 17:09:27
+outer gen 091 05 | score=-4.46 | 2025-10-14 17:09:54
+outer gen 091 06 | score=-4.37 | 2025-10-14 17:10:27
+outer gen 091 07 | score=-4.30 | 2025-10-14 17:10:57
+outer gen 091 | fin, mu: -4.35, genmax -4.18 vs cmax -3.40 | 2025-10-14 17:10:57
+outer gen 091 took 233.47s (3m)
+outer gen 092 | fd=142 | starting 2025-10-14 17:10:57
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:92 op: 0 ig: 0 | -4.78 | -4.78 | 2025-10-14 17:11:30
+og:92 op: 1 ig: 0 | -3.82 | -3.82 | 2025-10-14 17:11:59
+og:92 op: 2 ig: 0 | -4.36 | -4.36 | 2025-10-14 17:12:27
+og:92 op: 3 ig: 0 | -4.31 | -4.31 | 2025-10-14 17:12:56
+og:92 op: 4 ig: 0 | -4.36 | -4.36 | 2025-10-14 17:13:25
+og:92 op: 5 ig: 0 | -4.46 | -4.46 | 2025-10-14 17:13:51
+og:92 op: 6 ig: 0 | -4.60 | -4.60 | 2025-10-14 17:14:21
+og:92 op: 7 ig: 0 | -5.12 | -5.12 | 2025-10-14 17:14:50
+outer gen 092 00 | score=-4.78 | 2025-10-14 17:11:30
+outer gen 092 01 | score=-3.82 | 2025-10-14 17:11:59
+outer gen 092 02 | score=-4.36 | 2025-10-14 17:12:27
+outer gen 092 03 | score=-4.31 | 2025-10-14 17:12:56
+outer gen 092 04 | score=-4.36 | 2025-10-14 17:13:25
+outer gen 092 05 | score=-4.46 | 2025-10-14 17:13:51
+outer gen 092 06 | score=-4.60 | 2025-10-14 17:14:21
+outer gen 092 07 | score=-5.12 | 2025-10-14 17:14:50
+outer gen 092 | fin, mu: -4.48, genmax -3.82 vs cmax -3.40 | 2025-10-14 17:14:50
+outer gen 092 took 233.33s (3m)
+outer gen 093 | fd=142 | starting 2025-10-14 17:14:50
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:93 op: 0 ig: 0 | -4.77 | -4.77 | 2025-10-14 17:15:21
+og:93 op: 1 ig: 0 | -4.81 | -4.81 | 2025-10-14 17:15:49
+og:93 op: 2 ig: 0 | -4.22 | -4.22 | 2025-10-14 17:16:17
+og:93 op: 3 ig: 0 | -4.36 | -4.36 | 2025-10-14 17:16:46
+og:93 op: 4 ig: 0 | -4.06 | -4.06 | 2025-10-14 17:17:15
+og:93 op: 5 ig: 0 | -4.32 | -4.32 | 2025-10-14 17:17:45
+og:93 op: 6 ig: 0 | -4.23 | -4.23 | 2025-10-14 17:18:13
+og:93 op: 7 ig: 0 | -4.11 | -4.11 | 2025-10-14 17:18:39
+outer gen 093 00 | score=-4.77 | 2025-10-14 17:15:21
+outer gen 093 01 | score=-4.81 | 2025-10-14 17:15:49
+outer gen 093 02 | score=-4.22 | 2025-10-14 17:16:17
+outer gen 093 03 | score=-4.36 | 2025-10-14 17:16:46
+outer gen 093 04 | score=-4.06 | 2025-10-14 17:17:15
+outer gen 093 05 | score=-4.32 | 2025-10-14 17:17:45
+outer gen 093 06 | score=-4.23 | 2025-10-14 17:18:13
+outer gen 093 07 | score=-4.11 | 2025-10-14 17:18:39
+outer gen 093 | fin, mu: -4.36, genmax -4.06 vs cmax -3.40 | 2025-10-14 17:18:39
+outer gen 093 took 229.45s (3m)
+outer gen 094 | fd=142 | starting 2025-10-14 17:18:39
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:94 op: 0 ig: 0 | -4.32 | -4.32 | 2025-10-14 17:19:07
+og:94 op: 1 ig: 0 | -4.43 | -4.43 | 2025-10-14 17:19:34
+og:94 op: 2 ig: 0 | -4.61 | -4.61 | 2025-10-14 17:20:01
+og:94 op: 3 ig: 0 | -4.53 | -4.53 | 2025-10-14 17:20:45
+og:94 op: 4 ig: 0 | -4.02 | -4.02 | 2025-10-14 17:21:12
+og:94 op: 5 ig: 0 | -4.33 | -4.33 | 2025-10-14 17:21:40
+og:94 op: 6 ig: 0 | -4.28 | -4.28 | 2025-10-14 17:22:07
+og:94 op: 7 ig: 0 | -4.09 | -4.09 | 2025-10-14 17:22:37
+outer gen 094 00 | score=-4.32 | 2025-10-14 17:19:07
+outer gen 094 01 | score=-4.43 | 2025-10-14 17:19:34
+outer gen 094 02 | score=-4.61 | 2025-10-14 17:20:01
+outer gen 094 03 | score=-4.53 | 2025-10-14 17:20:45
+outer gen 094 04 | score=-4.02 | 2025-10-14 17:21:12
+outer gen 094 05 | score=-4.33 | 2025-10-14 17:21:40
+outer gen 094 06 | score=-4.28 | 2025-10-14 17:22:07
+outer gen 094 07 | score=-4.09 | 2025-10-14 17:22:37
+outer gen 094 | fin, mu: -4.33, genmax -4.02 vs cmax -3.40 | 2025-10-14 17:22:37
+outer gen 094 took 237.35s (3m)
+outer gen 095 | fd=142 | starting 2025-10-14 17:22:37
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:95 op: 0 ig: 0 | -4.29 | -4.29 | 2025-10-14 17:23:04
+og:95 op: 1 ig: 0 | -3.84 | -3.84 | 2025-10-14 17:23:30
+og:95 op: 2 ig: 0 | -4.75 | -4.75 | 2025-10-14 17:24:00
+og:95 op: 3 ig: 0 | -3.78 | -3.78 | 2025-10-14 17:24:27
+og:95 op: 4 ig: 0 | -4.32 | -4.32 | 2025-10-14 17:24:55
+og:95 op: 5 ig: 0 | -4.04 | -4.04 | 2025-10-14 17:25:23
+og:95 op: 6 ig: 0 | -4.32 | -4.32 | 2025-10-14 17:25:51
+og:95 op: 7 ig: 0 | -4.22 | -4.22 | 2025-10-14 17:26:20
+outer gen 095 00 | score=-4.29 | 2025-10-14 17:23:04
+outer gen 095 01 | score=-3.84 | 2025-10-14 17:23:30
+outer gen 095 02 | score=-4.75 | 2025-10-14 17:24:00
+outer gen 095 03 | score=-3.78 | 2025-10-14 17:24:27
+outer gen 095 04 | score=-4.32 | 2025-10-14 17:24:55
+outer gen 095 05 | score=-4.04 | 2025-10-14 17:25:23
+outer gen 095 06 | score=-4.32 | 2025-10-14 17:25:51
+outer gen 095 07 | score=-4.22 | 2025-10-14 17:26:20
+outer gen 095 | fin, mu: -4.20, genmax -3.78 vs cmax -3.40 | 2025-10-14 17:26:20
+outer gen 095 took 223.29s (3m)
+outer gen 096 | fd=142 | starting 2025-10-14 17:26:20
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:96 op: 0 ig: 0 | -4.42 | -4.42 | 2025-10-14 17:26:50
+og:96 op: 1 ig: 0 | -5.10 | -5.10 | 2025-10-14 17:27:20
+og:96 op: 2 ig: 0 | -4.65 | -4.65 | 2025-10-14 17:27:49
+og:96 op: 3 ig: 0 | -4.18 | -4.18 | 2025-10-14 17:28:16
+og:96 op: 4 ig: 0 | -4.22 | -4.22 | 2025-10-14 17:28:45
+og:96 op: 5 ig: 0 | -4.36 | -4.36 | 2025-10-14 17:29:15
+og:96 op: 6 ig: 0 | -4.35 | -4.35 | 2025-10-14 17:29:44
+og:96 op: 7 ig: 0 | -4.39 | -4.39 | 2025-10-14 17:30:11
+outer gen 096 00 | score=-4.42 | 2025-10-14 17:26:50
+outer gen 096 01 | score=-5.10 | 2025-10-14 17:27:20
+outer gen 096 02 | score=-4.65 | 2025-10-14 17:27:49
+outer gen 096 03 | score=-4.18 | 2025-10-14 17:28:16
+outer gen 096 04 | score=-4.22 | 2025-10-14 17:28:45
+outer gen 096 05 | score=-4.36 | 2025-10-14 17:29:15
+outer gen 096 06 | score=-4.35 | 2025-10-14 17:29:44
+outer gen 096 07 | score=-4.39 | 2025-10-14 17:30:11
+outer gen 096 | fin, mu: -4.46, genmax -4.18 vs cmax -3.40 | 2025-10-14 17:30:11
+outer gen 096 took 231.31s (3m)
+outer gen 097 | fd=142 | starting 2025-10-14 17:30:11
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:97 op: 0 ig: 0 | -4.28 | -4.28 | 2025-10-14 17:30:37
+og:97 op: 1 ig: 0 | -4.44 | -4.44 | 2025-10-14 17:31:10
+og:97 op: 2 ig: 0 | -4.69 | -4.69 | 2025-10-14 17:31:40
+og:97 op: 3 ig: 0 | -3.98 | -3.98 | 2025-10-14 17:32:09
+og:97 op: 4 ig: 0 | -4.28 | -4.28 | 2025-10-14 17:32:36
+og:97 op: 5 ig: 0 | -4.48 | -4.48 | 2025-10-14 17:33:04
+og:97 op: 6 ig: 0 | -4.98 | -4.98 | 2025-10-14 17:33:31
+og:97 op: 7 ig: 0 | -4.26 | -4.26 | 2025-10-14 17:33:57
+outer gen 097 00 | score=-4.28 | 2025-10-14 17:30:37
+outer gen 097 01 | score=-4.44 | 2025-10-14 17:31:10
+outer gen 097 02 | score=-4.69 | 2025-10-14 17:31:40
+outer gen 097 03 | score=-3.98 | 2025-10-14 17:32:09
+outer gen 097 04 | score=-4.28 | 2025-10-14 17:32:36
+outer gen 097 05 | score=-4.48 | 2025-10-14 17:33:04
+outer gen 097 06 | score=-4.98 | 2025-10-14 17:33:31
+outer gen 097 07 | score=-4.26 | 2025-10-14 17:33:57
+outer gen 097 | fin, mu: -4.42, genmax -3.98 vs cmax -3.40 | 2025-10-14 17:33:57
+outer gen 097 took 225.78s (3m)
+outer gen 098 | fd=142 | starting 2025-10-14 17:33:57
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:98 op: 0 ig: 0 | -4.18 | -4.18 | 2025-10-14 17:34:25
+og:98 op: 1 ig: 0 | -5.01 | -5.01 | 2025-10-14 17:34:51
+og:98 op: 2 ig: 0 | -4.17 | -4.17 | 2025-10-14 17:35:19
+og:98 op: 3 ig: 0 | -4.20 | -4.20 | 2025-10-14 17:35:50
+og:98 op: 4 ig: 0 | -4.23 | -4.23 | 2025-10-14 17:36:23
+og:98 op: 5 ig: 0 | -4.22 | -4.22 | 2025-10-14 17:36:51
+og:98 op: 6 ig: 0 | -3.98 | -3.98 | 2025-10-14 17:37:20
+og:98 op: 7 ig: 0 | -3.98 | -3.98 | 2025-10-14 17:37:49
+outer gen 098 00 | score=-4.18 | 2025-10-14 17:34:25
+outer gen 098 01 | score=-5.01 | 2025-10-14 17:34:51
+outer gen 098 02 | score=-4.17 | 2025-10-14 17:35:19
+outer gen 098 03 | score=-4.20 | 2025-10-14 17:35:50
+outer gen 098 04 | score=-4.23 | 2025-10-14 17:36:23
+outer gen 098 05 | score=-4.22 | 2025-10-14 17:36:51
+outer gen 098 06 | score=-3.98 | 2025-10-14 17:37:20
+outer gen 098 07 | score=-3.98 | 2025-10-14 17:37:49
+outer gen 098 | fin, mu: -4.25, genmax -3.98 vs cmax -3.40 | 2025-10-14 17:37:49
+outer gen 098 took 231.79s (3m)
+outer gen 099 | fd=142 | starting 2025-10-14 17:37:49
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:99 op: 0 ig: 0 | -4.12 | -4.12 | 2025-10-14 17:38:17
+og:99 op: 1 ig: 0 | -4.20 | -4.20 | 2025-10-14 17:38:52
+og:99 op: 2 ig: 0 | -4.99 | -4.99 | 2025-10-14 17:39:22
+og:99 op: 3 ig: 0 | -4.12 | -4.12 | 2025-10-14 17:39:51
+og:99 op: 4 ig: 0 | -4.34 | -4.34 | 2025-10-14 17:40:19
+og:99 op: 5 ig: 0 | -4.40 | -4.40 | 2025-10-14 17:40:45
+og:99 op: 6 ig: 0 | -4.43 | -4.43 | 2025-10-14 17:41:12
+og:99 op: 7 ig: 0 | -4.19 | -4.19 | 2025-10-14 17:41:46
+outer gen 099 00 | score=-4.12 | 2025-10-14 17:38:17
+outer gen 099 01 | score=-4.20 | 2025-10-14 17:38:52
+outer gen 099 02 | score=-4.99 | 2025-10-14 17:39:22
+outer gen 099 03 | score=-4.12 | 2025-10-14 17:39:51
+outer gen 099 04 | score=-4.34 | 2025-10-14 17:40:19
+outer gen 099 05 | score=-4.40 | 2025-10-14 17:40:45
+outer gen 099 06 | score=-4.43 | 2025-10-14 17:41:12
+outer gen 099 07 | score=-4.19 | 2025-10-14 17:41:46
+outer gen 099 | fin, mu: -4.35, genmax -4.12 vs cmax -3.40 | 2025-10-14 17:41:46
+outer gen 099 took 236.80s (3m)
+outer gen 100 | fd=142 | starting 2025-10-14 17:41:46
+strategy_cls_RNG strat_kw_{'seed': 16} policy_cls_NNPolicy population_size_1200 n_generations_1 sim_duration_30 sim_steps_per_cycle_10 fitness_<function Experiment.fitness at 0x7b2ab37f80e0>
+og:100 op: 0 ig: 0 | -4.39 | -4.39 | 2025-10-14 17:42:13
+og:100 op: 1 ig: 0 | -3.60 | -3.60 | 2025-10-14 17:42:41
+og:100 op: 2 ig: 0 | -4.33 | -4.33 | 2025-10-14 17:43:11
+og:100 op: 3 ig: 0 | -4.45 | -4.45 | 2025-10-14 17:43:43
+og:100 op: 4 ig: 0 | -4.36 | -4.36 | 2025-10-14 17:44:10
+og:100 op: 5 ig: 0 | -4.30 | -4.30 | 2025-10-14 17:44:37
+og:100 op: 6 ig: 0 | -4.32 | -4.32 | 2025-10-14 17:45:07
+og:100 op: 7 ig: 0 | -4.31 | -4.31 | 2025-10-14 17:45:34
+outer gen 100 00 | score=-4.39 | 2025-10-14 17:42:13
+outer gen 100 01 | score=-3.60 | 2025-10-14 17:42:41
+outer gen 100 02 | score=-4.33 | 2025-10-14 17:43:11
+outer gen 100 03 | score=-4.45 | 2025-10-14 17:43:43
+outer gen 100 04 | score=-4.36 | 2025-10-14 17:44:10
+outer gen 100 05 | score=-4.30 | 2025-10-14 17:44:37
+outer gen 100 06 | score=-4.32 | 2025-10-14 17:45:07
+outer gen 100 07 | score=-4.31 | 2025-10-14 17:45:34
+outer gen 100 | fin, mu: -4.26, genmax -3.60 vs cmax -3.40 | 2025-10-14 17:45:34
+outer gen 100 took 228.08s (3m)
