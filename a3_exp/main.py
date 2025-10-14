@@ -62,7 +62,7 @@ class MainExperiment(Experiment):
         if n_parameters < 3:
             return [-6], [np.zeros(n_parameters)]
 
-        es_cls = {"CMA": CMAES, "GA": GA}[strategy_cls]
+        es_cls = {"CMA": CMAES, "GA": GA, "RNG": RandStrat}[strategy_cls]
         es = es_cls(n_parameters=n_parameters, population_size=population_size, **strat_kw)
         sim_kw = dict(mj_model=mj_model, fitness=fitness, sim_time=sim_duration, n_steps_per_cycle=sim_steps_per_cycle)
         # quit_map = {0: -5, 5: -4.0, 10: -3.9, 15: -3.8, 20: -3.6, 25: -3.4, 35: -3.0}
@@ -89,7 +89,7 @@ class MainExperiment(Experiment):
 
     def run(self, name: str, config: ExpConfig):
         self.init_nde_hpd(config.nde_seed)
-        es_cls = {"CMA": CMAES, "GA": GA, "Rand": RandStrat}[config.outer_strategy_cls]
+        es_cls = {"CMA": CMAES, "GA": GA, "RNG": RandStrat}[config.outer_strategy_cls]
         es = es_cls(n_parameters=64 * 3, population_size=config.outer_population, **config.outer_strat_kw)
         inner_kw = dict(
             strategy_cls=config.inner_strategy_cls,
@@ -113,8 +113,8 @@ class MainExperiment(Experiment):
             opool, ipool = DummyPool(), pool
             for i_og in range(1, config.outer_generations + 1):
                 t = time.perf_counter()
-                inner_kw['n_generations'] = min(inner_kw['n_generations'] + 2 * (i_og % 2 == 0), 40)
-                inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 50)
+                # inner_kw['n_generations'] = min(inner_kw['n_generations'] + 2 * (i_og % 2 == 0), 20)
+                inner_kw['sim_duration'] = min(inner_kw['sim_duration'] + 1 * (i_og % 2 == 0), 30)
                 print(f"outer gen {i_og:03} | fd={fd_count()} | starting {repr_now()}")
                 print(repr_kw(inner_kw))
                 genomes = es.ask() # BODY GENOMES
@@ -197,12 +197,12 @@ if __name__ == '__main__':
     _main_config = ExpConfig(
         nde_seed=16,
         world=1,
-        outer_strategy_cls="CMA",
+        outer_strategy_cls="RNG",
         outer_strat_kw=dict(seed=16),
         # outer_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=3),
-        outer_population=20,
-        outer_generations=400,
-        inner_strategy_cls="CMA",
+        outer_population=8,
+        outer_generations=100,
+        inner_strategy_cls="RNG",
         inner_strat_kw=dict(seed=16),
         # inner_strat_kw=dict(seed=16, mutation_rate=.1, crossover_rate=.7, tournament_size=10),
         inner_population=60,
@@ -211,7 +211,7 @@ if __name__ == '__main__':
         sim_duration=10,
         sim_steps_per_cycle=10,
     )
-    # MainExperiment().run(name='cma_cma_20op', config=_main_config)
-    MainExperiment().confirm_results("cma_cma_sunday")
+    MainExperiment().run(name='RNG_RNG', config=_main_config)
+    # MainExperiment().confirm_results("cma_cma_sunday")
     # MainExperiment().record_best("cma_cma_sunday")
 

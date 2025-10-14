@@ -34,18 +34,12 @@ class RandStrat(EAStrategy):
     def __init__(self, n_parameters: int, population_size: int, seed: int):
         super().__init__(n_parameters=n_parameters, population_size=population_size)
         self.rng = np.random.default_rng(seed)
-        self._population = [self.rng.normal(size=self.n_parameters) for _ in range(self.population_size)]
 
     def ask(self):
-        return self._population
+        return [self.rng.normal(size=self.n_parameters) for _ in range(self.population_size)]
 
     def tell(self, samples, scores):
-        keep = int(self.population_size * .5)
-        best_samples = map(samples.__getitem__, sorted(range(len(samples)), key=scores.__getitem__)[:keep])
-        self._population = list(best_samples) + [
-            self.rng.normal(size=self.n_parameters) for _ in range(self.population_size - keep)
-        ]
-        assert len(self._population) == self.population_size
+        pass
 
     def stop(self):
         return self and False
